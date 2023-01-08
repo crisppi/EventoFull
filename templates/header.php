@@ -10,7 +10,7 @@ include_once("db.php"); ?>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Full-2022</title>
+  <title>Gestão Qualidade-2022</title>
   <!-- Boostrap -->
   <link href="<?php $BASE_URL ?>css/style.css" rel="stylesheet">
   <link href="<?php $BASE_URL ?>css/styleMenu.css" rel="stylesheet">
@@ -53,9 +53,6 @@ include_once("db.php"); ?>
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
               <li><a class="dropdown-item" href="<?php $BASE_URL ?>list_evento.php">Evento Adverso</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
             </ul>
           </li>
           <li class="nav-item dropdown">
@@ -63,21 +60,20 @@ include_once("db.php"); ?>
               Usuário
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-              <li><a class="dropdown-item" href="<?php $BASE_URL ?>cad_usuario.php">Criar usuário</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
+              <li><a class="dropdown-item" href="cad_usuario.php">Criar usuário</a></li>
             </ul>
             <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-              <li><a class="dropdown-item" href="<?php $BASE_URL ?>list_usuario.php">Listar usuário</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
+              <li><a class="dropdown-item" href="list_usuario.php">Listar usuário</a></li>
             </ul>
           </li>
-
-
-          </ul>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Pesquisas
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+              <li><a class="dropdown-item" href="<?php $BASE_URL ?>list_usuario.php">Listar Usuário</a></li>
+            </ul>
+          </li>
         </div>
       </div>
       <div class="col-md-4" style="margin-left:20px; font-size:12px">

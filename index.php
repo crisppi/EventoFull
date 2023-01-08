@@ -1,6 +1,5 @@
 <?php
 require_once("templates/header.php");
-
 ?>
 <div class="container-fluid">
     <div class="row full-height" style="background-color:#e9e9e9">
