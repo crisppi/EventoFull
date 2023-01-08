@@ -158,7 +158,6 @@ $id_evento = filter_input(INPUT_GET, "id_evento");
 </form>
 <div>
     <hr>
-
     <a class="btn btn-success styled" style="margin-left:120px" href="list_evento.php">Listar
     </a>
 </div>
