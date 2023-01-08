@@ -148,6 +148,10 @@
         echo " </ul>";
         echo "</nav>";
         echo "</div>"; ?>
+<div>
+    <hr>
+    <a class="btn btn-success styled" style="margin-left:120px" href="cad_evento.php">Novo Evento</a>
+</div>
 </body>
 
 <script>

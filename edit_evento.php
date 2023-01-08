@@ -1,5 +1,4 @@
 <?php
-require_once("models/usuario.php");
 require_once("models/evento.php");
 require_once("dao/eventoDao.php");
 require_once("templates/header.php");
@@ -26,8 +25,8 @@ $evento = $eventoDao->findById($id_evento);
                 <input type="hidden" class="form-control" id="id_evento" name="id_evento" value="<?= $evento->id_evento ?>" placeholder="ID">
 
                 <div class="form-group col-sm-4">
-                    <label for="evento_ant">evento</label>
-                    <input type="text" class="form-control" id="evento_ant" value="<?= $evento->paciente ?>" name="evento_ant" placeholder="Digite o nome" required>
+                    <label for="paciente">Paciente</label>
+                    <input type="text" class="form-control" id="paciente" value="<?= $evento->paciente ?>" name="paciente" placeholder="Digite o nome">
                 </div>
 
                 <br>
