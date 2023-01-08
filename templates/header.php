@@ -36,37 +36,37 @@ include_once("db.php"); ?>
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="<?php $BASE_URL ?>index.php">Home</a>
             </li>
-           
+
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Cadastro
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                 <li><a class="dropdown-item" href="<?php $BASE_URL ?>cad_evento.php">Cadastrar novo evento</a></li>
-              
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Pesquisas
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                <li><a class="dropdown-item" href="<?php $BASE_URL ?>list_evento.php">Evento Adverso</a></li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
-              </ul>
-            </li>
 
-           
+            </li>
+          </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Pesquisas
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+              <li><a class="dropdown-item" href="<?php $BASE_URL ?>list_evento.php">Evento Adverso</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+            </ul>
+          </li>
+
+
           </ul>
         </div>
       </div>
       <div class="col-md-4" style="margin-left:20px; font-size:12px">
         <?php
         $agora = date('d/m/Y H:i');
-        echo "Bem vindo:  " . $_SESSION['email_login'] . "     " . $agora ?>
+        echo "Atual:  " . $agora ?>
       </div>
   </div>
   </nav>

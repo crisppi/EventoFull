@@ -1,12 +1,10 @@
 <?php
 require_once("models/usuario.php");
 require_once("models/evento.php");
-require_once("dao/usuarioDao.php");
 require_once("dao/eventoDao.php");
 require_once("templates/header.php");
 
 $user = new evento();
-$userDao = new UserDAO($conn, $BASE_URL);
 $eventoDao = new eventoDAO($conn, $BASE_URL);
 
 // Receber id do usuário
@@ -29,7 +27,7 @@ $evento = $eventoDao->findById($id_evento);
 
                 <div class="form-group col-sm-4">
                     <label for="evento_ant">evento</label>
-                    <input type="text" class="form-control" id="evento_ant" value="<?= $evento->evento_ant ?>" name="evento_ant" placeholder="Digite o nome" required>
+                    <input type="text" class="form-control" id="evento_ant" value="<?= $evento->paciente ?>" name="evento_ant" placeholder="Digite o nome" required>
                 </div>
 
                 <br>

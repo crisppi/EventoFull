@@ -4,7 +4,6 @@ require_once("globals.php");
 require_once("db.php");
 require_once("models/evento.php");
 require_once("models/message.php");
-require_once("dao/usuarioDao.php");
 require_once("dao/eventoDao.php");
 
 //$message = new Message($BASE_URL);

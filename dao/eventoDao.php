@@ -40,7 +40,7 @@ class eventoDAO implements eventoDAOInterface
         $evento->senha = $data["senha"];
         $evento->evitavel = $data["evitavel"];
         $evento->alta = $data["alta"];
-        $evento->obito = $data["evento"];
+        $evento->obito = $data["obito"];
         $evento->gravidade = $data["gravidade"];
         $evento->propria = $data["propria"];
         $evento->empresa = $data["empresa"];
@@ -159,11 +159,9 @@ class eventoDAO implements eventoDAOInterface
         senha,
         evitavel,
         alta,
-        evento,
         gravidade,
         propria,
         empresa,
-        seguradora,
         tipo_evento
       ) VALUES (
         :paciente,
@@ -181,11 +179,9 @@ class eventoDAO implements eventoDAOInterface
         :senha,
         :evitavel,
         :alta,
-        :evento,
         :gravidade,
         :propria,
         :empresa,
-        :seguradora,
         :tipo_evento
     )");
 
@@ -235,7 +231,6 @@ class eventoDAO implements eventoDAOInterface
         senha = :senha,
         evitavel = :evitavel,
         alta = :alta,
-        evento = :evento,
         gravidade = :gravidade,
         propria = :propria,
         empresa =:empresa,

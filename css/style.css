@@ -288,6 +288,21 @@
     text-decoration: none;
 }
 
+/* TABELA DE SHOW    */
+
+.show span {
+    font-size: 1.2em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+
+}
+
+.show-dados {
+    font-size: 2.2em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 400;
+
+}
 
 /* TABELAS */
 
@@ -427,7 +442,7 @@
 
 /* MENSAGEM APAGAR */
 
-.mensagem-apg {
+.mensagem-apgar p {
     height: 30px;
     width: 400px;
     justify-content: center;

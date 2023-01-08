@@ -18,7 +18,7 @@ $eventoDao = new eventoDAO($conn, $BASE_URL);
 $id_evento = filter_input(INPUT_GET, "id_evento");
 
 ?>
-<div id="main-container" class="container-fluid">
+<div id="main-container" class="container">
 
     <div class="row">
         <h3 class="page-title">Cadastrar - Evento Adverso</h3>
@@ -30,7 +30,7 @@ $id_evento = filter_input(INPUT_GET, "id_evento");
             <div class="form-group row">
                 <div class="form-group col-sm-4">
                     <label for="paciente">Nome do Paciente</label>
-                    <input type="text" class="form-control" id="paciente" required name="paciente" placeholder="Digite o nome do paciente" required>
+                    <input type="text" class="form-control" id="paciente" name="paciente" placeholder="Digite o nome do paciente">
                 </div>
                 <div class="form-group col-sm-1">
                     <label for="idade">Idade</label>
@@ -54,7 +54,7 @@ $id_evento = filter_input(INPUT_GET, "id_evento");
                 </div>
                 <div class="form-group col-sm-1">
                     <label for="senha">Senha</label>
-                    <input type="text" class="form-control" id="senha" name="senha" placeholder="Digite a senha" required>
+                    <input type="text" class="form-control" id="senha" name="senha" placeholder="Digite a senha">
                 </div>
                 <div class="form-group col-sm-1">
                     <label for="data_evento">Data do EA</label>
@@ -84,7 +84,7 @@ $id_evento = filter_input(INPUT_GET, "id_evento");
                     </div>
                     <div class="form-group col-sm-4">
                         <label for="auditor">Nome do auditor</label>
-                        <input type="text" class="form-control" id="auditor" name="auditor" placeholder="Digite o nome do auditor" required>
+                        <input type="text" class="form-control" id="auditor" name="auditor" placeholder="Digite o nome do auditor">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -146,7 +146,7 @@ $id_evento = filter_input(INPUT_GET, "id_evento");
             </div>
             <br>
     </div>
-    <button style="margin:10px" type="submit" class="btn-sm btn-info">Cadastrar</button>
+    <button style="margin:10px; font-weight:bold" type="submit" class="btn-sm btn-info styled">Cadastrar</button>
     <br>
     <?php if (!empty($flassMessage["msg"])) : ?>
         <div class="msg-container">
@@ -159,7 +159,7 @@ $id_evento = filter_input(INPUT_GET, "id_evento");
 <div>
     <hr>
 
-    <a class="btn btn-success" style="margin-left:20px" href="list_evento.php">Listar
+    <a class="btn btn-success styled" style="margin-left:120px" href="list_evento.php">Listar
     </a>
 </div>
 </div>

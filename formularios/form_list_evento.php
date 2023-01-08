@@ -18,10 +18,6 @@
     <!--tabela evento-->
     <div class="container-fluid py-2">
         <h4 class="page-title">Relação de eventos</h4>
-        <p> usuario logado </p>
-        <?php
-        $_SESSION['email-login']; ?>
-
         <div class="menu_pesquisa">
             <form id="form_pesquisa" method="POST">
                 <input type="text" name="pesquisa_antec" id="pesquisa_antec" placeholder="Pesquisa por evento">
@@ -55,7 +51,10 @@
                 <thead>
                     <tr>
                         <th scope="col">Id</th>
-                        <th scope="col">evento</th>
+                        <th scope="col">Paciente</th>
+                        <th scope="col">Hospital</th>
+                        <th scope="col">Senha</th>
+                        <th scope="col">Data Evento</th>
                         <th scope="col">Ações</th>
                     </tr>
                 </thead>
@@ -67,7 +66,10 @@
                     ?>
                         <tr>
                             <td scope="row" class="col-id"><?= $id_evento ?></td>
-                            <td scope="row" class="nome-coluna-table"><?= $evento_ant ?></td>
+                            <td scope="row" class="nome-coluna-table"><?= $paciente ?></td>
+                            <td scope="row" class="nome-coluna-table"><?= $hospital ?></td>
+                            <td scope="row" class="nome-coluna-table"><?= $senha ?></td>
+                            <td scope="row" class="nome-coluna-table"><?= $data_evento ?></td>
 
                             <td class="action">
                                 <a href="cad_evento.php"><i name="type" value="create" style="color:green; margin-right:10px" class="bi bi-plus-square-fill edit-icon"></i></a>
