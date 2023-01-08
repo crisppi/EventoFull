@@ -58,6 +58,23 @@ include_once("db.php"); ?>
               </li>
             </ul>
           </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Usuário
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+              <li><a class="dropdown-item" href="<?php $BASE_URL ?>cad_usuario.php">Criar usuário</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+            </ul>
+            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+              <li><a class="dropdown-item" href="<?php $BASE_URL ?>list_usuario.php">Listar usuário</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+            </ul>
+          </li>
 
 
           </ul>
