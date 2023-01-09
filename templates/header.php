@@ -13,6 +13,7 @@ include_once("db.php"); ?>
   <title>Gestão Qualidade-2022</title>
   <!-- Boostrap -->
   <link href="<?php $BASE_URL ?>css/style.css" rel="stylesheet">
+  <link href="<?php $BASE_URL ?>css/login.css" rel="stylesheet">
   <link href="<?php $BASE_URL ?>css/styleMenu.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -43,7 +44,6 @@ include_once("db.php"); ?>
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                 <li><a class="dropdown-item" href="<?php $BASE_URL ?>cad_evento.php">Cadastrar novo evento</a></li>
-
             </li>
           </ul>
           </li>
@@ -76,8 +76,9 @@ include_once("db.php"); ?>
           </li>
         </div>
       </div>
-      <div class="col-md-4" style="margin-left:20px; font-size:12px">
+      <div class="col-md-2" style="margin-left:200px; font-weight:600 ;font-size:12px">
         <?php
+        echo "Bem vindo ao Painel, " . $_SESSION['email_login'] . "<br>";
         $agora = date('d/m/Y H:i');
         echo "Atual:  " . $agora ?>
       </div>

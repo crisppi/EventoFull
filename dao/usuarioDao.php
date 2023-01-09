@@ -192,6 +192,30 @@ class UserDAO implements UserDAOInterface
             return false;
         }
     }
+    public function findByLogin($id_usuario)
+    {
+
+        if ($id_usuario != "") {
+
+            $stmt = $this->conn->prepare("SELECT * FROM tb_user WHERE id_usuario = :id_usuario");
+
+            $stmt->bindParam(":id_usuario", $id_usuario);
+
+            $stmt->execute();
+
+            if ($stmt->rowCount() > 0) {
+
+                $data = $stmt->fetch();
+                $usuario = $this->buildUser($data);
+
+                return $usuario;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
 
     public function findByToken($token)
     {
