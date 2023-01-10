@@ -55,34 +55,42 @@ include_once("db.php"); ?>
               <li><a class="dropdown-item" href="<?php $BASE_URL ?>list_evento.php">Evento Adverso</a></li>
             </ul>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Usuário
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-              <li><a class="dropdown-item" href="cad_usuario.php">Criar usuário</a></li>
-            </ul>
-            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-              <li><a class="dropdown-item" href="list_usuario.php">Listar usuário</a></li>
-            </ul>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Pesquisas
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-              <li><a class="dropdown-item" href="<?php $BASE_URL ?>list_usuario.php">Listar Usuário</a></li>
-            </ul>
-          </li>
+          <?php if ($_SESSION['username'] == "roberto") { ?>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Usuário
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                <li><a class="dropdown-item" href="cad_usuario.php">Criar usuário</a></li>
+              </ul>
+              <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                <li><a class="dropdown-item" href="list_usuario.php">Listar usuário</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Pesquisas
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                <li><a class="dropdown-item" href="<?php $BASE_URL ?>list_usuario.php">Listar Usuário</a></li>
+              </ul>
+            </li>
+          <?php } ?>
         </div>
       </div>
       <div class="col-md-2" style="margin-left:200px; font-weight:600 ;font-size:12px">
         <?php
-        echo "Bem vindo ao Painel, " . $_SESSION['username'] . "<br>";
+        if ($_SESSION) {
+          echo "<span style='color:green; font-size:1.2em'>Bem vindo ao Painel, " . $_SESSION['username'] . "</span><br>";
+          $agora = date('d/m/Y H:i');
+        } else {
+          echo "<span style='color:red'> Você não esta logado!!</span>" . "<br>";
+        }
         $agora = date('d/m/Y H:i');
         echo "Atual:  " . $agora ?>
         <div>
-          <a class="dropdown-item" href="<?php $BASE_URL ?>app/destroi.php"> Sair</a>
+          <a class="dropdown-item" href="<?php $BASE_URL ?>destroi.php"> Sair</a>
         </div>
       </div>
   </div>
