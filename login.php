@@ -9,11 +9,11 @@ require_once("models/message.php");
 require_once("dao/eventoDao.php");
 
 $usuarioDao = new userDAO($conn, $BASE_URL);
-
+$message = "";
 if (isset($_POST["login"])) {
-    echo $_POST['login'];
-    echo $_POST['username'];
-    echo $_POST['password'];
+    // echo $_POST['login'];
+    // echo $_POST['username'];
+    // echo $_POST['password'];
 
     if (empty($_POST['username']) || empty($_POST['password'])) {
         $message = '<label>Todos campos são obrigatórios</label>';
@@ -25,16 +25,15 @@ if (isset($_POST["login"])) {
                 'username'     =>     $_POST["username"],
                 'password'     =>     $_POST["password"]
             )
-
         );
-        echo "<br>";
-        print_r($count = $usuarioDao->rowCount());
-        if ($count > 0) {
-            $_SESSION["username"] = $_POST["username"];
-            header("location:cad_evento.php");
-        } else {
 
-            $message = '<label>Wrong Data</label>';
+        if ($count > 0) {
+            echo "chegou aqui";
+            $_SESSION["username"] = $_POST["username"];
+            print_r($_SESSION);
+            header('location:cad_evento.php');
+        } else {
+            $message = '<label>Usuário ou senha incorretas</label>';
         }
     }
 }
@@ -53,13 +52,8 @@ if (isset($_POST["login"])) {
 <body>
     <br />
     <div class="container" style="width:500px;">
-        <?php
-        print_r($_SESSION);
-        if (isset($message)) {
-            echo '<label class="text-danger">' . $message . '</label>';
-        }
-        ?>
-        <h3 align="">PHP Login Script using PDO</h3><br />
+
+        <!-- <h3 align=""> Login </h3><br />
         <form method="post">
             <label>Username</label>
             <input type="text" name="username" class="form-control" />
@@ -68,9 +62,45 @@ if (isset($_POST["login"])) {
             <input type="password" name="password" class="form-control" />
             <br />
             <input type="submit" name="login" class="btn btn-info" value="Login" />
-        </form>
+        </form> -->
+        <?php
+        if (isset($message)) {
+            echo '<label class="text-danger">' . $message . '</label>';
+        }
+        ?>
     </div>
-    <br />
+
+    <div class="login-wrap">
+        <div class="login-html">
+            <div>
+                <a class="navbar-brand" href="index.php">
+                    <img src="img/full-03.jpeg" style="width:70px; height:70px " alt="Full">
+                </a> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+            </div>
+            <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Logar</label>
+            <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab"></label>
+            <div class="login-form">
+                <form method="POST">
+                    <div class="sign-in-htm">
+                        <div class="group">
+                            <label for="username" class="label">Usuário</label>
+                            <input id="username" name="username" type="text" class="input">
+                        </div>
+                        <div class="group">
+                            <label for="password" class="label">Senha</label>
+                            <input id="password" name="password" type="password" class="input" type="password">
+                        </div>
+                        <div class="group">
+                            <input type="submit" class="button" name="login" class="btn btn-info" value="Login" />
+                        </div>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+    </div>
 </body>
 
 </html>
