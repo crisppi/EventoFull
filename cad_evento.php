@@ -1,6 +1,9 @@
 <?php
-//session_start();
+session_start();
 
+if (!$_SESSION['username']) {
+    header("Location: index.php");
+};
 require_once("templates/header.php");
 require_once("dao/eventoDao.php");
 require_once("models/message.php");
@@ -22,7 +25,7 @@ $id_evento = filter_input(INPUT_GET, "id_evento");
 
     <div class="row">
         <h3 class="page-title">Cadastrar - Evento Adverso</h3>
-        <p class="page-description">Adicione informações sobre o evento</p>
+        <p class="page-description">Adicione informações sobre o Evento Adverso identificado</p>
 
         <form class="formulario" action="<?= $BASE_URL ?>process_evento.php" id="add-evento-form" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="type" value="create">

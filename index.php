@@ -24,7 +24,6 @@ if (isset($_POST["login"])) {
                 'username'     =>     $_POST["username"],
                 'password'     =>     $_POST["password"]
             )
-
         );
         $count = $usuarioDao->rowCount();
         if ($count > 0) {
@@ -72,6 +71,10 @@ if (isset($_POST["login"])) {
 
     <div class="login-wrap">
         <div class="login-html">
+            <div style="color:white; text-align:center; font-size:1.4em">
+                PAINEL - EVENTO ADVERSO
+            </div>
+            <hr>
             <div>
                 <a class="navbar-brand" href="index.php">
                     <img src="img/full-03.jpeg" style="width:70px; height:70px " alt="Full">
@@ -80,6 +83,7 @@ if (isset($_POST["login"])) {
             </div>
             <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Logar</label>
             <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab"></label>
+
             <div class="login-form">
                 <form method="POST">
                     <div class="sign-in-htm">
@@ -95,9 +99,7 @@ if (isset($_POST["login"])) {
                             <input type="submit" class="button" name="login" class="btn btn-info" value="Login">
                         </div>
                 </form>
-
             </div>
-
         </div>
     </div>
 </body>
