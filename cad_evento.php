@@ -132,14 +132,33 @@ $id_evento = filter_input(INPUT_GET, "id_evento");
                     <p style="text-align:justify;font-size:0.6em;padding-left:7px">Qual sua opinão sobre a gravidade do evento?</p>
                 </div>
                 <div class="form-group col-sm-2 ">
-                    <label class="control-label" for="evitavel">Evitável</label>
-                    <select class="form-control" id="evitavel" name="evitavel">
+                    <label class="control-label" for="alta">Evitável</label>
+                    <select class="form-control" id="alta" name="alta">
                         <option value="">Selecione</option>
                         <option value="s">Sim</option>
                         <option value="n">Não</option>
                     </select>
                     <p style="text-align:justify;font-size:0.6em;padding-left:7px">Na sua opinião poderia ser evitado?</p>
                 </div>
+                <div class="form-group col-sm-2 ">
+                    <label class="control-label" for="evitavel">Alta</label>
+                    <select class="form-control" id="evitavel" name="evitavel">
+                        <option value="">Selecione</option>
+                        <option value="s">Sim</option>
+                        <option value="n">Não</option>
+                    </select>
+                    <p style="text-align:justify;font-size:0.6em;padding-left:7px">Paciente recebeu alta?</p>
+                </div>
+                <div class="form-group col-sm-2 ">
+                    <label class="control-label" for="obito">Óbito</label>
+                    <select class="form-control" id="obito" name="obito">
+                        <option value="">Selecione</option>
+                        <option value="s">Sim</option>
+                        <option value="n">Não</option>
+                    </select>
+                    <p style="text-align:justify;font-size:0.6em;padding-left:7px">Paciente foi a óbito?</p>
+                </div>
+
                 <div class="form-group row">
                     <div class="form-group col-sm-12">
                         <label for="rel_evento">Relatório sobre o caso </label>

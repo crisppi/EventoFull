@@ -71,7 +71,7 @@ if (isset($_POST["login"])) {
 
     <div class="login-wrap">
         <div class="login-html">
-            <div style="color:white; text-align:center; font-size:1.4em">
+            <div style="color:white; text-align:center; font-size:1.6em">
                 PAINEL - EVENTO ADVERSO
             </div>
             <hr>

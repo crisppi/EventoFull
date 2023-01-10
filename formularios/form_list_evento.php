@@ -18,22 +18,40 @@
     <!--tabela evento-->
     <div class="container-fluid py-2">
         <h4 class="page-title">Relação de eventos</h4>
-        <div class="menu_pesquisa">
+        <div class="row menu_pesquisa">
             <form id="form_pesquisa" method="POST">
-                <input type="text" name="pesquisa_antec" id="pesquisa_antec" placeholder="Pesquisa por evento">
                 <input type="hidden" name="pesquisa" id="pesquisa" value="sim">
+                <input type="text" name="pesquisa_event" id="pesquisa_event" placeholder="Pesquisa por evento">
+                <div class="form-group col-sm-2">
+                    <label class="control-label" for="hospital_pes">Hospital</label>
+                    <select class="form-control" id="hospital_pes" name="hospital_pes">
+                        <option value="">Selecione</option>
+                        <option value="São Luiz Itaim">São Luiz Itaim</option>
+                        <option value="São Luiz Anália Franco">São Luiz Anália Franco</option>
+                    </select>
+                </div>
                 <button style="margin:10px" type="submit" class="btn-sm btn-info">Buscar</button>
             </form>
 
             <?php
-            $pesquisa_antec = filter_input(INPUT_POST, "pesquisa_antec");
+
+            $pesquisa_event = filter_input(INPUT_POST, "pesquisa_event");
+            $hospital_pes = filter_input(INPUT_POST, "hospital_pes");
+            $pesquisa_sim = filter_input(INPUT_POST, "pesquisa");
+            echo $hospital_pes;
+            echo "<br>";
+            echo $pesquisa_event;
+            echo "<br>";
+            echo $pesquisa_sim;
+            echo "<br>";
             ?>
         </div>
         <?php
-        if (!$pesquisa_antec) {
+        $sql = "";
+        if (!$pesquisa_event) {
             $sql = "SELECT * FROM tb_evento ORDER BY id_evento ASC LIMIT " . $inicio . ", " . $limite;
         } else {
-            $sql = "SELECT * FROM tb_evento WHERE evento_ant like '$pesquisa_antec%' ORDER BY evento_ant desc";
+            $sql = "SELECT * FROM tb_evento WHERE paciente like '$pesquisa_event%' and hospital ='$hospital_pes' ";
         }
 
         try {
