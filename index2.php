@@ -13,7 +13,7 @@ require_once("templates/header.php");
                     <input class="input border-0 border-bottom p-2" style="border-radius:10px" placeholder="Senha" name="senha_login" id="senha_login" type="password" />
                     <br />
                     <div class="mt-4 d-flex justify-content-between align-items-center">
-                        <button style="border-radius:15px" type=" submit" class="btn btn-danger">Logar</button>
+                        <button style="border-radius:15px" type="submit" class="btn btn-danger">Logar</button>
                         <a href="#" class="text-secondary text-decoration-none">Esqueceu a senha?</a>
                     </div>
                 </form>

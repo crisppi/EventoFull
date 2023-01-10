@@ -78,9 +78,12 @@ include_once("db.php"); ?>
       </div>
       <div class="col-md-2" style="margin-left:200px; font-weight:600 ;font-size:12px">
         <?php
-        echo "Bem vindo ao Painel, " . $_SESSION['email_login'] . "<br>";
+        echo "Bem vindo ao Painel, " . $_SESSION['username'] . "<br>";
         $agora = date('d/m/Y H:i');
         echo "Atual:  " . $agora ?>
+        <div>
+          <a class="dropdown-item" href="<?php $BASE_URL ?>app/destroi.php"> Sair</a>
+        </div>
       </div>
   </div>
   </nav>

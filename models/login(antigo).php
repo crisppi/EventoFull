@@ -1,5 +1,5 @@
 <?php
-class Login
+class LoginAntigo
 {
 
     // metodo responsavel por saber se o usuario esta logado.

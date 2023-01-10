@@ -19,7 +19,18 @@ $id_evento = filter_input(INPUT_GET, "id_evento");
 
 ?>
 <div id="main-container" class="container">
+    <?php print_r($_SESSION);
+    echo "<br>";
+    echo $_SESSION['username'];
+    echo $post['username'];
+    echo "<br>";
+    echo $post['senha_user'];
+    echo $_SESSION['senha_user'];
+    echo "<br>";
+    echo "loggedin = " . $_SESSION['loggedin'];
+    echo "<br>";
 
+    ?>
     <div class="row">
         <h3 class="page-title">Cadastrar - Evento Adverso</h3>
         <p class="page-description">Adicione informações sobre o evento</p>
