@@ -6,6 +6,7 @@ if (!$_SESSION['username']) {
 require_once("templates/header.php");
 require_once("dao/eventoDao.php");
 require_once("models/message.php");
+include_once("array_dados.php");
 
 $message = new Message($BASE_URL);
 
@@ -25,7 +26,6 @@ $id_evento = filter_input(INPUT_GET, "id_evento");
     <div class="row">
         <h3 class="page-title">Cadastrar - Evento Adverso</h3>
         <p class="page-description">Adicione informações sobre o Evento Adverso identificado</p>
-        <?php $dados_hospital = ['Itaim', 'Analia', 'Morumbi', 'Sirio'];?>
 
         <form class="formulario" action="<?= $BASE_URL ?>process_evento.php" id="add-evento-form" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="type" value="create">
@@ -51,7 +51,6 @@ $id_evento = filter_input(INPUT_GET, "id_evento");
                     <label class="control-label" for="hospital">Hospital</label>
                     <select class="form-control" id="hospital" name="hospital">
                         <option value="">Selecione</option>
-                        
                         <?php 
                         foreach($dados_hospital as $hosp) { ?>
                             <option value="<?= $hosp; ?>"><?= $hosp; ?></option>
@@ -85,8 +84,10 @@ $id_evento = filter_input(INPUT_GET, "id_evento");
                         <label class="control-label" for="empresa">Nome da Empresa</label>
                         <select class="form-control" id="empresa" name="empresa">
                             <option value="">Selecione</option>
-                            <option value="HM">HM</option>
-                            <option value="Conex">Conex</option>
+                            <?php 
+                        foreach($dados_empAuditoria as $emp) { ?>
+                            <option value="<?= $emp; ?>"><?= $emp; ?></option>
+                        <?php } ?>
                         </select>
                     </div>
                     <div class="form-group col-sm-4">
