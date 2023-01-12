@@ -51,12 +51,10 @@
                 $case=2;
             } else if (isset($pesquisa_event) && (isset($hospital_pes))) {
                 $case=3;
-            } else (!isset($pesquisa_event) && (!isset($hospital_pes))) {
+            } else (!isset($pesquisa_event) && (!isset($hospital_pes))) 
                 $case=4;
-            };
-            endif 
-            
-            switch 
+            endif
+    
 
             ?>
         </div>
