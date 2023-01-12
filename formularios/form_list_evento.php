@@ -44,6 +44,20 @@
             echo "<br>";
             echo $pesquisa_sim;
             echo "<br>";
+
+            if(isset($pesquisa_event)) {
+                $case=1; 
+            } else if (isset($hospital_pes)) {
+                $case=2;
+            } else if (isset($pesquisa_event) && (isset($hospital_pes))) {
+                $case=3;
+            } else (!isset($pesquisa_event) && (!isset($hospital_pes))) {
+                $case=4;
+            };
+            endif 
+            
+            switch 
+
             ?>
         </div>
         <?php
