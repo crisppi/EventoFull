@@ -45,7 +45,6 @@ class eventoDAO implements eventoDAOInterface
         $evento->gravidade = $data["gravidade"];
         $evento->propria = $data["propria"];
         $evento->empresa = $data["empresa"];
-        $evento->seguradora = $data["seguradora"];
         $evento->tipo_evento = $data["tipo_evento"];
 
         return $evento;
@@ -210,7 +209,6 @@ class eventoDAO implements eventoDAOInterface
         $stmt->bindParam(":gravidade", $evento->gravidade);
         $stmt->bindParam(":propria", $evento->propria);
         $stmt->bindParam(":empresa", $evento->empresa);
-        $stmt->bindParam(":seguradora", $evento->seguradora);
         $stmt->bindParam(":tipo_evento", $evento->tipo_evento);
         $stmt->execute();
         $cad_antec = 1;
