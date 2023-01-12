@@ -33,65 +33,28 @@ $usuario = $usuarioDao->findById_user($id_usuario);
 
             </div>
             <div class="form-group row">
-                <div class="form-group col-sm-3">
-                    <label for="endereco_user">Endereço</label>
-                    <input type="text" class="form-control" id="endereco_user" value="<?= $usuario->endereco_user ?>" name="endereco_user" placeholder="Digite a endereco">
-                </div>
-                <div class="form-group col-sm-3">
-                    <label for="numero_user">Número</label>
-                    <input type="text" class="form-control" id="numero_user" value="<?= $usuario->numero_user ?>" name="numero_user" placeholder="Digite o numero">
-                </div>
-                <div class="form-group col-sm-3">
-                    <label for="bairro_user">Bairro</label>
-                    <input type="text" class="form-control" id="bairro_user" name="bairro_user" value="<?= $usuario->bairro_user ?>" placeholder="Digite o bairro">
-                </div>
-                <div class="form-group col-sm-3">
-                    <label for="cidade_user">Cidade</label>
-                    <input type="text" class="form-control" id="cidade_user" value="<?= $usuario->cidade_user ?>" name="cidade_user" placeholder="Digite a cidade">
-                </div>
+
             </div>
             <div class="form-group row">
-                <div class="form-group col-sm-1">
-                    <label for="cpf_user">CPF</label>
-                    <input type="text" oninput="mascara(this, 'cpf')" value="<?= $usuario->cpf_user ?>" class="form-control" id="cpf_user" name="cpf_user" placeholder="Digite a cpf">
-                </div>
+
                 <div class="form-group col-sm-2">
                     <label for="email01">E-mail01</label>
-                    <input type="email" class="form-control" id="email_user" value="<?= $usuario->email_user ?>" name="email_user" placeholder="Digite a email01">
+                    <input type="email" class="form-control" id="email_user" value="<?= $usuario->email_user ?>" name="email_user" placeholder="Digite o email">
                 </div>
-                <div class="form-group col-sm-2">
-                    <label for="email02_user">E-mail02</label>
-                    <input type="email" class="form-control" id="email02_user" value="<?= $usuario->email02_user ?>" name="email02_user" placeholder="Digite a email02">
-                </div>
-                <div class="form-group col-sm-2">
-                    <label for="telefone01_user">Telefone</label>
-                    <input type="text" onkeydown="return mascara(this, 'tel')" value="<?= $usuario->telefone01_user ?>" class="form-control" id="telefone01_user" name="telefone01_user" placeholder="Digite o telefone">
-                </div>
-                <div class="form-group col-sm-2">
-                    <label for="telefone02_user">Telefone</label>
-                    <input type="text" onkeydown="return mascaraTelefone(event)" value="<?= $usuario->telefone02_user ?>" class="form-control" id="telefone02_user" name="telefone02_user" placeholder="Digite outro telefone">
-                </div>
-                <div class="form-group col-sm-1">
-                    <label class="control-label" for="ativo_user">Ativo</label>
-                    <select class="form-control" id="ativo_user" name="ativo_user">
-                        <option value="">Selecione</option>
-                        <option <?= $usuario->ativo_user === "Sim" ? "selected" : "" ?> value="Sim">Sim</option>
-                        <option <?= $usuario->ativo_user === "Não" ? "selected" : "" ?> value="Não">Não</option>
-                    </select>
 
-                </div>
-                <div class="form-group col-sm-4">
-                    <input type="date" type="hidden" class="form-control" value='<?php echo date("d/m/Y"); ?>' id="data_create_user" name="data_create_user" placeholder="">
-                </div>
-                <div class="form-group col-sm-4">
-                    <input type="text" class="form-control" id="usuario_create_user" name="usuario_create_user" placeholder="Digite o usuário">
-                </div>
             </div>
-            <br>
-            <button style="margin:10px" type="submit" class="btn-sm btn-info">Atualizar</button>
-            <br>
+            <div class="form-group col-sm-4">
+                <input type="date" type="hidden" class="form-control" value='<?php echo date("d/m/Y"); ?>' id="data_create_user" name="data_create_user" placeholder="">
+            </div>
+            <div class="form-group col-sm-4">
+                <input type="text" class="form-control" id="usuario_create_user" name="usuario_create_user" placeholder="Digite o usuário">
+            </div>
     </div>
-    </form>
+    <br>
+    <button style="margin:10px" type="submit" class="btn-sm btn-info">Atualizar</button>
+    <br>
+</div>
+</form>
 </div>
 </div>
 

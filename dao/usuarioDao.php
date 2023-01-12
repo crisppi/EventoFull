@@ -26,6 +26,7 @@ class UserDAO implements UserDAOInterface
         $user->usuario_user = $data["usuario_user"];
         $user->email_user = $data["email_user"];
         $user->senha_user = $data["senha_user"];
+        $user->senha_user = password_hash($data["senha_user"], PASSWORD_DEFAULT);
         return $user;
     }
 

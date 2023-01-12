@@ -1,7 +1,9 @@
 <?php
 
 include_once("globals.php");
-include_once("db.php"); ?>
+include_once("db.php");
+date_default_timezone_set('America/Sao_Paulo');
+?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -87,6 +89,7 @@ include_once("db.php"); ?>
         } else {
           echo "<span style='color:red'> Você não esta logado!!</span>" . "<br>";
         }
+
         $agora = date('d/m/Y H:i');
         echo "Atual:  " . $agora ?>
         <div>

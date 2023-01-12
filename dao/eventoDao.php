@@ -214,11 +214,10 @@ class eventoDAO implements eventoDAOInterface
 
     public function update(evento $evento)
     {
-
-        $stmt = $this->conn->prepare("UPDATE tb_evento SET
+        $stmt = $this->conn->prepare("UPDATE tb_evento SET 
         paciente = :paciente,
         sexo = :sexo,
-        idade =:idade,
+        idade = :idade,
         hospital = :hospital,
         data_evento = :data_evento,
         data_visita = :data_visita,
@@ -233,10 +232,10 @@ class eventoDAO implements eventoDAOInterface
         alta = :alta,
         gravidade = :gravidade,
         propria = :propria,
-        empresa =:empresa,
-        seguradora = seguradora,
-        tipo_evento = :evento,
-        id_evento= : id_evento
+        empresa = :empresa,
+        seguradora = :seguradora,
+        tipo_evento = :tipo_evento,
+        id_evento= :id_evento
         
         WHERE id_evento = :id_evento 
       ");

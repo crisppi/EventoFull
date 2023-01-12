@@ -87,7 +87,7 @@
                             <td scope="row" class="nome-coluna-table"><?= $paciente ?></td>
                             <td scope="row" class="nome-coluna-table"><?= $hospital ?></td>
                             <td scope="row" class="nome-coluna-table"><?= $senha ?></td>
-                            <td scope="row" class="nome-coluna-table"><?= $data_evento ?></td>
+                            <td scope="row" class="nome-coluna-table"><?= date("d-m-Y", strtotime($data_evento)) ?></td>
 
                             <td class="action">
                                 <a href="cad_evento.php"><i name="type" value="create" style="color:green; margin-right:10px" class="bi bi-plus-square-fill edit-icon"></i></a>

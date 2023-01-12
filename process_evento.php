@@ -1,5 +1,4 @@
 <?php
-ob_start();
 require_once("globals.php");
 require_once("db.php");
 require_once("models/evento.php");
@@ -57,10 +56,10 @@ if ($type === "create") {
         $evento->propria = $propria;
         $evento->empresa = $empresa;
         $evento->obito = $obito;
-        $evento->prolongamento   = $prolongamento;
+        $evento->prolongamento = $prolongamento;
         $evento->tipo_evento = $tipo_evento;
         $evento->gravidade = $gravidade;
-        $evento->impacto = $hospital;
+        $evento->impacto = $impacto;
         $evento->classificacao = $classificacao;
         $evento->rel_prolongamento = $rel_prolongamento;
         $evento->evitavel = $evitavel;
@@ -71,7 +70,7 @@ if ($type === "create") {
         $eventoDao->create($evento);
     } else {
 
-        $message->setMessage("Você precisa adicionar pelo menos: evento_ant do evento!", "error", "cad_internacao.php");
+        $message->setMessage("Você precisa adicionar pelo menos: paciente do evento!", "error", "cad_evento.php");
     }
 } else if ($type === "update") {
 
@@ -117,10 +116,10 @@ if ($type === "create") {
     $eventoData->propria = $propria;
     $eventoData->empresa = $empresa;
     $eventoData->obito = $obito;
-    $eventoData->prolongamento   = $prolongamento;
+    $eventoData->prolongamento = $prolongamento;
     $eventoData->tipo_evento = $tipo_evento;
     $eventoData->gravidade = $gravidade;
-    $eventoData->impacto = $hospital;
+    $eventoData->impacto = $impacto;
     $eventoData->classificacao = $classificacao;
     $eventoData->rel_prolongamento = $rel_prolongamento;
     $eventoData->evitavel = $evitavel;

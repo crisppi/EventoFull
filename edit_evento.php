@@ -19,19 +19,21 @@ $evento = $eventoDao->findById($id_evento);
         <h1 class="page-title">Atualizar evento</h1>
         <p class="page-description">Adicione informações sobre o evento</p>
         <form class="formulario" action="<?= $BASE_URL ?>process_evento.php" id="add-movie-form" method="POST" enctype="multipart/form-data">
-            <input type="hidden" name="type" value="update">
+            <input type="text" name="type" value="update">
             <div class="form-group row">
 
-                <input type="hidden" class="form-control" id="id_evento" name="id_evento" value="<?= $evento->id_evento ?>" placeholder="ID">
+                <input type="text" class="form-control" id="id_evento" name="id_evento" value="<?= $evento->id_evento ?>" placeholder="ID">
 
                 <div class="form-group col-sm-4">
                     <label for="paciente">Paciente</label>
                     <input type="text" class="form-control" id="paciente" value="<?= $evento->paciente ?>" name="paciente" placeholder="Digite o nome">
                 </div>
-
+                <div class="form-group col-sm-4">
+                    <label for="hospital">hospital</label>
+                    <input type="text" class="form-control" id="hospital" value="<?= $evento->hospital ?>" name="hospital" placeholder="Digite o nome">
+                </div>
                 <br>
                 <div>
-
                     <button style="margin:10px" type="submit" class="btn-sm btn-info">Atualizar</button>
                     <br>
                 </div>
