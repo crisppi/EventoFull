@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 if (!$_SESSION['username']) {
     header("Location: index.php");
 };
@@ -26,6 +25,7 @@ $id_evento = filter_input(INPUT_GET, "id_evento");
     <div class="row">
         <h3 class="page-title">Cadastrar - Evento Adverso</h3>
         <p class="page-description">Adicione informações sobre o Evento Adverso identificado</p>
+        <?php $dados_hospital = ['Itaim', 'Analia', 'Morumbi', 'Sirio'];?>
 
         <form class="formulario" action="<?= $BASE_URL ?>process_evento.php" id="add-evento-form" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="type" value="create">
@@ -51,8 +51,12 @@ $id_evento = filter_input(INPUT_GET, "id_evento");
                     <label class="control-label" for="hospital">Hospital</label>
                     <select class="form-control" id="hospital" name="hospital">
                         <option value="">Selecione</option>
-                        <option value="São Luiz Itaim">São Luiz Itaim</option>
-                        <option value="São Luiz Anália Franco">São Luiz Anália Franco</option>
+                        
+                        <?php 
+                        foreach($dados_hospital as $hosp) { ?>
+                            <option value="<?= $hosp; ?>"><?= $hosp; ?></option>
+                        <?php } ?>
+                        
                     </select>
                 </div>
                 <div class="form-group col-sm-1">
@@ -175,14 +179,15 @@ $id_evento = filter_input(INPUT_GET, "id_evento");
             <p class="msg <?= $flassMessage["type"] ?>"><?= $flassMessage["msg"] ?></p>
         </div>
     <?php endif; ?>
-</div>
-
 </form>
 <div>
     <hr>
-    <a class="btn btn-success styled" style="margin-left:120px" href="list_evento.php">Listar
+    <a class="btn btn-success styled" style="margin-left:10px" href="list_evento.php">Listar
     </a>
 </div>
+</div>
+
+
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 

@@ -60,21 +60,13 @@
                             <!-- navegacao correta para apagar, somente não ativa o modal -->
                             <a style="color:red;  text-decoration: none; margin-left: 5px" href="<?= $BASE_URL ?>del_usuario.php?id_usuario=<?= $usuario["id_usuario"] ?>" id="delete-btn-id" class="delete-btn bi bi-x-square-fill  delete-icon" data-confirm='Tem certeza de que deseja excluir o item selecionado?'></a>
 
-                            <!-- <form id="form" class="d-inline-block" method="post">
-                                <input type="hidden" name="type" value="delete">
-                                <input type="text" id="entrada" name="id_usuario" class="aparecer-acoes" value="<?= $usuario["id_usuario"] ?>">
-                                <input type="submit" id="send2" style="margin-left:3px; font-size: 16px; background:transparent; border-color:transparent; color:red" onclick="gerarhtml()" class="delete-btn"><i class="delete-btn d-inline-block fas fa-times delete-icon"></i>Del</input>
-                            </form> -->
+                           
                         </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
-        <!-- <div class="btn_acoes oculto">
-            <p>Deseja deletar este paciente: <?php $usuario['usuario_user'] ?> ?</p>
-            <button class="cancelar btn btn-success styled" type="button" id="cancelar" name="cancelar">Cancelar</button>
-            <button href="del_usuario.php" class="btn btn-danger styled" type="button" id="deletar" name="deletar">Deletar</button>
-        </div> -->
+        
     </div>
 
     <?php
@@ -94,7 +86,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
     <?php
-    include_once("templates/footer1.php");
+    include_once("templates/footer.php");
     ?>
 
 

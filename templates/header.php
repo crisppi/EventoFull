@@ -1,5 +1,7 @@
 <?php
-
+if(!isset($_SESSION)){
+  session_start();
+}
 include_once("globals.php");
 include_once("db.php");
 date_default_timezone_set('America/Sao_Paulo');

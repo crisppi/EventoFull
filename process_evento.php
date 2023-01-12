@@ -20,8 +20,8 @@ if ($type === "create") {
     $sexo = filter_input(INPUT_POST, "sexo");
     $idade = filter_input(INPUT_POST, "idade");
     $hospital = filter_input(INPUT_POST, "hospital");
-    $data_visita = filter_input(INPUT_POST, "data_visita");
-    $data_evento = filter_input(INPUT_POST, "data_evento");
+    $data_visita = filter_input(INPUT_POST, "data_visita")?:null;
+    $data_evento = filter_input(INPUT_POST, "data_evento")?:null;
     $rel_evento = filter_input(INPUT_POST, "rel_evento");
     $rel_impacto = filter_input(INPUT_POST, "rel_impacto");
     $auditor = filter_input(INPUT_POST, "auditor");
@@ -82,8 +82,8 @@ if ($type === "create") {
     $sexo = filter_input(INPUT_POST, "sexo");
     $idade = filter_input(INPUT_POST, "idade");
     $hospital = filter_input(INPUT_POST, "hospital");
-    $data_visita = filter_input(INPUT_POST, "data_visita");
-    $data_evento = filter_input(INPUT_POST, "data_evento");
+    $data_visita = filter_input(INPUT_POST, "data_visita")?:null;
+    $data_evento = filter_input(INPUT_POST, "data_evento")?:null;
     $rel_evento = filter_input(INPUT_POST, "rel_evento");
     $rel_impacto = filter_input(INPUT_POST, "rel_impacto");
     $auditor = filter_input(INPUT_POST, "auditor");

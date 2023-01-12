@@ -40,6 +40,7 @@ class eventoDAO implements eventoDAOInterface
         $evento->senha = $data["senha"];
         $evento->evitavel = $data["evitavel"];
         $evento->alta = $data["alta"];
+        $evento->prolongamento = $data["prolongamento"];
         $evento->obito = $data["obito"];
         $evento->gravidade = $data["gravidade"];
         $evento->propria = $data["propria"];
@@ -154,11 +155,13 @@ class eventoDAO implements eventoDAOInterface
         rel_impacto,
         rel_evento,
         rel_prolongamento,
+        prolongamento,
         impacto,
         classificacao,
         senha,
         evitavel,
         alta,
+        obito,
         gravidade,
         propria,
         empresa,
@@ -174,11 +177,13 @@ class eventoDAO implements eventoDAOInterface
         :rel_impacto,
         :rel_evento,
         :rel_prolongamento,
+        :prolongamento,
         :impacto,
         :classificacao,
         :senha,
         :evitavel,
         :alta,
+        :obito,
         :gravidade,
         :propria,
         :empresa,
@@ -195,11 +200,13 @@ class eventoDAO implements eventoDAOInterface
         $stmt->bindParam(":rel_impacto", $evento->rel_impacto);
         $stmt->bindParam(":rel_evento", $evento->rel_evento);
         $stmt->bindParam(":rel_prolongamento", $evento->rel_prolongamento);
+        $stmt->bindParam(":prolongamento", $evento->prolongamento);
         $stmt->bindParam(":impacto", $evento->impacto);
         $stmt->bindParam(":classificacao", $evento->classificacao);
         $stmt->bindParam(":senha", $evento->senha);
         $stmt->bindParam(":evitavel", $evento->evitavel);
         $stmt->bindParam(":alta", $evento->alta);
+        $stmt->bindParam(":obito", $evento->obito);
         $stmt->bindParam(":gravidade", $evento->gravidade);
         $stmt->bindParam(":propria", $evento->propria);
         $stmt->bindParam(":empresa", $evento->empresa);
@@ -225,17 +232,17 @@ class eventoDAO implements eventoDAOInterface
         rel_impacto = :rel_impacto,
         rel_evento = :rel_evento,
         rel_prolongamento = :rel_prolongamento,
+        prolongamento = :prolongamento,
         impacto = :impacto,
         classificacao = :classificacao,
         senha = :senha,
         evitavel = :evitavel,
         alta = :alta,
+        obito = :obito,
         gravidade = :gravidade,
         propria = :propria,
         empresa = :empresa,
-        seguradora = :seguradora,
-        tipo_evento = :tipo_evento,
-        id_evento= :id_evento
+        tipo_evento = :tipo_evento
         
         WHERE id_evento = :id_evento 
       ");
@@ -251,15 +258,16 @@ class eventoDAO implements eventoDAOInterface
         $stmt->bindParam(":rel_impacto", $evento->rel_impacto);
         $stmt->bindParam(":rel_evento", $evento->rel_evento);
         $stmt->bindParam(":rel_prolongamento", $evento->rel_prolongamento);
+        $stmt->bindParam(":prolongamento", $evento->prolongamento);
         $stmt->bindParam(":impacto", $evento->impacto);
         $stmt->bindParam(":classificacao", $evento->classificacao);
         $stmt->bindParam(":senha", $evento->senha);
         $stmt->bindParam(":evitavel", $evento->evitavel);
         $stmt->bindParam(":alta", $evento->alta);
+        $stmt->bindParam(":obito", $evento->obito);
         $stmt->bindParam(":gravidade", $evento->gravidade);
         $stmt->bindParam(":propria", $evento->propria);
         $stmt->bindParam(":empresa", $evento->empresa);
-        $stmt->bindParam(":seguradora", $evento->seguradora);
         $stmt->bindParam(":tipo_evento", $evento->tipo_evento);
         $stmt->execute();
 

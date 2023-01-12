@@ -1,8 +1,5 @@
 <?php
 session_start();
-session_destroy();
-session_start();
-
 require_once("templates/headerbase.php");
 require_once("dao/usuarioDao.php");
 require_once("models/message.php");
