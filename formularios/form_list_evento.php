@@ -6,6 +6,8 @@
     include_once("models/evento.php");
     include_once("dao/eventoDao.php");
     include_once("templates/header.php");
+    include_once("array_dados.php");
+
 
     //Instanciando a classe
     //Criado o objeto $listareventos
@@ -20,52 +22,84 @@
         <h4 class="page-title">Relação de eventos</h4>
         <div class="row menu_pesquisa">
             <form id="form_pesquisa" method="POST">
-                <input type="hidden" name="pesquisa" id="pesquisa" value="sim">
-                <input type="text" name="pesquisa_event" id="pesquisa_event" placeholder="Pesquisa por evento">
-                <div class="form-group col-sm-2">
-                    <label class="control-label" for="hospital_pes">Hospital</label>
-                    <select class="form-control" id="hospital_pes" name="hospital_pes">
-                        <option value="">Selecione</option>
-                        <option value="São Luiz Itaim">São Luiz Itaim</option>
-                        <option value="São Luiz Anália Franco">São Luiz Anália Franco</option>
-                    </select>
+
+                <div class="form-group row">
+                    <h5 class="page-title">Pesquisa</h5>
+                    <input type="hidden" name="pesquisa" id="pesquisa" value="sim">
+                    <div class="form-group col-sm-2">
+                        <input type="text" name="pesquisa_event" id="pesquisa_event" placeholder="Pesquisa por evento">
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <select class="form-control" id="hospital_pes" name="hospital_pes">
+                            <option value="">Selecione o Hospital</option>
+                            <?php
+                            foreach ($dados_hospital as $hospital_pes) { ?>
+                                <option value="<?= $hospital_pes; ?>"><?= $hospital_pes; ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
                 </div>
-                <button style="margin:10px" type="submit" class="btn-sm btn-info">Buscar</button>
+                <button style="margin:10px; font-weight:600" type="submit" class="btn-sm btn-info styled">Pesquisar</button>
             </form>
 
             <?php
-
-            $pesquisa_event = filter_input(INPUT_POST, "pesquisa_event");
-            $hospital_pes = filter_input(INPUT_POST, "hospital_pes");
+            $pesquisa_event = "";
+            $hospital_pes = "";
+            if (isset($_POST['pesquisa_event'])) {
+                $pesquisa_event = $_POST['pesquisa_event'];
+                echo "<br>";
+                echo $hospital_pes;
+            }
+            if (isset($_POST['hospital_pes'])) {
+                $hospital_pes = $_POST['hospital_pes'];
+                echo "<br>";
+                echo $pesquisa_event;
+            }
             $pesquisa_sim = filter_input(INPUT_POST, "pesquisa");
-            echo $hospital_pes;
-            echo "<br>";
-            echo $pesquisa_event;
-            echo "<br>";
-            echo $pesquisa_sim;
-            echo "<br>";
 
-            if(isset($pesquisa_event)) {
-                $case=1; 
-            } else if (isset($hospital_pes)) {
-                $case=2;
-            } else if (isset($pesquisa_event) && (isset($hospital_pes))) {
-                $case=3;
-            } else (!isset($pesquisa_event) && (!isset($hospital_pes))) 
-                $case=4;
-            endif
-    
+            $case = "";
+            if (isset($pesquisa_event) && (!isset($hospital_pes))) {
+                $case = 1;
+            };
+
+            if (!isset($pesquisa_event) && (isset($hospital_pes))) {
+                $case = 2;
+            };
+            if (isset($pesquisa_event) && (isset($hospital_pes))) {
+                $case = 3;
+            };
+            if (!isset($pesquisa_event) && (!isset($hospital_pes))) {
+                $case = 4;
+            };
 
             ?>
         </div>
         <?php
-        $sql = "";
-        if (!$pesquisa_event) {
-            $sql = "SELECT * FROM tb_evento ORDER BY id_evento ASC LIMIT " . $inicio . ", " . $limite;
-        } else {
-            $sql = "SELECT * FROM tb_evento WHERE paciente like '$pesquisa_event%' and hospital ='$hospital_pes' ";
-        }
 
+        switch ($case) {
+            case $case = 1:
+                $sql = "SELECT * FROM tb_evento WHERE paciente like '$pesquisa_event%' ";
+                break;
+            case $case = 2:
+                $sql = "SELECT * FROM tb_evento WHERE hospital ='$hospital_pes' ";
+                break;
+            case $case = 3:
+                $sql = "SELECT * FROM tb_evento WHERE paciente like '$pesquisa_event%' and hospital ='$hospital_pes' ";
+                break;
+            case $case = 4:
+                $sql = "SELECT * FROM tb_evento ORDER BY id_evento ASC LIMIT " . $inicio . ", " . $limite;
+                break;
+        }
+        print_r($sql);
+        echo $case;
+
+
+        // $sql = "";
+        // if (!$pesquisa_event) {
+        //     $sql = "SELECT * FROM tb_evento ORDER BY id_evento ASC LIMIT " . $inicio . ", " . $limite;
+        // } else {
+        //     $sql = "SELECT * FROM tb_evento WHERE paciente like '$pesquisa_event%' and hospital ='$hospital_pes' ";
+        // }
         try {
 
             $query = $conn->prepare($sql);
@@ -91,7 +125,7 @@
                 <tbody>
                     <?php
 
-                    foreach ($query  as $evento) :
+                    foreach ($query as $evento) :
                         extract($evento);
                     ?>
                         <tr>
@@ -108,13 +142,6 @@
                                 <a href="<?= $BASE_URL ?>edit_evento.php?id_evento=<?= $id_evento ?>"><i style="color:blue" name="type" value="edite" class="aparecer-acoes far fa-edit edit-icon"></i></a>
 
                                 <a href="<?= $BASE_URL ?>show_evento.php?id_evento=<?= $id_evento ?>"><i style="color:red; margin-left:10px" name="type" value="edite" class="d-inline-block bi bi-x-square-fill delete-icon"></i></a>
-
-                                <!-- <form class=" d-inline-block delete-form" method="POST" action="<?= $BASE_URL ?>del_evento.php?id_evento=<?= $id_evento ?>" id="minhaForm">
-                                    <input type="hidden" name="type" id="type" value="delete">
-                                    <input type="hidden" name="confirmado" id="confirmado" value="nao">
-                                    <input type="hidden" name="id_evento" id="id_evento" value="<?= $id_evento ?>">
-                                    <div><button type="submit" id="data-confirm" style="margin-left:3px; font-size: 16px; background:transparent; border-color:transparent; color:red" class="delete-btn"><i class="d-inline-block bi bi-x-square-fill delete-icon"></i></button></div>
-                                </form> -->
 
                                 <div id="info"></div>
                             </td>

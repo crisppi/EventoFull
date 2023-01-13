@@ -25,6 +25,9 @@ class evento
   public $empresa;
   public $propria;
   public $seguradora;
+  public $status;
+  public $ativo;
+  public $negociado;
 }
 
 interface eventoDAOInterface
@@ -33,6 +36,7 @@ interface eventoDAOInterface
   public function buildevento($evento);
   public function findAll();
   public function findById($id_evento);
+  public function findBypaciente($paciente);
   public function create(evento $evento);
   public function update(evento $evento);
   public function destroy($id_evento);

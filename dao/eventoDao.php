@@ -116,15 +116,15 @@ class eventoDAO implements eventoDAOInterface
         return $evento;
     }
 
-    public function findByTitle($title)
+    public function findBypaciente($paciente)
     {
 
         $evento = [];
 
         $stmt = $this->conn->prepare("SELECT * FROM tb_evento
-                                    WHERE title LIKE :nome");
+                                    WHERE paciente LIKE :paciente");
 
-        $stmt->bindValue(":title", '%' . $title . '%');
+        $stmt->bindValue(":paciente", '%' . $paciente . '%');
 
         $stmt->execute();
 
