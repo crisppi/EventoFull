@@ -43,32 +43,33 @@
             </form>
 
             <?php
-            $pesquisa_event = "";
-            $hospital_pes = "";
+
             if (isset($_POST['pesquisa_event'])) {
                 $pesquisa_event = $_POST['pesquisa_event'];
                 echo "<br>";
-                echo $hospital_pes;
+                echo $pesquisa_event;
+            } else {
+                $pesquisa_event = "";
             }
             if (isset($_POST['hospital_pes'])) {
                 $hospital_pes = $_POST['hospital_pes'];
                 echo "<br>";
-                echo $pesquisa_event;
+                echo $hospital_pes;
+            } else {
+                $hospital_pes = "";
             }
-            $pesquisa_sim = filter_input(INPUT_POST, "pesquisa");
 
-            $case = "";
-            if (isset($pesquisa_event) && (!isset($hospital_pes))) {
+            if ((isset($_POST['pesquisa_event'])) && (!isset($_POST['hospital_pes']))) {
                 $case = 1;
             };
 
-            if (!isset($pesquisa_event) && (isset($hospital_pes))) {
+            if (!isset($_POST['pesquisa_event']) && (isset($_POST['hospital_pes']))) {
                 $case = 2;
             };
-            if (isset($pesquisa_event) && (isset($hospital_pes))) {
+            if ((isset($_POST['pesquisa_event']))  &&  (isset($_POST['hospital_pes']))) {
                 $case = 3;
             };
-            if (!isset($pesquisa_event) && (!isset($hospital_pes))) {
+            if (!isset($_POST['pesquisa_event']) && (!isset($_POST['hospital_pes']))) {
                 $case = 4;
             };
 
