@@ -131,22 +131,23 @@ class eventoDAO implements eventoDAOInterface
         $evento = $stmt->fetchAll();
         return $evento;
     }
-    public function findByHospital($pesquisa_hosp)
+    public function findByHospital($hospital_pes)
     {
 
         $evento = [];
 
         $stmt = $this->conn->prepare("SELECT * FROM tb_evento
-                                    WHERE hospital = :hospital");
+                                    WHERE hospital like :hospital");
 
-        $stmt->bindValue(":hospital", '%' . $pesquisa_hosp . '%');
+        $stmt->bindValue(":hospital", $hospital_pes);
 
         $stmt->execute();
 
         $evento = $stmt->fetchAll();
         return $evento;
     }
-    public function findByPacHosp($pesquisa_event, $pesquisa_hosp)
+
+    public function findByPacHosp($pesquisa_event, $hospital_pes)
     {
 
         $evento = [];
@@ -155,7 +156,7 @@ class eventoDAO implements eventoDAOInterface
                                     WHERE paciente LIKE :paciente AND hospital = :hospital ");
 
         $stmt->bindValue(":paciente", '%' . $pesquisa_event . '%');
-        $stmt->bindValue(":hospital", $pesquisa_hosp);
+        $stmt->bindValue(":hospital", $hospital_pes);
 
         $stmt->execute();
 

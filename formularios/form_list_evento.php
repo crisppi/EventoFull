@@ -8,7 +8,6 @@
     include_once("templates/header.php");
     include_once("array_dados.php");
 
-
     //Instanciando a classe
     //Criado o objeto $listareventos
     $evento = new eventoDAO($conn, $BASE_URL);
@@ -17,14 +16,13 @@
     $eventos = $evento->findGeral();
     $pesquisa_event = "";
     $hospital_pes = "";
-    $case = 4;
     ?>
 
     <!--tabela evento-->
     <div class="container-fluid py-2">
         <h4 class="page-title">Relação de eventos</h4>
-        <div class="row menu_pesquisa">
-            <form id="form_pesquisa" method="POST">
+        <div class="row menu_pesquisa" style="background-color:gray">
+            <form class="formulario" style="background-color:gray" id="form_pesquisa" method="POST">
 
                 <div class="form-group row">
                     <h5 class="page-title">Pesquisa</h5>
@@ -41,93 +39,45 @@
                             <?php } ?>
                         </select>
                     </div>
+                    <div class="form-group col-sm-1">
+                        <input type="radio" name="ativo" id="ativo" placeholder="Pesquisa por evento">
+                        <label for="ativo">Ativo</label><br>
+                    </div>
+                    <div class="form-group col-sm-1">
+                        <button style="margin:10px; font-weight:600" type="submit" class="btn-sm btn-info styled">Pesquisar</button>
+                    </div>
                 </div>
-                <button style="margin:10px; font-weight:600" type="submit" class="btn-sm btn-info styled">Pesquisar</button>
             </form>
 
             <?php
-
-
+            // validacao do formulario
             if (isset($_POST['pesquisa_event'])) {
                 $pesquisa_event = $_POST['pesquisa_event'];
-                echo "<br>";
-                echo $pesquisa_event;
-            } else {
-                $hospital_pes = "";
-                $pesquisa_event = "";
             }
 
             if (isset($_POST['hospital_pes'])) {
                 $hospital_pes = $_POST['hospital_pes'];
-                echo "<br>";
-                echo $hospital_pes;
-            } else {
-                $hospital_pes = "";
-                $pesquisa_event = "";
             }
 
-            if ((isset($_POST['pesquisa_event'])) && (!isset($_POST['hospital_pes']))) {
-                $case = 1;
-                echo "chegou no case 1";
-                echo "<'br'>";
-                echo $case;
-            } else {
-                $hospital_pes = "";
-                $pesquisa_event = "";
+            // ENCAMINHAMENTO DOS INPUTS DO FORMULARIO
+            if (($pesquisa_event != "") && ($hospital_pes == "")) {
+                $query = $evento->findBypaciente($pesquisa_event);
             }
 
-            if (!isset($_POST['pesquisa_event']) && (isset($_POST['hospital_pes']))) {
-                $case = 2;
-                echo "chegou no case 2";
-                echo "<'br'>";
-                echo $case;
-            } else {
-                $hospital_pes = "";
-                $pesquisa_event = "";
+            if (($pesquisa_event == "") && ($hospital_pes != "")) {
+                $query = $evento->findByHospital($hospital_pes);
             }
-            if ((isset($_POST['pesquisa_event']))  &&  (isset($_POST['hospital_pes']))) {
-                $case = 3;
-                echo "chegou no case 3";
-                echo "<'br'>";
-                echo $case;
-            } else {
-                $hospital_pes = "";
-                $pesquisa_event = "";
+
+            if (($pesquisa_event != "") &&  ($hospital_pes != "")) {
+                $query = $evento->findByPacHosp($pesquisa_event, $hospital_pes);
             }
-            if (!isset($_POST['pesquisa_event']) && (!isset($_POST['hospital_pes']))) {
-                $case = 4;
-                echo "chegou no case 4";
-                echo "<'br'>";
-                echo $case;
+
+            if (($pesquisa_event == "") && ($hospital_pes == "")) {
+                $query = $evento->findGeral();
             };
 
             ?>
         </div>
-        <?php
-        switch ($case) {
-            case $case == 1:
-                $query = $evento->findBypaciente($pesquisa_event);
-                echo "chegou no case SQl 1";
-
-                break;
-            case $case == 2:
-                $query = $evento->findByHospital($pesquisa_hosp);
-                echo "chegou no case SQl 2";
-                break;
-
-            case $case == 3:
-                $query = $evento->findByPacHosp($pesquisa_event, $pesquisa_hosp);
-                echo "chegou no case SQl 3";
-
-                break;
-            case $case == 4:
-                $query = $evento->findGeral();
-                echo "chegou no case SQl 4";
-
-                break;
-        }
-
-        ?>
 
         <table class="table table-sm table-striped table-bordered table-hover table-condensed">
             <thead>
