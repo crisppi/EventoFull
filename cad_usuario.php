@@ -6,7 +6,7 @@ require_once("models/message.php");
 $usuarioDao = new userDAO($conn, $BASE_URL);
 
 // Receber id do usuário
-$id_usuario = filter_input(INPUT_GET, "id_usuario");
+$id_usuario = filter_input(INPUT_POST, "id_usuario");
 
 if (empty($id_usuario)) {
 

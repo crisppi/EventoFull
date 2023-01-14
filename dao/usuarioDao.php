@@ -26,7 +26,6 @@ class UserDAO implements UserDAOInterface
         $user->usuario_user = $data["usuario_user"];
         $user->email_user = $data["email_user"];
         $user->senha_user = $data["senha_user"];
-        $user->senha_user = password_hash($data["senha_user"], PASSWORD_DEFAULT);
         return $user;
     }
 
@@ -49,6 +48,11 @@ class UserDAO implements UserDAOInterface
         if (5 > 3) {
             $this->setTokenToSession($usuario->token);
         }
+    }
+
+    public function PassordHash($senha)
+    {
+        return password_hash($senha, PASSWORD_DEFAULT);
     }
 
     public function update(Usuario $usuario)

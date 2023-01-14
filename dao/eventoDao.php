@@ -45,6 +45,9 @@ class eventoDAO implements eventoDAOInterface
         $evento->gravidade = $data["gravidade"];
         $evento->propria = $data["propria"];
         $evento->empresa = $data["empresa"];
+        $evento->ativo = $data["ativo"];
+        $evento->negociado = $data["negociado"];
+        $evento->status = $data["status"];
         $evento->tipo_evento = $data["tipo_evento"];
 
         return $evento;
@@ -52,6 +55,15 @@ class eventoDAO implements eventoDAOInterface
 
     public function findAll()
     {
+        $evento = [];
+
+        $stmt = $this->conn->prepare("SELECT * FROM tb_evento
+        ORDER BY id_evento asc");
+
+        $stmt->execute();
+
+        $evento = $stmt->fetchAll();
+        return $evento;
     }
 
     public function getevento()
@@ -116,15 +128,16 @@ class eventoDAO implements eventoDAOInterface
         return $evento;
     }
 
-    public function findBypaciente($pesquisa_event)
+    public function findBypaciente($pesquisa_event, $pesq_ativo)
     {
 
         $evento = [];
 
         $stmt = $this->conn->prepare("SELECT * FROM tb_evento
-                                    WHERE paciente LIKE :paciente");
+                                    WHERE paciente LIKE :paciente AND ativo =:ativo ");
 
         $stmt->bindValue(":paciente", '%' . $pesquisa_event . '%');
+        $stmt->bindValue(":ativo", $pesq_ativo);
 
         $stmt->execute();
 
@@ -187,6 +200,9 @@ class eventoDAO implements eventoDAOInterface
         obito,
         gravidade,
         propria,
+        ativo,
+        negociado,
+        status,
         empresa,
         tipo_evento
       ) VALUES (
@@ -208,6 +224,9 @@ class eventoDAO implements eventoDAOInterface
         :alta,
         :obito,
         :gravidade,
+        :ativo,
+        :negociado,
+        :status,
         :propria,
         :empresa,
         :tipo_evento
@@ -231,6 +250,9 @@ class eventoDAO implements eventoDAOInterface
         $stmt->bindParam(":alta", $evento->alta);
         $stmt->bindParam(":obito", $evento->obito);
         $stmt->bindParam(":gravidade", $evento->gravidade);
+        $stmt->bindParam(":ativo", $evento->ativo);
+        $stmt->bindParam(":negociado", $evento->gravidade);
+        $stmt->bindParam(":status", $evento->status);
         $stmt->bindParam(":propria", $evento->propria);
         $stmt->bindParam(":empresa", $evento->empresa);
         $stmt->bindParam(":tipo_evento", $evento->tipo_evento);
@@ -262,6 +284,9 @@ class eventoDAO implements eventoDAOInterface
         alta = :alta,
         obito = :obito,
         gravidade = :gravidade,
+        ativo = :ativo,
+        negociado = :negociado,
+        status = :status,
         propria = :propria,
         empresa = :empresa,
         tipo_evento = :tipo_evento
@@ -288,6 +313,9 @@ class eventoDAO implements eventoDAOInterface
         $stmt->bindParam(":alta", $evento->alta);
         $stmt->bindParam(":obito", $evento->obito);
         $stmt->bindParam(":gravidade", $evento->gravidade);
+        $stmt->bindParam(":ativo", $evento->ativo);
+        $stmt->bindParam(":negociado", $evento->negociado);
+        $stmt->bindParam(":status", $evento->status);
         $stmt->bindParam(":propria", $evento->propria);
         $stmt->bindParam(":empresa", $evento->empresa);
         $stmt->bindParam(":tipo_evento", $evento->tipo_evento);
@@ -310,17 +338,19 @@ class eventoDAO implements eventoDAOInterface
     }
 
 
-    public function findGeral()
+    public function findGeral($pesq_ativo)
     {
 
         $evento = [];
 
-        $stmt = $this->conn->query("SELECT * FROM tb_evento ORDER BY id_evento asc");
+        $stmt = $this->conn->prepare("SELECT * FROM tb_evento
+        WHERE ativo = :ativo ORDER BY id_evento asc");
+
+        $stmt->bindValue(":ativo", $pesq_ativo);
 
         $stmt->execute();
 
         $evento = $stmt->fetchAll();
-
         return $evento;
     }
 }

@@ -24,6 +24,7 @@
     //Instanciar o metodo listar paciente
     $usuarios = $usuario_geral->findGeralUsuario();
     //var_dump($pacientes);
+
     ?>
 
     <!--tabela usuarios-->
@@ -60,13 +61,13 @@
                             <!-- navegacao correta para apagar, somente não ativa o modal -->
                             <a style="color:red;  text-decoration: none; margin-left: 5px" href="<?= $BASE_URL ?>del_usuario.php?id_usuario=<?= $usuario["id_usuario"] ?>" id="delete-btn-id" class="delete-btn bi bi-x-square-fill  delete-icon" data-confirm='Tem certeza de que deseja excluir o item selecionado?'></a>
 
-                           
+
                         </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
-        
+
     </div>
 
     <?php

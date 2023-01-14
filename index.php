@@ -7,14 +7,15 @@ require_once("dao/eventoDao.php");
 
 $usuarioDao = new userDAO($conn, $BASE_URL);
 if (isset($_POST["login"])) {
-    // echo $_POST['login'];
-    // echo $_POST['username'];
-    // echo $_POST['password'];
+    echo $_POST['login'];
+    echo $_POST['username'];
+    echo $_POST['password'];
 
     if (empty($_POST['username']) || empty($_POST['password'])) {
         $message = '<label>Todos campos são obrigatórios</label>';
     } else {
         $query = "SELECT * FROM tb_user WHERE usuario_user = :username AND senha_user = :password";
+
         $usuarioDao = $conn->prepare($query);
         $usuarioDao->execute(
             array(
@@ -22,6 +23,7 @@ if (isset($_POST["login"])) {
                 'password'     =>     $_POST["password"]
             )
         );
+
         $count = $usuarioDao->rowCount();
         if ($count > 0) {
             $_SESSION["username"] = $_POST["username"];

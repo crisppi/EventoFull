@@ -39,7 +39,7 @@ $id_evento = filter_input(INPUT_GET, "id_evento");
                     <label for="idade">Idade</label>
                     <input type="text" class="form-control" id="idade" name="idade" placeholder="Digite a idade">
                 </div>
-                <div class="form-group col-sm-1 ">
+                <div class="form-group col-sm-1">
                     <label class="control-label" for="sexo">Sexo</label>
                     <select class="form-control" id="sexo" name="sexo">
                         <option value="">Selecione</option>
@@ -51,22 +51,21 @@ $id_evento = filter_input(INPUT_GET, "id_evento");
                     <label class="control-label" for="hospital">Hospital</label>
                     <select class="form-control" id="hospital" name="hospital">
                         <option value="">Selecione</option>
-                        <?php 
-                        foreach($dados_hospital as $hosp) { ?>
+                        <?php
+                        sort($dados_hospital, SORT_ASC);
+
+                        foreach ($dados_hospital as $hosp) { ?>
                             <option value="<?= $hosp; ?>"><?= $hosp; ?></option>
                         <?php } ?>
-                        
+
                     </select>
                 </div>
-                <div class="form-group col-sm-1">
+                <div class="form-group col-sm-2">
                     <label for="senha">Senha</label>
                     <input type="text" class="form-control" id="senha" name="senha" placeholder="Digite a senha">
                 </div>
-                <div class="form-group col-sm-1">
-                    <label for="data_evento">Data do EA</label>
-                    <input type="date" class="form-control" id="data_evento" name="data_evento">
-                </div>
-                <div class="form-group col-sm-1">
+
+                <div class="form-group col-sm-2">
                     <label for="data_visita">Data visita</label>
                     <input type="date" class="form-control" id="data_visita" name="data_visita">
                 </div>
@@ -84,15 +83,20 @@ $id_evento = filter_input(INPUT_GET, "id_evento");
                         <label class="control-label" for="empresa">Nome da Empresa</label>
                         <select class="form-control" id="empresa" name="empresa">
                             <option value="">Selecione</option>
-                            <?php 
-                        foreach($dados_empAuditoria as $emp) { ?>
-                            <option value="<?= $emp; ?>"><?= $emp; ?></option>
-                        <?php } ?>
+                            <?php
+                            sort($dados_empAuditoria, SORT_ASC);
+                            foreach ($dados_empAuditoria as $emp) { ?>
+                                <option value="<?= $emp; ?>"><?= $emp; ?></option>
+                            <?php } ?>
                         </select>
                     </div>
                     <div class="form-group col-sm-4">
                         <label for="auditor">Nome do auditor</label>
                         <input type="text" class="form-control" id="auditor" name="auditor" placeholder="Digite o nome do auditor">
+                    </div>
+                    <div class="form-group col-sm-2">
+                        <label for="data_evento">Data do EA</label>
+                        <input type="date" class="form-control" id="data_evento" name="data_evento">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -163,6 +167,37 @@ $id_evento = filter_input(INPUT_GET, "id_evento");
                     </select>
                     <p style="text-align:justify;font-size:0.6em;padding-left:7px">Paciente foi a óbito?</p>
                 </div>
+            </div>
+            <div class="form-group row">
+
+                <div class="form-group col-sm-2 ">
+                    <label class="control-label" for="negociado">Negociado</label>
+                    <select class="form-control" id="negociado" name="negociado">
+                        <option value="">Selecione</option>
+                        <option value="s">Sim</option>
+                        <option value="n">Não</option>
+                    </select>
+                    <p style="text-align:justify;font-size:0.6em;padding-left:7px">Caso foi negociado?</p>
+                </div>
+                <div class="form-group col-sm-2 ">
+                    <label class="control-label" for="status">Status da negociação</label>
+                    <select class="form-control" id="status" name="status">
+                        <option value="">Selecione</option>
+                        <?php
+                        sort($dadosStatus, SORT_ASC);
+                        foreach ($dadosStatus as $stat) { ?>
+                            <option value="<?= $stat; ?>"><?= $stat; ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+                <div class="form-group col-sm-2 ">
+                    <label class="control-label" for="ativo">Ativo</label>
+                    <select class="form-control" id="ativo" name="ativo">
+                        <option value="">Selecione</option>
+                        <option selected value="s">Sim</option>
+                        <option value="n">Não</option>
+                    </select>
+                </div>
 
                 <div class="form-group row">
                     <div class="form-group col-sm-12">
@@ -180,12 +215,12 @@ $id_evento = filter_input(INPUT_GET, "id_evento");
             <p class="msg <?= $flassMessage["type"] ?>"><?= $flassMessage["msg"] ?></p>
         </div>
     <?php endif; ?>
-</form>
-<div>
-    <hr>
-    <a class="btn btn-success styled" style="margin-left:10px" href="list_evento.php">Listar
-    </a>
-</div>
+    </form>
+    <div>
+        <hr>
+        <a class="btn btn-success styled" style="margin-left:10px" href="list_evento.php">Listar
+        </a>
+    </div>
 </div>
 
 

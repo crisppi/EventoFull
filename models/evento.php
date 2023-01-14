@@ -36,10 +36,10 @@ interface eventoDAOInterface
   public function buildevento($evento);
   public function findAll();
   public function findById($id_evento);
-  public function findBypaciente($paciente);
+  public function findBypaciente($paciente, $pesq_ativo);
   public function findByPacHosp($paciente, $hospital);
   public function create(evento $evento);
   public function update(evento $evento);
   public function destroy($id_evento);
-  public function findGeral();
+  public function findGeral($pesq_ativ);
 };

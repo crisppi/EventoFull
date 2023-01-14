@@ -18,7 +18,7 @@ if ($type === "create") {
     // Receber os dados dos inputs
     $usuario_user = filter_input(INPUT_POST, "usuario_user");
     $email_user = filter_input(INPUT_POST, "email_user");
-    $senha_user = filter_input(INPUT_POST, "senha_user");
+    $senha_user = password_hash($_POST["senha_user"], PASSWORD_DEFAULT);
 
     $usuario = new Usuario();
 
