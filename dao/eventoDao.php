@@ -116,7 +116,7 @@ class eventoDAO implements eventoDAOInterface
         return $evento;
     }
 
-    public function findBypaciente($paciente)
+    public function findBypaciente($pesquisa_event)
     {
 
         $evento = [];
@@ -124,19 +124,42 @@ class eventoDAO implements eventoDAOInterface
         $stmt = $this->conn->prepare("SELECT * FROM tb_evento
                                     WHERE paciente LIKE :paciente");
 
-        $stmt->bindValue(":paciente", '%' . $paciente . '%');
+        $stmt->bindValue(":paciente", '%' . $pesquisa_event . '%');
 
         $stmt->execute();
 
-        if ($stmt->rowCount() > 0) {
+        $evento = $stmt->fetchAll();
+        return $evento;
+    }
+    public function findByHospital($pesquisa_hosp)
+    {
 
-            $eventoArray = $stmt->fetchAll();
+        $evento = [];
 
-            foreach ($eventoArray as $evento) {
-                $evento[] = $this->buildevento($evento);
-            }
-        }
+        $stmt = $this->conn->prepare("SELECT * FROM tb_evento
+                                    WHERE hospital = :hospital");
 
+        $stmt->bindValue(":hospital", '%' . $pesquisa_hosp . '%');
+
+        $stmt->execute();
+
+        $evento = $stmt->fetchAll();
+        return $evento;
+    }
+    public function findByPacHosp($pesquisa_event, $pesquisa_hosp)
+    {
+
+        $evento = [];
+
+        $stmt = $this->conn->prepare("SELECT * FROM tb_evento
+                                    WHERE paciente LIKE :paciente AND hospital = :hospital ");
+
+        $stmt->bindValue(":paciente", '%' . $pesquisa_event . '%');
+        $stmt->bindValue(":hospital", $pesquisa_hosp);
+
+        $stmt->execute();
+
+        $evento = $stmt->fetchAll();
         return $evento;
     }
 
