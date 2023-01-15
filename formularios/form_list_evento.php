@@ -103,6 +103,8 @@
                     <th scope="col">Hospital</th>
                     <th scope="col">Senha</th>
                     <th scope="col">Ativo</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Relatório</th>
                     <th scope="col">Data Evento</th>
                     <th scope="col">Ações</th>
                 </tr>
@@ -119,8 +121,9 @@
                         <td scope="row" class="nome-coluna-table"><?= $hospital ?></td>
                         <td scope="row" class="nome-coluna-table"><?= $senha ?></td>
                         <td scope="row" class="nome-coluna-table"><?= $ativo ?></td>
+                        <td scope="row" class="nome-coluna-table"><?= $status ?></td>
+                        <td scope="row" class="nome-coluna-table"><?= $rel_evento ?></td>
                         <td scope="row" class="nome-coluna-table"><?= date("d/m/Y", strtotime($data_evento)) ?></td>
-
                         <td class="action">
                             <!-- <a href="cad_evento.php"><i name="type" value="create" style="color:green; margin-right:10px" class="bi bi-plus-square-fill edit-icon"></i></a> -->
                             <a href="<?= $BASE_URL ?>show_evento.php?id_evento=<?= $id_evento ?>"><i style="color:green; margin-right:10px" class="fas fa-eye check-icon"></i></a>
@@ -142,9 +145,7 @@
             <button class="btn btn-danger styled" onclick=deletar() value="default" type="button" id="deletar-btn" name="deletar">Deletar</button>
         </div>
     </div>
-
     <?php
-
     //modo cadastro
     $formData = "0";
     $formData = filter_input_array(INPUT_POST, FILTER_DEFAULT);

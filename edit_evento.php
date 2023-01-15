@@ -112,7 +112,7 @@ include_once("array_dados.php");
                     </div>
                     <div class="form-group col-sm-10">
                         <label for="rel_prolongamento">Motivo do prolongamento </label>
-                        <textarea rows="10" form="update-form" class="form-control" id="rel_prolongamento" value="<?= $evento->rel_prolongamento ?>" name="rel_prolongamento"></textarea>
+                        <textarea rows="10" form="update-form" class="form-control" id="rel_prolongamento" value="<?= $evento->rel_prolongamento ?>" name="rel_prolongamento"><?= $evento->rel_prolongamento ?></textarea>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -127,7 +127,7 @@ include_once("array_dados.php");
                     </div>
                     <div class="form-group col-sm-10">
                         <label for="rel_impacto">Relatório sobre impacto nos custos </label>
-                        <textarea rows="10" form="update-form" class="form-control" value="<?= $evento->rel_impacto ?>" id="rel_impacto" name="rel_impacto"></textarea>
+                        <textarea rows="10" form="update-form" class="form-control" value="<?= $evento->rel_impacto ?>" id="rel_impacto" name="rel_impacto"><?= $evento->rel_impacto ?></textarea>
                     </div>
                 </div>
                 <div class="form-group col-sm-2 ">
@@ -206,7 +206,7 @@ include_once("array_dados.php");
             <div class="form-group row">
                 <div class="form-group col-sm-12">
                     <label for="rel_evento">Relatório sobre o caso </label>
-                    <textarea rows="10" form="update-form" class="form-control" type="text" id="rel_evento" value="<?= $evento->rel_evento ?>" name="rel_evento"></textarea>
+                    <textarea rows="10" form="update-form" class="form-control" type="text" id="rel_evento" value="<?= $evento->rel_evento ?>" name="rel_evento"><?= $evento->rel_evento ?></textarea>
                 </div>
             </div>
     </div>
