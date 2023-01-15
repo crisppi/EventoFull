@@ -199,10 +199,10 @@ class eventoDAO implements eventoDAOInterface
         alta,
         obito,
         gravidade,
-        propria,
         ativo,
         negociado,
         status,
+        propria,
         empresa,
         tipo_evento
       ) VALUES (
@@ -251,7 +251,7 @@ class eventoDAO implements eventoDAOInterface
         $stmt->bindParam(":obito", $evento->obito);
         $stmt->bindParam(":gravidade", $evento->gravidade);
         $stmt->bindParam(":ativo", $evento->ativo);
-        $stmt->bindParam(":negociado", $evento->gravidade);
+        $stmt->bindParam(":negociado", $evento->negociado);
         $stmt->bindParam(":status", $evento->status);
         $stmt->bindParam(":propria", $evento->propria);
         $stmt->bindParam(":empresa", $evento->empresa);

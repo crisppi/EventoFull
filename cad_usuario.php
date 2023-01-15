@@ -1,4 +1,5 @@
 <?php
+
 require_once("templates/header.php");
 require_once("dao/usuarioDao.php");
 require_once("models/message.php");
