@@ -128,7 +128,7 @@ class eventoDAO implements eventoDAOInterface
         return $evento;
     }
 
-    public function findBypaciente($pesquisa_event, $pesq_ativo)
+    public function findBypaciente($pesquisa_nome, $pesquisa_ativo)
     {
 
         $evento = [];
@@ -136,15 +136,15 @@ class eventoDAO implements eventoDAOInterface
         $stmt = $this->conn->prepare("SELECT * FROM tb_evento
                                     WHERE paciente LIKE :paciente AND ativo =:ativo ");
 
-        $stmt->bindValue(":paciente", '%' . $pesquisa_event . '%');
-        $stmt->bindValue(":ativo", $pesq_ativo);
+        $stmt->bindValue(":paciente", '%' . $pesquisa_nome . '%');
+        $stmt->bindValue(":ativo", $pesquisa_ativo);
 
         $stmt->execute();
 
         $evento = $stmt->fetchAll();
         return $evento;
     }
-    public function findByHospital($hospital_pes)
+    public function findByHospital($pesquisa_hospital)
     {
 
         $evento = [];
@@ -152,7 +152,7 @@ class eventoDAO implements eventoDAOInterface
         $stmt = $this->conn->prepare("SELECT * FROM tb_evento
                                     WHERE hospital like :hospital");
 
-        $stmt->bindValue(":hospital", $hospital_pes);
+        $stmt->bindValue(":hospital", $pesquisa_hospital);
 
         $stmt->execute();
 
@@ -160,7 +160,7 @@ class eventoDAO implements eventoDAOInterface
         return $evento;
     }
 
-    public function findByPacHosp($pesquisa_event, $hospital_pes)
+    public function findByPacHosp($pesquisa_nome, $pesquisa_hospital)
     {
 
         $evento = [];
@@ -168,8 +168,8 @@ class eventoDAO implements eventoDAOInterface
         $stmt = $this->conn->prepare("SELECT * FROM tb_evento
                                     WHERE paciente LIKE :paciente AND hospital = :hospital ");
 
-        $stmt->bindValue(":paciente", '%' . $pesquisa_event . '%');
-        $stmt->bindValue(":hospital", $hospital_pes);
+        $stmt->bindValue(":paciente", '%' . $pesquisa_nome . '%');
+        $stmt->bindValue(":hospital", $pesquisa_hospital);
 
         $stmt->execute();
 
@@ -338,7 +338,7 @@ class eventoDAO implements eventoDAOInterface
     }
 
 
-    public function findGeral($pesq_ativo)
+    public function findGeral($pesquisa_ativo)
     {
 
         $evento = [];
@@ -346,7 +346,7 @@ class eventoDAO implements eventoDAOInterface
         $stmt = $this->conn->prepare("SELECT * FROM tb_evento
         WHERE ativo = :ativo ORDER BY id_evento asc");
 
-        $stmt->bindValue(":ativo", $pesq_ativo);
+        $stmt->bindValue(":ativo", $pesquisa_ativo);
 
         $stmt->execute();
 

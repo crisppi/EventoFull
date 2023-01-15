@@ -2,7 +2,6 @@
 require_once("models/usuario.php");
 require_once("models/usuario.php");
 require_once("dao/usuarioDao.php");
-require_once("dao/pacienteDao.php");
 require_once("templates/header.php");
 
 $user = new Usuario();
@@ -16,7 +15,7 @@ $usuario = $usuarioDao->findById_user($id_usuario);
 ?>
 
 <!-- formulario update -->
-<div id="main-container" class="container-fluid">
+<div id="main-container" class="container">
     <div class="row">
         <h1 class="page-title">Atualizar usuario</h1>
         <p class="page-description">Adicione informações sobre o usuario</p>
@@ -30,25 +29,16 @@ $usuario = $usuarioDao->findById_user($id_usuario);
                     <label for="nome">Nome</label>
                     <input type="text" class="form-control" id="usuario_user" value="<?= $usuario->usuario_user ?>" name="usuario_user" placeholder="Digite o nome" required>
                 </div>
-
             </div>
             <div class="form-group row">
-
             </div>
             <div class="form-group row">
-
                 <div class="form-group col-sm-2">
-                    <label for="email01">E-mail01</label>
+                    <label for="email">E-mail01</label>
                     <input type="email" class="form-control" id="email_user" value="<?= $usuario->email_user ?>" name="email_user" placeholder="Digite o email">
                 </div>
-
             </div>
-            <div class="form-group col-sm-4">
-                <input type="date" type="hidden" class="form-control" value='<?php echo date("d/m/Y"); ?>' id="data_create_user" name="data_create_user" placeholder="">
-            </div>
-            <div class="form-group col-sm-4">
-                <input type="text" class="form-control" id="usuario_create_user" name="usuario_create_user" placeholder="Digite o usuário">
-            </div>
+            <br>
     </div>
     <br>
     <button style="margin:10px" type="submit" class="btn-sm btn-info">Atualizar</button>
@@ -154,7 +144,7 @@ $usuario = $usuarioDao->findById_user($id_usuario);
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 
-<?php include_once("diversos/backbtn_usuarios.php"); ?>
+<?php include_once("diversos/backbtn_usuario.php"); ?>
 
 <?php
-require_once("templates/footer1.php");
+require_once("templates/footer.php");

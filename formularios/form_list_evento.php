@@ -14,11 +14,11 @@
     $evento = new eventoDAO($conn, $BASE_URL);
 
     //Instanciar o metodo listar evento
-    $pesq_ativo = "";
-    $eventos = $evento->findGeral($pesq_ativo);
-    $pesquisa_event = "";
-    $pesq_ativo = "";
-    $hospital_pes = "";
+    $pesquisa_ativo = "";
+    $eventos = $evento->findGeral($pesquisa_ativo);
+    $pesquisa_nome = "";
+    $pesquisa_ativo = "";
+    $pesquisa_hosp = "";
     ?>
 
     <!--tabela evento-->
@@ -30,15 +30,15 @@
                     <h6 class="page-title" style="margin-top:10px">Selecione itens para efetuar Pesquisa</h6>
                     <input type="hidden" name="pesquisa" id="pesquisa" value="sim">
                     <div class="form-group col-sm-2">
-                        <input type="text" name="pesquisa_event" style="margin-top:10px; border:0rem" id="pesquisa_event" placeholder="Pesquisa por paciente">
+                        <input type="text" name="pesquisa_nome" style="margin-top:10px; border:0rem" id="pesquisa_nome" placeholder="Pesquisa por paciente">
                     </div>
                     <div class="form-group col-sm-3 ">
-                        <select class="form-control" id="hospital_pes" style="margin-top:10px" name="hospital_pes">
+                        <select class="form-control" id="pesquisa_hosp" style="margin-top:10px" name="pesquisa_hosp">
                             <option value="">Pesquise por Hospital</option>
                             <?php
                             sort($dados_hospital, SORT_ASC);
-                            foreach ($dados_hospital as $hospital_pes) { ?>
-                                <option value="<?= $hospital_pes; ?>"><?= $hospital_pes; ?></option>
+                            foreach ($dados_hospital as $pesquisa_hosp) { ?>
+                                <option value="<?= $pesquisa_hosp; ?>"><?= $pesquisa_hosp; ?></option>
                             <?php } ?>
                         </select>
                     </div>
@@ -57,35 +57,35 @@
             <?php
             // validacao do formulario
             if (isset($_POST['ativo'])) {
-                $pesq_ativo = $_POST['ativo'];
+                $pesquisa_ativo = $_POST['ativo'];
             }
 
-            if (isset($_POST['pesquisa_event'])) {
-                $pesquisa_event = $_POST['pesquisa_event'];
+            if (isset($_POST['pesquisa_nome'])) {
+                $pesquisa_nome = $_POST['pesquisa_nome'];
             }
 
-            if (isset($_POST['hospital_pes'])) {
-                $hospital_pes = $_POST['hospital_pes'];
+            if (isset($_POST['pesquisa_hosp'])) {
+                $pesquisa_hosp = $_POST['pesquisa_hosp'];
             }
 
             // ENCAMINHAMENTO DOS INPUTS DO FORMULARIO
-            if (($pesquisa_event != "") && ($hospital_pes == "")) {
-                $query = $evento->findBypaciente($pesquisa_event, $pesq_ativo);
+            if (($pesquisa_nome != "") && ($pesquisa_hosp == "")) {
+                $query = $evento->findBypaciente($pesquisa_nome, $pesquisa_ativo);
             }
 
-            if (($pesquisa_event == "") && ($hospital_pes != "")) {
-                $query = $evento->findByHospital($hospital_pes);
+            if (($pesquisa_nome == "") && ($pesquisa_hosp != "")) {
+                $query = $evento->findByHospital($pesquisa_hosp);
             }
 
-            if (($pesquisa_event != "") &&  ($hospital_pes != "")) {
-                $query = $evento->findByPacHosp($pesquisa_event, $hospital_pes);
+            if (($pesquisa_nome != "") &&  ($pesquisa_hosp != "")) {
+                $query = $evento->findByPacHosp($pesquisa_nome, $pesquisa_hosp);
             }
 
-            if (($pesquisa_event == "") && ($hospital_pes == "")) {
-                $query = $evento->findGeral($pesq_ativo);
+            if (($pesquisa_nome == "") && ($pesquisa_hosp == "")) {
+                $query = $evento->findGeral($pesquisa_ativo);
             };
 
-            if ($pesq_ativo == "") {
+            if ($pesquisa_ativo == "") {
                 $query = $evento->findAll();
             };
 

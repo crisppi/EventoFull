@@ -28,7 +28,7 @@ if (empty($id_usuario)) {
 }
 
 ?>
-<div id="main-container" class="container-fluid">
+<div id="main-container" class="container">
     <div class="row">
         <h4 class="page-title">Cadastrar Usuário</h4>
         <p class="page-description">Adicione informações sobre o usuário</p>

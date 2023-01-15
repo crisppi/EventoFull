@@ -3,22 +3,22 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <?php
     include_once("globals.php");
-    include_once("models/evento.php");
+    include_once("models/usuario.php");
     include_once("models/message.php");
-    include_once("dao/eventoDao.php");
+    include_once("dao/usuarioDao.php");
     include_once("templates/header.php");
     include_once("array_dados.php");
 
     //Instanciando a classe
     //Criado o objeto $listareventos
-    $evento = new eventoDAO($conn, $BASE_URL);
+    $usuario = new UserDAO($conn, $BASE_URL);
 
     //Instanciar o metodo listar evento
-    $pesq_ativo = "";
-    $eventos = $evento->findGeral($pesq_ativo);
-    $pesquisa_event = "";
-    $pesq_ativo = "";
-    $hospital_pes = "";
+    $pesquisa_ativo = "";
+    $usuarios = $usuario->findGeral();
+    $pesquisa_nome = "";
+    $pesquisa_ativo = "";
+    $pesquisa_hospital = "";
     ?>
 
     <!--tabela evento-->
@@ -30,24 +30,15 @@
                     <h6 class="page-title" style="margin-top:10px">Selecione itens para efetuar Pesquisa</h6>
                     <input type="hidden" name="pesquisa" id="pesquisa" value="sim">
                     <div class="form-group col-sm-2">
-                        <input type="text" name="pesquisa_event" style="margin-top:10px; border:0rem" id="pesquisa_event" placeholder="Pesquisa por paciente">
+                        <input type="text" name="pesquisa_nome" style="margin-top:10px; border:0rem" id="pesquisa_nome" placeholder="Pesquisa por usuário">
                     </div>
-                    <div class="form-group col-sm-3 ">
-                        <select class="form-control" id="hospital_pes" style="margin-top:10px" name="hospital_pes">
-                            <option value="">Pesquise por Hospital</option>
-                            <?php
-                            sort($dados_hospital, SORT_ASC);
-                            foreach ($dados_hospital as $hospital_pes) { ?>
-                                <option value="<?= $hospital_pes; ?>"><?= $hospital_pes; ?></option>
-                            <?php } ?>
-                        </select>
-                    </div>
-                    <div class="form-group col-sm-1">
+
+                    <!-- <div class="form-group col-sm-1">
                         <input type="radio" checked name="ativo" value="s" id="ativo" placeholder="Pesquisa por evento">
                         <label for="ativo">Ativo</label><br>
                         <input type="radio" style="margin-top:-5px" name="ativo" value="n" id="ativo" placeholder="Pesquisa por evento">
                         <label for="ativo">Inativo</label><br>
-                    </div>
+                    </div> -->
                     <div class="form-group col-sm-1">
                         <button style="margin:10px; font-weight:600" type="submit" class="btn-sm btn-light">Pesquisar</button>
                     </div>
@@ -57,36 +48,20 @@
             <?php
             // validacao do formulario
             if (isset($_POST['ativo'])) {
-                $pesq_ativo = $_POST['ativo'];
+                $pesquisa_ativo = $_POST['ativo'];
             }
 
-            if (isset($_POST['pesquisa_event'])) {
-                $pesquisa_event = $_POST['pesquisa_event'];
-            }
-
-            if (isset($_POST['hospital_pes'])) {
-                $hospital_pes = $_POST['hospital_pes'];
+            if (isset($_POST['pesquisa_nome'])) {
+                $pesquisa_nome = $_POST['pesquisa_nome'];
             }
 
             // ENCAMINHAMENTO DOS INPUTS DO FORMULARIO
-            if (($pesquisa_event != "") && ($hospital_pes == "")) {
-                $query = $evento->findBypaciente($pesquisa_event, $pesq_ativo);
+            if (($pesquisa_nome != "")) {
+                $query = $usuario->findByUser($pesquisa_nome);
             }
 
-            if (($pesquisa_event == "") && ($hospital_pes != "")) {
-                $query = $evento->findByHospital($hospital_pes);
-            }
-
-            if (($pesquisa_event != "") &&  ($hospital_pes != "")) {
-                $query = $evento->findByPacHosp($pesquisa_event, $hospital_pes);
-            }
-
-            if (($pesquisa_event == "") && ($hospital_pes == "")) {
-                $query = $evento->findGeral($pesq_ativo);
-            };
-
-            if ($pesq_ativo == "") {
-                $query = $evento->findAll();
+            if ($pesquisa_nome == "") {
+                $query = $usuario->findAll();
             };
 
 
@@ -99,35 +74,31 @@
             <thead>
                 <tr>
                     <th scope="col">Id</th>
-                    <th scope="col">Paciente</th>
-                    <th scope="col">Hospital</th>
+                    <th scope="col">Usuário</th>
                     <th scope="col">Senha</th>
-                    <th scope="col">Ativo</th>
-                    <th scope="col">Data Evento</th>
+                    <th scope="col">Email</th>
                     <th scope="col">Ações</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
 
-                foreach ($query as $evento) :
-                    extract($evento);
+                foreach ($query as $usuario) :
+                    extract($usuario);
                 ?>
                     <tr>
-                        <td scope="row" class="col-id"><?= $id_evento ?></td>
-                        <td scope="row" class="nome-coluna-table"><?= $paciente ?></td>
-                        <td scope="row" class="nome-coluna-table"><?= $hospital ?></td>
-                        <td scope="row" class="nome-coluna-table"><?= $senha ?></td>
-                        <td scope="row" class="nome-coluna-table"><?= $ativo ?></td>
-                        <td scope="row" class="nome-coluna-table"><?= date("d/m/Y", strtotime($data_evento)) ?></td>
+                        <td scope="row" class="col-id"><?= $id_usuario ?></td>
+                        <td scope="row" class="nome-coluna-table"><?= $usuario_user ?></td>
+                        <td scope="row" class="nome-coluna-table"><?= $senha_user ?></td>
+                        <td scope="row" class="nome-coluna-table"><?= $email_user ?></td>
 
                         <td class="action">
-                            <!-- <a href="cad_evento.php"><i name="type" value="create" style="color:green; margin-right:10px" class="bi bi-plus-square-fill edit-icon"></i></a> -->
-                            <a href="<?= $BASE_URL ?>show_evento.php?id_evento=<?= $id_evento ?>"><i style="color:green; margin-right:10px" class="fas fa-eye check-icon"></i></a>
+                            <!-- <a href="cad_usuario.php"><i name="type" value="create" style="color:green; margin-right:10px" class="bi bi-plus-square-fill edit-icon"></i></a> -->
+                            <a href="<?= $BASE_URL ?>show_usuario.php?id_usuario=<?= $id_usuario ?>"><i style="color:green; margin-right:10px" class="fas fa-eye check-icon"></i></a>
 
-                            <a href="<?= $BASE_URL ?>edit_evento.php?id_evento=<?= $id_evento ?>"><i style="color:blue" name="type" value="edite" class="aparecer-acoes far fa-edit edit-icon"></i></a>
+                            <a href="<?= $BASE_URL ?>edit_usuario.php?id_usuario=<?= $id_usuario ?>"><i style="color:blue" name="type" value="edite" class="aparecer-acoes far fa-edit edit-icon"></i></a>
 
-                            <a href="<?= $BASE_URL ?>show_evento.php?id_evento=<?= $id_evento ?>"><i style="color:red; margin-left:10px" name="type" value="edite" class="d-inline-block bi bi-x-square-fill delete-icon"></i></a>
+                            <a href="<?= $BASE_URL ?>show_usuario.php?id_usuario=<?= $id_usuario ?>"><i style="color:red; margin-left:10px" name="type" value="edite" class="d-inline-block bi bi-x-square-fill delete-icon"></i></a>
 
                             <div id="info"></div>
                         </td>
@@ -137,7 +108,7 @@
         </table>
 
         <div id="id-confirmacao" class="btn_acoes oculto">
-            <p>Deseja deletar este evento: <?= $evento_ant ?>?</p>
+            <p>Deseja deletar este usuario: <?= $usuario_ant ?>?</p>
             <button class="btn btn-success styled" onclick=cancelar() type="button" id="cancelar" name="cancelar">Cancelar</button>
             <button class="btn btn-danger styled" onclick=deletar() value="default" type="button" id="deletar-btn" name="deletar">Deletar</button>
         </div>
@@ -177,23 +148,23 @@
     echo "</div>";
     echo "<nav aria-label='Page navigation example'>";
     echo " <ul class='pagination'>";
-    echo " <li class='page-item'><a class='page-link' href='list_evento.php?pg=1'><span aria-hidden='true'>&laquo;</span></a></li>";
+    echo " <li class='page-item'><a class='page-link' href='list_usuario.php?pg=1'><span aria-hidden='true'>&laquo;</span></a></li>";
     if ($qtdPag > 1 && $pg <= $qtdPag) {
         for ($i = 1; $i <= $qtdPag; $i++) {
             if ($i == $pg) {
                 echo "<li class='page-item active'><a class='page-link' class='ativo'>" . $i . "</a></li>";
             } else {
-                echo "<li class='page-item '><a class='page-link' href='list_evento.php?pg=$i'>" . $i . "</a></li>";
+                echo "<li class='page-item '><a class='page-link' href='list_usuario.php?pg=$i'>" . $i . "</a></li>";
             }
         }
     }
-    echo "<li class='page-item'><a class='page-link' href='list_evento.php?pg=$qtdPag'><span aria-hidden='true'>&raquo;</span></a></li>";
+    echo "<li class='page-item'><a class='page-link' href='list_usuario.php?pg=$qtdPag'><span aria-hidden='true'>&raquo;</span></a></li>";
     echo " </ul>";
     echo "</nav>";
     echo "</div>"; ?>
     <div>
         <hr>
-        <a class="btn btn-success styled" style="margin-left:120px" href="cad_evento.php">Novo Evento</a>
+        <a class="btn btn-success styled" style="margin-left:120px" href="cad_usuario.php">Novo usuário</a>
     </div>
 </body>
 

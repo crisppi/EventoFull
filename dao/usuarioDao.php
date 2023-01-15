@@ -197,29 +197,33 @@ class UserDAO implements UserDAOInterface
             return false;
         }
     }
-    public function findByLogin($id_usuario)
+
+    public function findAll()
+    {
+        $usuario = [];
+
+        $stmt = $this->conn->prepare("SELECT * FROM tb_user
+        ORDER BY id_usuario asc");
+
+        $stmt->execute();
+
+        $usuario = $stmt->fetchAll();
+        return $usuario;
+    }
+    public function findByUser($pesquisa_nome)
     {
 
-        if ($id_usuario != "") {
+        $usuario = [];
 
-            $stmt = $this->conn->prepare("SELECT * FROM tb_user WHERE id_usuario = :id_usuario");
+        $stmt = $this->conn->prepare("SELECT * FROM tb_user
+                                    WHERE usuario_user LIKE :usuario_user ");
 
-            $stmt->bindParam(":id_usuario", $id_usuario);
+        $stmt->bindValue(":usuario_user", '%' . $pesquisa_nome . '%');
 
-            $stmt->execute();
+        $stmt->execute();
 
-            if ($stmt->rowCount() > 0) {
-
-                $data = $stmt->fetch();
-                $usuario = $this->buildUser($data);
-
-                return $usuario;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
+        $usuario = $stmt->fetchAll();
+        return $usuario;
     }
 
     public function findByToken($token)
@@ -305,3 +309,18 @@ class UserDAO implements UserDAOInterface
         return $usuarios;
     }
 }
+
+
+
+# Limita o número de registros a serem mostrados por página
+$limite = 10;
+
+# Se pg não existe atribui 1 a variável pg
+$pg = (isset($_GET['pg'])) ? (int)$_GET['pg'] : 1;
+
+# Atribui a variável inicio o inicio de onde os registros vão ser
+# mostrados por página, exemplo 0 à 10, 11 à 20 e assim por diante
+$inicio = ($pg * $limite) - $limite;
+$pesquisa_hosp = "";
+# seleciona o total de registros  
+$sql_Total = 'SELECT id_usuario FROM tb_user';
