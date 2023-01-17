@@ -118,35 +118,6 @@ class UserDAO implements UserDAOInterface
         }
     }
 
-    public function authenticateUser($email_user, $senha_user)
-    {
-
-        $user = $this->findByEmail($email_user);
-
-        if ($user) {
-
-            // Checar se as senha_users batem
-            if (password_verify($senha_user, $user->senha_user)) {
-
-                // Gerar um token e inserir na session
-                $token = $user->generateToken();
-
-                $this->setTokenToSession($token, false);
-
-                // Atualizar token no usuário
-                $user->token = $token;
-
-                $this->update($user, false);
-
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-
-            return false;
-        }
-    }
 
     public function findByEmail($email_user)
     {

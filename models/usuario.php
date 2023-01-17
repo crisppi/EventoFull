@@ -38,7 +38,6 @@ interface UserDAOInterface
     public function update(Usuario $usuario);
     public function verifyToken($protected = false);
     public function setTokenToSession($token, $redirect = true);
-    public function authenticateUser($email, $senha);
     public function findByEmail($email);
     public function findById_user($id_usuario);
     public function findByToken($token);

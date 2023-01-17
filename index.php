@@ -1,4 +1,4 @@
-<!-- <?php
+<?php
         require_once("templates/headerbase.php");
         require_once("dao/usuarioDao.php");
         require_once("models/message.php");
@@ -25,17 +25,17 @@
 
                 $count = $usuarioDao->rowCount();
 
-                // if ($count > 0) {
-                //     $_SESSION["username"] = $_POST["username"];
-                //     $_SESSION["login"] = $_POST["login"];
+                if ($count > 0) {
+                    $_SESSION["username"] = $_POST["username"];
+                    $_SESSION["login"] = $_POST["login"];
                 header("Location: cad_evento.php");
-                // } else {
-                //     $message = '<label>Usuário ou senha incorretas</label>';
-                // }
+                } else {
+                    $message = '<label>Usuário ou senha incorretas</label>';
+                }
             }
         }
 
-        ?> -->
+        ?>
 <!DOCTYPE html>
 <html>
 
