@@ -1,10 +1,12 @@
 <?php
 session_start();
 
-require_once("templates/headerbase.php");
+require_once("templates/header.php");
+require_once("dao/eventoDao.php");
 require_once("dao/usuarioDao.php");
 require_once("models/message.php");
-require_once("dao/eventoDao.php");
+require_once("models/evento.php");
+require_once("models/usuario.php");
 
 $usuarioDao = new userDAO($conn, $BASE_URL);
 
@@ -13,8 +15,7 @@ if (isset($_POST["login"])) {
     if (empty($_POST['username']) || empty($_POST['senha_login'])) {
         $message = '<label>Todos campos são obrigatórios</label>';
     } else {
-        print_r($_POST['username']);
-        print_r($_POST['senha_login']);
+
         $query = "SELECT * FROM tb_user WHERE usuario_user = :username AND senha_user = :senha_login";
 
         $usuarioDao = $conn->prepare($query);
