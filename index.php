@@ -1,41 +1,41 @@
-<?php
-session_start();
-require_once("templates/headerbase.php");
-require_once("dao/usuarioDao.php");
-require_once("models/message.php");
-require_once("dao/eventoDao.php");
+<!-- <?php
+        require_once("templates/headerbase.php");
+        require_once("dao/usuarioDao.php");
+        require_once("models/message.php");
+        require_once("dao/eventoDao.php");
 
-$usuarioDao = new userDAO($conn, $BASE_URL);
-if (isset($_POST["login"])) {
-    echo $_POST['login'];
-    echo $_POST['username'];
-    echo $_POST['password'];
+        $usuarioDao = new userDAO($conn, $BASE_URL);
+        if (isset($_POST["login"])) {
+            echo $_POST['login'];
+            echo $_POST['username'];
+            echo $_POST['password'];
 
-    if (empty($_POST['username']) || empty($_POST['password'])) {
-        $message = '<label>Todos campos são obrigatórios</label>';
-    } else {
-        $query = "SELECT * FROM tb_user WHERE usuario_user = :username AND senha_user = :password";
+            if (empty($_POST['username']) || empty($_POST['password'])) {
+                $message = '<label>Todos campos são obrigatórios</label>';
+            } else {
+                $query = "SELECT * FROM tb_user WHERE usuario_user = :username AND senha_user = :password";
 
-        $usuarioDao = $conn->prepare($query);
-        $usuarioDao->execute(
-            array(
-                'username'     =>     $_POST["username"],
-                'password'     =>     $_POST["password"]
-            )
-        );
+                $usuarioDao = $conn->prepare($query);
+                $usuarioDao->execute(
+                    array(
+                        'username'     =>     $_POST["username"],
+                        'password'     =>     $_POST["password"]
+                    )
+                );
 
-        $count = $usuarioDao->rowCount();
-        if ($count > 0) {
-            $_SESSION["username"] = $_POST["username"];
-            $_SESSION["login"] = $_POST["login"];
-            header("Location: cad_evento.php");
-        } else {
-            $message = '<label>Usuário ou senha incorretas</label>';
+                $count = $usuarioDao->rowCount();
+
+                // if ($count > 0) {
+                //     $_SESSION["username"] = $_POST["username"];
+                //     $_SESSION["login"] = $_POST["login"];
+                header("Location: cad_evento.php");
+                // } else {
+                //     $message = '<label>Usuário ou senha incorretas</label>';
+                // }
+            }
         }
-    }
-}
 
-?>
+        ?> -->
 <!DOCTYPE html>
 <html>
 
