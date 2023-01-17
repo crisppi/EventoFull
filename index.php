@@ -1,50 +1,47 @@
 <?php
-        require_once("templates/headerbase.php");
-        require_once("dao/usuarioDao.php");
-        require_once("models/message.php");
-        require_once("dao/eventoDao.php");
+session_start();
 
-        $usuarioDao = new userDAO($conn, $BASE_URL);
-        if (isset($_POST["login"])) {
-            echo $_POST['login'];
-            echo $_POST['username'];
-            echo $_POST['password'];
+require_once("templates/headerbase.php");
+require_once("dao/usuarioDao.php");
+require_once("models/message.php");
+require_once("dao/eventoDao.php");
 
-            if (empty($_POST['username']) || empty($_POST['password'])) {
-                $message = '<label>Todos campos são obrigatórios</label>';
-            } else {
-                $query = "SELECT * FROM tb_user WHERE usuario_user = :username AND senha_user = :password";
+$usuarioDao = new userDAO($conn, $BASE_URL);
 
-                $usuarioDao = $conn->prepare($query);
-                $usuarioDao->execute(
-                    array(
-                        'username'     =>     $_POST["username"],
-                        'password'     =>     $_POST["password"]
-                    )
-                );
+if (isset($_POST["login"])) {
 
-                $count = $usuarioDao->rowCount();
+    if (empty($_POST['username']) || empty($_POST['senha_login'])) {
+        $message = '<label>Todos campos são obrigatórios</label>';
+    } else {
+        print_r($_POST['username']);
+        print_r($_POST['senha_login']);
+        $query = "SELECT * FROM tb_user WHERE usuario_user = :username AND senha_user = :senha_login";
 
-                if ($count > 0) {
-                    $_SESSION["username"] = $_POST["username"];
-                    $_SESSION["login"] = $_POST["login"];
-                header("Location: cad_evento.php");
-                } else {
-                    $message = '<label>Usuário ou senha incorretas</label>';
-                }
-            }
+        $usuarioDao = $conn->prepare($query);
+        $usuarioDao->execute(
+            array(
+                'username'     =>     $_POST["username"],
+                'senha_login'     =>     $_POST["senha_login"]
+            )
+        );
+
+        $count = $usuarioDao->rowCount();
+        if ($count > 0) {
+            $_SESSION["username"] = $_POST["username"];
+            header("Location: cad_evento.php");
+        } else {
+            $message = '<label>Usuário ou senha incorretas</label>';
         }
+    }
+}
 
-        ?>
+?>
 <!DOCTYPE html>
 <html>
 
 <head>
-
-    <title>Webslesson Tutorial | PHP Login Script using PDO</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -56,8 +53,8 @@
             <label>Username</label>
             <input type="text" name="username" class="form-control" />
             <br />
-            <label>Password</label>
-            <input type="password" name="password" class="form-control" />
+            <label>senha_login</label>
+            <input type="senha_login" name="senha_login" class="form-control" />
             <br />
             <input type="submit" name="login" class="btn btn-info" value="Login" />
         </form> -->
@@ -91,8 +88,8 @@
                             <input name="username" type="text" class="input">
                         </div>
                         <div class="group">
-                            <label for="password" class="label">Senha</label>
-                            <input name="password" type="password" class="input" type="password">
+                            <label for="senha_login" class="label">Senha</label>
+                            <input name="senha_login" type="password" class="input" type="senha_login">
                         </div>
                         <div class="group">
                             <input type="submit" class="button" name="login" class="btn btn-info" value="Login">

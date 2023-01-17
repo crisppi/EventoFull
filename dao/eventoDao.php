@@ -1,10 +1,8 @@
 <?php
 
 require_once("./models/evento.php");
-require_once("./models/message.php");
 
 // Review DAO
-require_once("dao/eventoDao.php");
 
 class eventoDAO implements eventoDAOInterface
 {
