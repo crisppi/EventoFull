@@ -59,7 +59,7 @@ date_default_timezone_set('America/Sao_Paulo');
               <li><a class="dropdown-item" href="<?php $BASE_URL ?>list_evento.php">Evento Adverso</a></li>
             </ul>
           </li>
-          <?php if ($_SESSION['username'] == "roberto") { ?>
+          <?php if (isset($_SESSION['username']) == "roberto") { ?>
 
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once("templates/header.php");
+require_once("templates/headerbase.php");
 require_once("dao/eventoDao.php");
 require_once("dao/usuarioDao.php");
 require_once("models/message.php");
