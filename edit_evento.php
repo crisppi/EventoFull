@@ -11,7 +11,6 @@ $eventoDao = new eventoDAO($conn, $BASE_URL);
 $id_evento = filter_input(INPUT_GET, "id_evento");
 
 $evento = $eventoDao->findById($id_evento);
-print_r($evento);
 include_once("array_dados.php");
 ?>
 

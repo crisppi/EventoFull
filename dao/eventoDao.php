@@ -46,6 +46,7 @@ class eventoDAO implements eventoDAOInterface
         $evento->empresa = $data["empresa"];
         $evento->ativo = $data["ativo"];
         $evento->negociado = $data["negociado"];
+        $evento->valor_negociado = $data["valor_negociado"];
         $evento->status = $data["status"];
         $evento->tipo_evento = $data["tipo_evento"];
 
@@ -121,7 +122,6 @@ class eventoDAO implements eventoDAOInterface
         $stmt->execute();
 
         $data = $stmt->fetch();
-        print_r($data);
         $evento = $this->buildevento($data);
 
         return $evento;
@@ -203,7 +203,8 @@ class eventoDAO implements eventoDAOInterface
         status,
         propria,
         empresa,
-        tipo_evento
+        tipo_evento,
+        valor_negociado
       ) VALUES (
         :paciente,
         :sexo,
@@ -228,7 +229,8 @@ class eventoDAO implements eventoDAOInterface
         :status,
         :propria,
         :empresa,
-        :tipo_evento
+        :tipo_evento,
+        :valor_negociado
     )");
 
         $stmt->bindParam(":paciente", $evento->paciente);
@@ -251,6 +253,7 @@ class eventoDAO implements eventoDAOInterface
         $stmt->bindParam(":gravidade", $evento->gravidade);
         $stmt->bindParam(":ativo", $evento->ativo);
         $stmt->bindParam(":negociado", $evento->negociado);
+        $stmt->bindParam(":valor_negociado", $evento->valor_negociado);
         $stmt->bindParam(":status", $evento->status);
         $stmt->bindParam(":propria", $evento->propria);
         $stmt->bindParam(":empresa", $evento->empresa);
@@ -285,6 +288,7 @@ class eventoDAO implements eventoDAOInterface
         gravidade = :gravidade,
         ativo = :ativo,
         negociado = :negociado,
+        valor_negociado = :valor_negociado,
         status = :status,
         propria = :propria,
         empresa = :empresa,
@@ -314,6 +318,7 @@ class eventoDAO implements eventoDAOInterface
         $stmt->bindParam(":gravidade", $evento->gravidade);
         $stmt->bindParam(":ativo", $evento->ativo);
         $stmt->bindParam(":negociado", $evento->negociado);
+        $stmt->bindParam(":valor_negociado", $evento->valor_negociado);
         $stmt->bindParam(":status", $evento->status);
         $stmt->bindParam(":propria", $evento->propria);
         $stmt->bindParam(":empresa", $evento->empresa);

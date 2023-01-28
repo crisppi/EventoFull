@@ -101,6 +101,7 @@ if ($type === "create") {
     $tipo_evento = filter_input(INPUT_POST, "tipo_evento");
     $gravidade = filter_input(INPUT_POST, "gravidade");
     $negociado = filter_input(INPUT_POST, "negociado");
+    $valor_negociado = filter_input(INPUT_POST, "valor_negociado");
     $ativo = filter_input(INPUT_POST, "ativo");
     $status = filter_input(INPUT_POST, "status");
     $classificacao = filter_input(INPUT_POST, "classificacao");
@@ -130,6 +131,7 @@ if ($type === "create") {
     $eventoData->gravidade = $gravidade;
     $eventoData->ativo = $ativo;
     $eventoData->negociado = $negociado;
+    $eventoData->valor_negociado = $valor_negociado;
     $eventoData->status = $status;
     $eventoData->impacto = $impacto;
     $eventoData->classificacao = $classificacao;
@@ -140,7 +142,7 @@ if ($type === "create") {
     $eventoData->seguradora = $seguradora;
 
     $eventoDao->update($eventoData);
-
+    print_r($eventoData);
     include_once('list_evento.php');
 }
 //$type = "delete";

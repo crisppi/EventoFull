@@ -28,6 +28,7 @@ class evento
   public $status;
   public $ativo;
   public $negociado;
+  public $valor_negociado;
 }
 
 interface eventoDAOInterface
