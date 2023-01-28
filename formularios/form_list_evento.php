@@ -2,12 +2,12 @@
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <?php
-    include_once("globals.php");
-    include_once("models/evento.php");
-    include_once("models/message.php");
-    include_once("dao/eventoDao.php");
-    include_once("templates/header.php");
-    include_once("array_dados.php");
+    include_once("./globals.php");
+    include_once("./models/evento.php");
+    //include_once("./models/message.php");
+    include_once("./dao/eventoDao.php");
+    include_once("./templates/header.php");
+    include_once("./array_dados.php");
 
     //Instanciando a classe
     //Criado o objeto $listareventos

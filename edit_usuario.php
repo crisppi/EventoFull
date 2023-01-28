@@ -29,6 +29,10 @@ $usuario = $usuarioDao->findById_user($id_usuario);
                     <label for="nome">Nome</label>
                     <input type="text" class="form-control" id="usuario_user" value="<?= $usuario->usuario_user ?>" name="usuario_user" placeholder="Digite o nome" required>
                 </div>
+                <div class="form-group col-sm-4">
+                    <label for="senha">Senha</label>
+                    <input type="text" class="form-control" id="senha_user" value="<?= $usuario->senha_user ?>" name="senha_user" placeholder="Digite o senha" required>
+                </div>
             </div>
             <div class="form-group row">
             </div>

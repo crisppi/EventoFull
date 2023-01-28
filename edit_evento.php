@@ -189,6 +189,10 @@ include_once("array_dados.php");
                     </select>
                 </div>
                 <div class="form-group col-sm-2 ">
+                    <label class="control-label" for="valor">Valor negociado</label>
+                    <input id="ativo" type="text" name="ativo" placeholder="Valor Negociado">
+                </div>
+                <div class="form-group col-sm-2 ">
                     <label class="control-label" for="status">Status</label>
                     <select class="form-control" id="status" name="status">
                         <option value="">Selecione</option>

@@ -1,6 +1,7 @@
 <?php
 
 require_once("./models/evento.php");
+require_once("./models/message.php");
 
 // Review DAO
 

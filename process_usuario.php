@@ -20,6 +20,8 @@ if ($type === "create") {
     $email_user = filter_input(INPUT_POST, "email_user");
     $senha_user = password_hash($_POST["senha_user"], PASSWORD_DEFAULT);
 
+    print_r($senha_user);
+
     $usuario = new Usuario();
 
     // Validação mínima de dados
@@ -42,7 +44,7 @@ if ($type === "create") {
     $id_usuario = filter_input(INPUT_POST, "id_usuario");
     $usuario_user = filter_input(INPUT_POST, "usuario_user");
     $email_user = filter_input(INPUT_POST, "email_user");
-    $senha_user = filter_input(INPUT_POST, "senha_user");
+    $senha_user = password_hash(filter_input(INPUT_POST, "senha_user"), PASSWORD_DEFAULT);
 
     $usuarioData = $usuarioDao->findById_user($id_usuario);
 
