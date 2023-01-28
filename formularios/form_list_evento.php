@@ -104,6 +104,7 @@
                     <th scope="col">Senha</th>
                     <th scope="col">Ativo</th>
                     <th scope="col">Status</th>
+                    <th scope="col">Valor</th>
                     <th scope="col">Relatório</th>
                     <th scope="col">Data Evento</th>
                     <th scope="col">Ações</th>
@@ -122,6 +123,7 @@
                         <td scope="row" class="nome-coluna-table"><?= $senha ?></td>
                         <td scope="row" class="nome-coluna-table"><?= $ativo ?></td>
                         <td scope="row" class="nome-coluna-table"><?= $status ?></td>
+                        <td scope="row" class="nome-coluna-table">R$ <?= number_format($valor_negociado, 2, ',', '.') ?></td>
                         <td scope="row" class="nome-coluna-table"><?= $rel_evento ?></td>
                         <td scope="row" class="nome-coluna-table"><?= date("d/m/Y", strtotime($data_evento)) ?></td>
                         <td class="action">
