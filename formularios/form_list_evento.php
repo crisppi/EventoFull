@@ -128,7 +128,9 @@
                             <!-- <a href="cad_evento.php"><i name="type" value="create" style="color:green; margin-right:10px" class="bi bi-plus-square-fill edit-icon"></i></a> -->
                             <a href="<?= $BASE_URL ?>show_evento.php?id_evento=<?= $id_evento ?>"><i style="color:green; margin-right:10px" class="fas fa-eye check-icon"></i></a>
 
-                            <a href="<?= $BASE_URL ?>edit_evento.php?id_evento=<?= $id_evento ?>"><i style="color:blue" name="type" value="edite" class="aparecer-acoes far fa-edit edit-icon"></i></a>
+                            <a href="<?= $BASE_URL ?>edit_evento.php?id_evento=<?= $id_evento ?>"><i style="color:green" name="type" value="edite" class="aparecer-acoes bi-currency-dollar"></i></a>
+
+                            <a href="<?= $BASE_URL ?>edit_evento.php?id_evento=<?= $id_evento ?>"><i style="color:blue; margin-left:10px " name="type" value="edite" class="aparecer-acoes far fa-edit edit-icon"></i></a>
 
                             <a href="<?= $BASE_URL ?>show_evento.php?id_evento=<?= $id_evento ?>"><i style="color:red; margin-left:10px" name="type" value="edite" class="d-inline-block bi bi-x-square-fill delete-icon"></i></a>
 

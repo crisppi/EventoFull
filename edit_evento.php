@@ -11,13 +11,14 @@ $eventoDao = new eventoDAO($conn, $BASE_URL);
 $id_evento = filter_input(INPUT_GET, "id_evento");
 
 $evento = $eventoDao->findById($id_evento);
+print_r($evento);
 include_once("array_dados.php");
 ?>
 
 <!-- formulario update -->
 <div id="main-container" class="container-fluid">
     <div class="row">
-        <h1 class="page-title">Atualizar evento</h1>
+        <h1 class="page-title">Negociações do EA</h1>
 
         <p class="page-description">Adicione informações sobre o evento</p>
         <form class="formulario" action="<?= $BASE_URL ?>process_evento.php" id="update-form" method="POST" enctype="multipart/form-data">

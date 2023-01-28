@@ -120,7 +120,7 @@ class eventoDAO implements eventoDAOInterface
         $stmt->execute();
 
         $data = $stmt->fetch();
-        //var_dump($data);
+        print_r($data);
         $evento = $this->buildevento($data);
 
         return $evento;
@@ -352,9 +352,6 @@ class eventoDAO implements eventoDAOInterface
         return $evento;
     }
 }
-
-
-
 
 # Limita o número de registros a serem mostrados por página
 $limite = 10;

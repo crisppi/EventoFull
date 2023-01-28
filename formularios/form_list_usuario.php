@@ -149,6 +149,7 @@
     echo "<nav aria-label='Page navigation example'>";
     echo " <ul class='pagination'>";
     echo " <li class='page-item'><a class='page-link' href='list_usuario.php?pg=1'><span aria-hidden='true'>&laquo;</span></a></li>";
+
     if ($qtdPag > 1 && $pg <= $qtdPag) {
         for ($i = 1; $i <= $qtdPag; $i++) {
             if ($i == $pg) {
@@ -159,7 +160,7 @@
         }
     }
     echo "<li class='page-item'><a class='page-link' href='list_usuario.php?pg=$qtdPag'><span aria-hidden='true'>&raquo;</span></a></li>";
-    echo " </ul>";
+    echo "</ul>";
     echo "</nav>";
     echo "</div>"; ?>
     <div>
