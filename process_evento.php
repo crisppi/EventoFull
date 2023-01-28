@@ -10,7 +10,7 @@ $eventoDao = new eventoDAO($conn, $BASE_URL);
 
 // Resgata o tipo do formulário
 $type = filter_input(INPUT_POST, "type");
-
+echo $type;
 // Resgata dados do usuário
 
 if ($type === "create") {
@@ -65,6 +65,7 @@ if ($type === "create") {
         $evento->ativo = $ativo;
         $evento->status = $status;
         $evento->negociado = $negociado;
+        $evento->valor_negociado = $valor_negociado;
         $evento->impacto = $impacto;
         $evento->classificacao = $classificacao;
         $evento->rel_prolongamento = $rel_prolongamento;
@@ -81,7 +82,7 @@ if ($type === "create") {
 } else if ($type === "update") {
 
     $eventoDao = new eventoDAO($conn, $BASE_URL);
-
+    print_r($eventoDao);
     // Receber os dados dos inputs
     $id_evento = filter_input(INPUT_POST, "id_evento");
     $paciente = filter_input(INPUT_POST, "paciente");
@@ -110,7 +111,6 @@ if ($type === "create") {
     $senha = filter_input(INPUT_POST, "senha");
     $alta = filter_input(INPUT_POST, "alta");
     $seguradora = filter_input(INPUT_POST, "seguradora");
-
     $eventoData = $eventoDao->findById($id_evento);
 
     $eventoData->id_evento = $id_evento;

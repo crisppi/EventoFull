@@ -46,7 +46,7 @@ class eventoDAO implements eventoDAOInterface
         $evento->empresa = $data["empresa"];
         $evento->ativo = $data["ativo"];
         $evento->negociado = $data["negociado"];
-        $evento->valor_negociado = $data["valor_negociado"];
+        // $evento->valor_negociado = $data["valor_negociado"];
         $evento->status = $data["status"];
         $evento->tipo_evento = $data["tipo_evento"];
 
@@ -205,6 +205,7 @@ class eventoDAO implements eventoDAOInterface
         empresa,
         tipo_evento,
         valor_negociado
+
       ) VALUES (
         :paciente,
         :sexo,
@@ -261,7 +262,6 @@ class eventoDAO implements eventoDAOInterface
         $stmt->execute();
         $cad_antec = 1;
         // Mensagem de sucesso por adicionar evento
-        // Mensagem de sucesso por adicionar filme
         $this->message->setMessage("Adicionado com sucesso!", "success", "cad_evento.php");
     }
 
