@@ -357,6 +357,37 @@ class eventoDAO implements eventoDAOInterface
         $evento = $stmt->fetchAll();
         return $evento;
     }
+
+    # METODO DE SELECAO COM VARIAVEIS NO QUERY
+    public function selectAllEvento($where = null, $order = null, $limit = null)
+    {
+        //DADOS DA QUERY
+        $where = strlen($where) ? 'WHERE ' . $where : '';
+        $order = strlen($order) ? 'ORDER BY ' . $order : '';
+        $limit = strlen($limit) ? 'LIMIT ' . $limit : '';
+
+        //MONTA A QUERY
+        $query = $this->conn->query('SELECT * FROM tb_evento ' . $where . ' ' . $order . ' ' . $limit);
+
+        $query->execute();
+
+        $evento = $query->fetchAll();
+
+        return $evento;
+    }
+
+    public function QtdEvento()
+    {
+        $evento = [];
+
+        $stmt = $this->conn->query("SELECT COUNT(id_evento) FROM tb_evento");
+
+        $stmt->execute();
+
+        $QtdTotalEve = $stmt->fetch();
+
+        return $QtdTotalEve;
+    }
 }
 
 # Limita o número de registros a serem mostrados por página

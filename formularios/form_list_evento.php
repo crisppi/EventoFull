@@ -10,15 +10,35 @@
     include_once("./array_dados.php");
 
     //Instanciando a classe
-    //Criado o objeto $listareventos
-    $evento = new eventoDAO($conn, $BASE_URL);
 
-    //Instanciar o metodo listar evento
-    $pesquisa_ativo = "";
-    $eventos = $evento->findGeral($pesquisa_ativo);
-    $pesquisa_nome = "";
-    $pesquisa_ativo = "";
-    $pesquisa_hosp = "";
+    //Instanciando a classe
+    $evento = new eventoDAO($conn, $BASE_URL);
+    $QtdTotalEve = new eventoDAO($conn, $BASE_URL);
+
+    // METODO DE BUSCA DE PAGINACAO
+    $pesquisa_pac = filter_input(INPUT_GET, 'pesquisa_pac');
+    $pesquisa_hosp = filter_input(INPUT_GET, 'pesquisa_hosp');
+    $buscaAtivo = filter_input(INPUT_GET, 'ativo_eve');
+    // $buscaAtivo = in_array($buscaAtivo, ['s', 'n']) ?: "";
+
+    $condicoes = [
+        strlen($pesquisa_pac) ? 'hospital LIKE "%' . $pesquisa_pac . '%"' : null,
+        strlen($pesquisa_hosp) ? 'paciente LIKE "%' . $pesquisa_hosp . '%"' : null,
+        strlen($buscaAtivo) ? 'ativo = "' . $buscaAtivo . '"' : null
+    ];
+    $condicoes = array_filter($condicoes);
+
+    // REMOVE POSICOES VAZIAS DO FILTRO
+    $where = implode(' AND ', $condicoes);
+
+    // QUANTIDADE eventoS
+    $qtdEveItens1 = $QtdTotalEve->QtdEvento($where);
+
+    $qtdEveItens = ($qtdEveItens1['0']);
+    // PAGINACAO
+    $obPagination = new pagination($qtdEveItens, $_GET['pag'] ?? 1, 10);
+    $obLimite = $obPagination->getLimit();
+
     ?>
 
     <!--tabela evento-->
@@ -30,7 +50,7 @@
                     <h6 class="page-title" style="margin-top:10px">Selecione itens para efetuar Pesquisa</h6>
                     <input type="hidden" name="pesquisa" id="pesquisa" value="sim">
                     <div class="form-group col-sm-2">
-                        <input type="text" name="pesquisa_nome" style="margin-top:10px; border:0rem" id="pesquisa_nome" placeholder="Pesquisa por paciente">
+                        <input type="text" name="pesquisa_pac" style="margin-top:10px; border:0rem" id="pesquisa_pac" placeholder="Pesquisa por paciente">
                     </div>
                     <div class="form-group col-sm-3 ">
                         <select class="form-control" id="pesquisa_hosp" style="margin-top:10px" name="pesquisa_hosp">
@@ -43,9 +63,9 @@
                         </select>
                     </div>
                     <div class="form-group col-sm-1">
-                        <input type="radio" checked name="ativo" value="s" id="ativo" placeholder="Pesquisa por evento">
+                        <input type="radio" checked name="buscaAtivo" value="s" id="buscaAtivo" placeholder="Pesquisa por evento">
                         <label for="ativo">Ativo</label><br>
-                        <input type="radio" style="margin-top:-5px" name="ativo" value="n" id="ativo" placeholder="Pesquisa por evento">
+                        <input type="radio" style="margin-top:-5px" name="ativo" value="n" id="ativo" placeholder="Pesquisa por evento Ativo">
                         <label for="ativo">Inativo</label><br>
                     </div>
                     <div class="form-group col-sm-1">
@@ -55,40 +75,24 @@
             </form>
 
             <?php
-            // validacao do formulario
-            if (isset($_POST['ativo'])) {
-                $pesquisa_ativo = $_POST['ativo'];
-            }
+            // PREENCHIMENTO DO FORMULARIO COM QUERY
+            $query = $evento->selectAllEvento($where, $order, $obLimite);
 
-            if (isset($_POST['pesquisa_nome'])) {
-                $pesquisa_nome = $_POST['pesquisa_nome'];
-            }
+            // GETS 
+            unset($_GET['pag']);
+            unset($_GET['pg']);
+            $gets = http_build_query($_GET);
 
-            if (isset($_POST['pesquisa_hosp'])) {
-                $pesquisa_hosp = $_POST['pesquisa_hosp'];
-            }
+            // PAGINACAO
+            $paginacao = '';
+            $paginas = $obPagination->getPages();
 
-            // ENCAMINHAMENTO DOS INPUTS DO FORMULARIO
-            if (($pesquisa_nome != "") && ($pesquisa_hosp == "")) {
-                $query = $evento->findBypaciente($pesquisa_nome, $pesquisa_ativo);
-            }
-
-            if (($pesquisa_nome == "") && ($pesquisa_hosp != "")) {
-                $query = $evento->findByHospital($pesquisa_hosp);
-            }
-
-            if (($pesquisa_nome != "") &&  ($pesquisa_hosp != "")) {
-                $query = $evento->findByPacHosp($pesquisa_nome, $pesquisa_hosp);
-            }
-
-            if (($pesquisa_nome == "") && ($pesquisa_hosp == "")) {
-                $query = $evento->findGeral($pesquisa_ativo);
+            foreach ($paginas as $pagina) {
+                // $class = $pagina['atual'] ? 'btn-primary' : 'btn-light';
+                $paginacao .= '<a href="?pag=' . $pagina['pag'] . '&' . $gets . '"> 
+                <button type="button" class="btn ' . $class . '">' . $pagina['pag'] . '</button>
+                </a>';
             };
-
-            if ($pesquisa_ativo == "") {
-                $query = $evento->findAll();
-            };
-
 
             ?>
         </div>

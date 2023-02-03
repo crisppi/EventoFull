@@ -21,7 +21,7 @@ if ($type === "delete") {
     $eventoDao = new eventoDAO($conn, $BASE_URL);
 
     $evento = $eventoDao->findById($id_evento);
-    var_dump($id_evento);
+    // var_dump($id_evento);
     if ($evento) {
 
         $eventoDao->destroy($id_evento);

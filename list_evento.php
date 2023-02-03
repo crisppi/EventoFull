@@ -2,6 +2,8 @@
 session_start();
 if (!$_SESSION['username']) {
     header("Location: index.php");
+
+    include_once("models/pagination.php");
 }; ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -14,6 +16,11 @@ if (!$_SESSION['username']) {
 
 </head>
 <?php
+
+$pesquisa_pac = filter_input(INPUT_GET, 'pesquisa_pac');
+$pesquisa_hosp = filter_input(INPUT_GET, 'pesquisa_hosp');
+$buscaAtivo = filter_input(INPUT_GET, 'buscaAtivo');
+
 include_once("formularios/form_list_evento.php");
 include_once("templates/footer.php");
 ?>

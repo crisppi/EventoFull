@@ -43,4 +43,7 @@ interface eventoDAOInterface
   public function update(evento $evento);
   public function destroy($id_evento);
   public function findGeral($pesq_ativ);
+
+  public function selectAllEvento($where = null, $order = null, $limit = null);
+  public function QtdEvento();
 };
