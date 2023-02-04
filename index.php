@@ -10,31 +10,34 @@ require_once("models/usuario.php");
 
 $usuarioDao = new userDAO($conn, $BASE_URL);
 
-if (isset($_POST["login"])) {
+// include_once("pagLogin.php");
 
-    if (empty($_POST['username']) || empty($_POST['senha_login'])) {
-        $message = '<label>Todos campos são obrigatórios</label>';
-    } else {
+// NAO APAGAR LOGIN ATUAL FUNCIONANDO, VAMOS DIRECIONAR PARA PAGLOGIN.PHP
+// if (isset($_POST["login"])) {
 
-        $query = "SELECT * FROM tb_user WHERE usuario_user = :username AND senha_user = :senha_login";
+//     if (empty($_POST['username']) || empty($_POST['senha_login'])) {
+//         $message = '<label>Todos campos são obrigatórios</label>';
+//     } else {
 
-        $usuarioDao = $conn->prepare($query);
-        $usuarioDao->execute(
-            array(
-                'username'     =>     $_POST["username"],
-                'senha_login'     =>     $_POST["senha_login"]
-            )
-        );
+//         $query = "SELECT * FROM tb_user WHERE usuario_user = :username AND senha_user = :senha_login";
 
-        $count = $usuarioDao->rowCount();
-        if ($count > 0) {
-            $_SESSION["username"] = $_POST["username"];
-            header("Location: cad_evento.php");
-        } else {
-            $message = '<label>Usuário ou senha incorretas</label>';
-        }
-    }
-}
+//         $usuarioDao = $conn->prepare($query);
+//         $usuarioDao->execute(
+//             array(
+//                 'username'     =>     $_POST["username"],
+//                 'senha_login'     =>     $_POST["senha_login"]
+//             )
+//         );
+
+//         $count = $usuarioDao->rowCount();
+//         if ($count > 0) {
+//             $_SESSION["username"] = $_POST["username"];
+//             header("Location: cad_evento.php");
+//         } else {
+//             $message = '<label>Usuário ou senha incorretas</label>';
+//         }
+//     }
+// }
 
 ?>
 <!DOCTYPE html>
@@ -82,8 +85,10 @@ if (isset($_POST["login"])) {
             <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab"></label>
 
             <div class="login-form">
-                <form method="POST">
+                <form action="pagLogin.php" method="POST">
                     <div class="sign-in-htm">
+                        <input id="loggedin" name="loggedin" value="loggedin">
+
                         <div class="group">
                             <label for="username" class="label">Usuário</label>
                             <input name="username" type="text" class="input">

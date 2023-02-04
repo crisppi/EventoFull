@@ -279,6 +279,31 @@ class UserDAO implements UserDAOInterface
 
         return $usuarios;
     }
+
+    public function findById_Login($email_user, $senha)
+    {
+
+        if ($email_user != "") {
+
+            $stmt = $this->conn->prepare("SELECT * FROM tb_user WHERE email_user = :username AND senha_user= senha_login");
+
+            $stmt->bindParam(":email_user", $email_user);
+
+            $stmt->execute();
+
+            if ($stmt->rowCount() > 0) {
+
+                $data = $stmt->fetch();
+                $usuario = $this->buildUser($data);
+
+                return $usuario;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
 }
 
 

@@ -2,6 +2,7 @@
 if (!isset($_SESSION)) {
   session_start();
 }
+
 include_once("globals.php");
 include_once("db.php");
 date_default_timezone_set('America/Sao_Paulo');
@@ -50,16 +51,20 @@ date_default_timezone_set('America/Sao_Paulo');
                 <li><a class="dropdown-item" href="<?php $BASE_URL ?>cad_evento.php">Cadastrar novo evento</a></li>
             </li>
           </ul>
+
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Pesquisas
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-              <li><a class="dropdown-item" href="<?php $BASE_URL ?>list_evento.php">Evento Adverso</a></li>
-            </ul>
-          </li>
-          <?php if (isset($_SESSION['username']) == "roberto") { ?>
+          <?php
+          if (isset($_SESSION) && $_SESSION['username'] == "roberto") {
+          ?>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Pesquisas
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                <li><a class="dropdown-item" href="<?php $BASE_URL ?>list_evento.php">Evento Adverso</a></li>
+              </ul>
+            </li>
 
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

@@ -6,8 +6,16 @@ session_start();
 require_once "db.php";
 require_once("globals.php");
 require_once("models/evento.php");
+require_once("models/usuario.php");
+
 require_once("models/message.php");
+
 require_once("dao/eventoDao.php");
+require_once("dao/usuarioDao.php");
+
+require_once("templates/headerBase.php");
+$usuarioDao = new userDAO($conn, $BASE_URL);
+
 
 // Verifique se o usuário já está logado, em caso afirmativo, redirecione-o para a página de boas-vindas
 if (isset($_SESSION["loggedin"]) === true) {
@@ -16,8 +24,12 @@ if (isset($_SESSION["loggedin"]) === true) {
 }
 if (isset($_POST['username'])) {
     $_SESSION['username'] = $_POST['username'];
-    $_SESSION['senha_user'] = $_POST['senha_user'];
+    // $_SESSION['senha_user'] = $_POST['senha_user'];
 }
+// $user = $_POST['username'];
+// $senha = $_POST['senha_login'];
+// echo "<pre>";
+// print_r($_POST);
 
 // Defina variáveis e inicialize com valores vazios
 $username = $password = "";
@@ -31,19 +43,31 @@ if (empty(trim($_POST["username"]))) {
 }
 
 // Verifique se a senha está vazia
-if (empty(trim($_POST["senha_user"]))) {
+if (empty(trim($_POST["senha_login"]))) {
     $password_err = "Por favor, insira sua senha.";
 } else {
-    $password = trim($_POST["senha_user"]);
+    $password = trim($_POST["senha_login"]);
 }
+
 // Validar credenciais
 if (empty($username_err) && empty($password_err)) {
-    // Prepare uma declaração selecionada
-    $sql = "SELECT * FROM tb_user WHERE usuario_user = :username and senha_user = :senha_user";
 
-    if ($stmt = $pdo->prepare($sql)) {
+    $logados = $usuarioDao->findById_Login($username, $password);
+    print_r($logados);
+
+
+    // Prepare uma declaração selecionada
+    $sql = "SELECT * FROM tb_user WHERE usuario_user = :username AND senha_user = :password";
+    if ($stmt = $conn->prepare($sql)) {
         // Vincule as variáveis à instrução preparada como parâmetros
-        $stmt->bindParam(":usuario_user", $param_username, PDO::PARAM_STR);
+        $stmt->bindParam(":usuario_user", $username, PDO::PARAM_STR);
+
+        $stmt->execute();
+        $evento = $stmt->fetchAll();
+
+        return $evento;
+
+        print_r($evento);
 
         // Definir parâmetros
         $param_username = trim($_POST["username"]);
@@ -56,6 +80,8 @@ if (empty($username_err) && empty($password_err)) {
                     $id = $row["id_usuario"];
                     $username = $row["usuario_user"];
                     $hashed_password = $row["senha_user"];
+                    $nivel = $row["nivel_user"];
+
                     if (password_verify($password, $hashed_password)) {
                         // A senha está correta, então inicie uma nova sessão
                         session_start();
@@ -105,18 +131,17 @@ if (empty($username_err) && empty($password_err)) {
 </head>
 
 <?php
-print_r($_SESSION);
-echo "<br>";
-echo $_POST['senha_user'];
-echo "<br>";
-echo $_POST['username'];
-echo "<br>";
-echo "loggedin = " . $_POST['loggedin'];
-echo "nome da entrada = " . $entradaName;
+// print_r($_SESSION);
+// echo "<br>";
+// echo $_POST['senha_login'];
+// echo "<br>";
+// echo $_POST['username'];
+// echo "<br>";
+// echo "loggedin = " . $_POST['loggedin'];
+// echo "nome da entrada = " . $entradaName;
 
-require_once("templates/headerBase.php");
 ?>
-<div class="login-wrap">
+<!-- <div class="login-wrap">
     <div class="login-html">
         <div>
             <a class="navbar-brand" href="index.php">
@@ -129,6 +154,7 @@ require_once("templates/headerBase.php");
         <div class="login-form">
             <form method="POST" action="cad_evento.php">
                 <div class="sign-in-htm">
+                    <input id="loggedin" name="loggedin" />
                     <div class="group">
                         <label for="username" class="label">Usuário</label>
                         <input id="username" name="username" type="text" class="input">
@@ -145,7 +171,7 @@ require_once("templates/headerBase.php");
         </div>
 
     </div>
-</div>
+</div> -->
 </div>
 
 </html>

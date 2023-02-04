@@ -142,7 +142,7 @@ if ($type === "create") {
     $eventoData->seguradora = $seguradora;
 
     $eventoDao->update($eventoData);
-    print_r($eventoData);
+
     include_once('list_evento.php');
 }
 //$type = "delete";
