@@ -1,7 +1,8 @@
 <?php
 session_start();
 
-require_once("templates/headerbase.php");
+include_once("globals.php");
+include_once("db.php");
 require_once("dao/eventoDao.php");
 require_once("dao/usuarioDao.php");
 require_once("models/message.php");
@@ -9,7 +10,6 @@ require_once("models/evento.php");
 require_once("models/usuario.php");
 
 $usuarioDao = new userDAO($conn, $BASE_URL);
-
 // include_once("pagLogin.php");
 
 // NAO APAGAR LOGIN ATUAL FUNCIONANDO, VAMOS DIRECIONAR PARA PAGLOGIN.PHP
@@ -100,7 +100,7 @@ $usuarioDao = new userDAO($conn, $BASE_URL);
                         </div>
                         <div class="group">
                             <label for="senha_login" class="label">Senha</label>
-                            <input name="senha_login" type="text" class="input" required>
+                            <input name="senha_login" type="password" class="input" required>
                         </div>
                         <div class="group">
                             <input type="submit" class="button" name="login" class="btn btn-info" value="Login">

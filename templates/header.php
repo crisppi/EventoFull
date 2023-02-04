@@ -54,7 +54,7 @@ date_default_timezone_set('America/Sao_Paulo');
 
           </li>
           <?php
-          if (isset($_SESSION) && $_SESSION['username'] == "roberto") {
+          if (isset($_SESSION) && $_SESSION['nivel'] >= 2) {
           ?>
 
             <li class="nav-item dropdown">
@@ -91,16 +91,16 @@ date_default_timezone_set('America/Sao_Paulo');
       <div class="col-md-2" style="margin-left:200px; font-weight:600 ;font-size:12px">
         <?php
         if ($_SESSION) {
-          echo "<span style='color:green; font-size:1.2em'>Bem vindo ao Painel, " . $_SESSION['username'] . "</span><br>";
+          echo "<span style='color:green; font-size:1.2em'>Bem vindo!!  " . $_SESSION['username'] . "</span><br>";
           $agora = date('d/m/Y H:i');
         } else {
           echo "<span style='color:red'> Você não esta logado!!</span>" . "<br>";
         }
 
         $agora = date('d/m/Y H:i');
-        echo "Atual:  " . $agora ?>
+        echo "Local: " . $agora ?>
         <div>
-          <a class="dropdown-item" href="<?php $BASE_URL ?>destroi.php"> Sair</a>
+          <a class="dropdown-item" style="margin-left:20px; color:red; font-size:larger; font-weight:600" href="<?php $BASE_URL ?>destroi.php"> Sair</a>
         </div>
       </div>
   </div>
