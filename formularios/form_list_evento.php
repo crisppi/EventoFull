@@ -158,7 +158,7 @@
             echo " <ul class='pagination'>";
             echo " <li class='page-item'><a class='page-link' href='list_evento.php?pg=1&" . $gets . "''><span aria-hidden='true'>&laquo;</span></a></li>"; ?>
             <?= $paginacao ?>
-            <?php echo "<li class='page-item'><a class='page-link' href='list_evento.php?pg=$qtdIntItens&" . $gets . "''><span aria-hidden='true'>&raquo;</span></a></li>";
+            <?php echo "<li class='page-item'><a class='page-link' href='list_evento.php?pg=$qtdEveItens&" . $gets . "''><span aria-hidden='true'>&raquo;</span></a></li>";
             echo " </ul>";
             echo "</nav>";
             echo "</div>"; ?>

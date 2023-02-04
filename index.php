@@ -44,8 +44,13 @@ $usuarioDao = new userDAO($conn, $BASE_URL);
 <html>
 
 <head>
+    <link href="<?php $BASE_URL ?>css/login.css" rel="stylesheet">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+
+    <script type="text/javascript" src="script.js"></script>
+
 </head>
 
 <body>
@@ -87,20 +92,28 @@ $usuarioDao = new userDAO($conn, $BASE_URL);
             <div class="login-form">
                 <form action="check_login.php" method="POST">
                     <div class="sign-in-htm">
-                        <input id="loggedin" name="loggedin" value="loggedin">
+                        <input type="hidden" id="loggedin" name="loggedin" value="loggedin">
 
                         <div class="group">
                             <label for="username" class="label">Usuário</label>
-                            <input name="username" type="text" class="input">
+                            <input name="username" onkeypress="ocultar()" id="username" type="text" class="input" required>
                         </div>
                         <div class="group">
                             <label for="senha_login" class="label">Senha</label>
-                            <input name="senha_login" type="password" class="input" type="senha_login">
+                            <input name="senha_login" type="text" class="input" required>
                         </div>
                         <div class="group">
                             <input type="submit" class="button" name="login" class="btn btn-info" value="Login">
                         </div>
                 </form>
+
+                <?php
+                if (isset($_SESSION['mensagem'])) { ?>
+                    <div style="background-color:aliceblue; padding:10px; border-radius: 20px;" class="visible" id="msgErr">
+                        <?Php echo "<div style='color:red; text-align:center;'>" . $_SESSION['mensagem']; ?>
+                    </div>
+                <?php  }; ?>
+
             </div>
         </div>
     </div>
@@ -108,3 +121,15 @@ $usuarioDao = new userDAO($conn, $BASE_URL);
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 
 </html>
+<script type="text/javascript">
+    function ocultar() {
+        $("#msgErr").removeClass("visible");
+        $("#msgErr").addClass("oculto");
+
+    }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>

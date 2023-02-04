@@ -9,36 +9,53 @@
     include_once("templates/header.php");
     include_once("array_dados.php");
 
-    //Instanciando a classe
-    //Criado o objeto $listareventos
-    $usuario = new UserDAO($conn, $BASE_URL);
+    include_once("models/pagination.php");
 
-    //Instanciar o metodo listar evento
-    $pesquisa_ativo = "";
-    $usuarios = $usuario->findGeral();
-    $pesquisa_nome = "";
-    $pesquisa_ativo = "";
-    $pesquisa_hospital = "";
+    //Instanciando a classe
+    $usuario = new userDAO($conn, $BASE_URL);
+    $QtdTotalUser = new userDAO($conn, $BASE_URL);
+
+    // METODO DE BUSCA DE PAGINACAO
+    $pesquisa_user = filter_input(INPUT_GET, 'pesquisa_user');
+    $ativo_user = filter_input(INPUT_GET, 'ativo_user');
+
+    $condicoes = [
+        strlen($pesquisa_user) ? 'usuario_user LIKE "%' . $pesquisa_user . '%"' : null,
+        strlen($ativo_user) ? 'ativo_user = "' . $ativo_user . '"' : null
+    ];
+    $condicoes = array_filter($condicoes);
+
+    // REMOVE POSICOES VAZIAS DO FILTRO
+    $where = implode(' AND ', $condicoes);
+
+    // QUANTIDADE usuarioS
+    $qtdUserItens1 = $QtdTotalUser->QtdUsuario($where);
+
+    $qtdUserItens = ($qtdUserItens1['0']);
+    // PAGINACAO
+    $obPagination = new pagination($qtdUserItens, $_GET['pag'] ?? 1, 10);
+    $obLimite = $obPagination->getLimit();
+
     ?>
 
-    <!--tabela evento-->
+    <!--tabela usuario-->
     <div class="container py-2">
 
         <div class="row" style="background-color: #d3d3d3">
-            <form class="formulario" id="form_pesquisa" method="POST">
+            <form class="formulario" id="form_pesquisa" method="GET">
                 <div class="form-group row">
                     <h6 class="page-title" style="margin-top:10px">Selecione itens para efetuar Pesquisa</h6>
                     <input type="hidden" name="pesquisa" id="pesquisa" value="sim">
                     <div class="form-group col-sm-2">
-                        <input type="text" name="pesquisa_nome" style="margin-top:10px; border:0rem" id="pesquisa_nome" placeholder="Pesquisa por usuário">
+                        <input type="text" name="pesquisa_user" style="margin-top:10px; border:0rem" id="pesquisa_user" placeholder="Pesquisa por usuário">
                     </div>
 
-                    <!-- <div class="form-group col-sm-1">
-                        <input type="radio" checked name="ativo" value="s" id="ativo" placeholder="Pesquisa por evento">
-                        <label for="ativo">Ativo</label><br>
-                        <input type="radio" style="margin-top:-5px" name="ativo" value="n" id="ativo" placeholder="Pesquisa por evento">
+                    <div class="form-group col-sm-1">
+                        <input type="radio" value="s" name="ativo_user" id="ativo" placeholder="Pesquisa por usuario">
+                        <label for="ativo_user">Ativo</label><br>
+                        <input type="radio" style="margin-top:-5px" name="ativo_user" value="n" id="ativo_user" placeholder="Pesquisa por usuario">
                         <label for="ativo">Inativo</label><br>
-                    </div> -->
+                    </div>
                     <div class="form-group col-sm-1">
                         <button style="margin:10px; font-weight:600" type="submit" class="btn-sm btn-light">Pesquisar</button>
                     </div>
@@ -46,29 +63,32 @@
             </form>
 
             <?php
-            // validacao do formulario
-            if (isset($_POST['ativo'])) {
-                $pesquisa_ativo = $_POST['ativo'];
-            }
+            $order = null;
+            // PREENCHIMENTO DO FORMULARIO COM QUERY
+            $query = $usuario->selectAllusuario($where, $order, $obLimite);
 
-            if (isset($_POST['pesquisa_nome'])) {
-                $pesquisa_nome = $_POST['pesquisa_nome'];
-            }
+            // GETS 
+            unset($_GET['pag']);
+            unset($_GET['pg']);
+            $gets = http_build_query($_GET);
 
-            // ENCAMINHAMENTO DOS INPUTS DO FORMULARIO
-            if (($pesquisa_nome != "")) {
-                $query = $usuario->findByUser($pesquisa_nome);
-            }
+            // PAGINACAO
+            $paginacao = '';
+            $paginas = $obPagination->getPages();
 
-            if ($pesquisa_nome == "") {
-                $query = $usuario->findAll();
+            foreach ($paginas as $pagina) {
+
+                $class = $pagina['atual'] ? 'btn-primary' : 'btn-light';
+                $paginacao .= '<a href="?pag=' . $pagina['pag'] . '&' . $gets . '"> 
+                <button type="button" class="btn ' . $class . '">' . $pagina['pag'] . '</button>
+                </a>';
             };
 
-
             ?>
+
         </div>
         <div>
-            <h4 class="page-title">Relação de eventos</h4>
+            <h4 class="page-title">Relação de Usuários</h4>
         </div>
         <table class="table table-sm table-striped table-bordered table-hover table-condensed">
             <thead>
@@ -77,6 +97,7 @@
                     <th scope="col">Usuário</th>
                     <th scope="col">Senha</th>
                     <th scope="col">Email</th>
+                    <th scope="col">Ativo</th>
                     <th scope="col">Ações</th>
                 </tr>
             </thead>
@@ -91,6 +112,7 @@
                         <td scope="row" class="nome-coluna-table"><?= $usuario_user ?></td>
                         <td scope="row" class="nome-coluna-table"><?= $senha_user ?></td>
                         <td scope="row" class="nome-coluna-table"><?= $email_user ?></td>
+                        <td scope="row" class="nome-coluna-table"><?= $ativo_user ?></td>
 
                         <td class="action">
                             <!-- <a href="cad_usuario.php"><i name="type" value="create" style="color:green; margin-right:10px" class="bi bi-plus-square-fill edit-icon"></i></a> -->
@@ -106,7 +128,21 @@
                 <?php endforeach; ?>
             </tbody>
         </table>
-
+        <div>
+            <?php
+            "<div style=margin-left:20px;>";
+            echo "<div style='color:blue; margin-left:20px;'>";
+            echo "</div>";
+            echo "<nav aria-label='Page navigation example'>";
+            echo " <ul class='pagination'>";
+            echo " <li class='page-item'><a class='page-link' href='list_usuario.php?pg=1&" . $gets . "''><span aria-hidden='true'>&laquo;</span></a></li>"; ?>
+            <?= $paginacao ?>
+            <?php echo "<li class='page-item'><a class='page-link' href='list_usuario.php?pg=$qtdUserItens&" . $gets . "''><span aria-hidden='true'>&raquo;</span></a></li>";
+            echo " </ul>";
+            echo "</nav>";
+            echo "</div>"; ?>
+            <hr>
+        </div>
         <div id="id-confirmacao" class="btn_acoes oculto">
             <p>Deseja deletar este usuario: <?= $usuario_ant ?>?</p>
             <button class="btn btn-success styled" onclick=cancelar() type="button" id="cancelar" name="cancelar">Cancelar</button>
@@ -184,7 +220,7 @@
         idAcoes.style.display = 'none';
         let mudancaStatus = ($('#deletar-btn').val())
         console.log(mudancaStatus);
-        window.location = "<?= $BASE_URL ?>del_evento.php?id_evento=<?= $id_evento ?>";
+        window.location = "<?= $BASE_URL ?>del_usuario.php?id_usuario=<?= $id_usuario ?>";
     };
 
     function cancelar() {

@@ -18,9 +18,8 @@ if ($type === "create") {
     // Receber os dados dos inputs
     $usuario_user = filter_input(INPUT_POST, "usuario_user");
     $email_user = filter_input(INPUT_POST, "email_user");
+    $ativo_user = filter_input(INPUT_POST, "ativo_user");
     $senha_user = password_hash($_POST["senha_user"], PASSWORD_DEFAULT);
-
-    print_r($senha_user);
 
     $usuario = new Usuario();
 
@@ -29,6 +28,7 @@ if ($type === "create") {
 
         $usuario->usuario_user = $usuario_user;
         $usuario->email_user = $email_user;
+        $usuario->ativo_user = $ativo_user;
         $usuario->senha_user = $senha_user;
 
         $userDao->create($usuario);
@@ -43,6 +43,7 @@ if ($type === "create") {
     // Receber os dados dos inputs
     $id_usuario = filter_input(INPUT_POST, "id_usuario");
     $usuario_user = filter_input(INPUT_POST, "usuario_user");
+    $ativo_user = filter_input(INPUT_POST, "ativo_user");
     $email_user = filter_input(INPUT_POST, "email_user");
     $senha_user = password_hash(filter_input(INPUT_POST, "senha_user"), PASSWORD_DEFAULT);
 
@@ -50,6 +51,7 @@ if ($type === "create") {
 
     $usuarioData->id_usuario = $id_usuario;
     $usuarioData->usuario_user = $usuario_user;
+    $usuarioData->ativo_user = $ativo_user;
     $usuarioData->email_user = $email_user;
     $usuarioData->senha_user = $senha_user;
 

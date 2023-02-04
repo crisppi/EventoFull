@@ -1,33 +1,36 @@
 <?php
 
 session_start();
-if (!$_SESSION['username']) {
-    header("Location: index.php");
-}; ?>
+// if (!$_SESSION['username']) {
+//     header("Location: index.php");
+// }; 
+include_once("globals.php");
+include_once("db.php");
+require_once("models/usuario.php");
+
+require_once("dao/usuarioDao.php");
+
+isset($_SESSION['mensagem']) ? "" : null;
+?>
+
 <?php
-print_r($_POST);
-$username = filter_input(INPUT_POST, 'username');
-$senha_login = filter_input(INPUT_POST, 'senha_login');
-$login = filter_input(INPUT_POST, 'login');
 
 //include_once("./models/message.php");
-
 //Instanciando a classe
-
 //Instanciando a classe
 $usuario = new UserDAO($conn, $BASE_URL);
 $QtdTotalUser = new UserDAO($conn, $BASE_URL);
 
 // METODO DE BUSCA DE PAGINACAO
-$pesquisa_pac = filter_input(INPUT_GET, 'pesquisa_pac');
-$pesquisa_hosp = filter_input(INPUT_GET, 'pesquisa_hosp');
-$buscaAtivo = filter_input(INPUT_GET, 'buscaAtivo');
-// $buscaAtivo = in_array($buscaAtivo, ['s', 'n']) ?: "";
+$username = filter_input(INPUT_POST, 'username');
+$senha_login = filter_input(INPUT_POST, 'senha_login');
+$login = filter_input(INPUT_POST, 'login');
 
+// $buscaAtivo = in_array($buscaAtivo, ['s', 'n']) ?: "";
 $condicoes = [
-    strlen($pesquisa_pac) ? 'paciente LIKE "%' . $pesquisa_pac . '%"' : null,
-    strlen($pesquisa_hosp) ? 'hospital LIKE "%' . $pesquisa_hosp . '%"' : null,
-    strlen($buscaAtivo) ? 'ativo = "' . $buscaAtivo . '"' : null
+    strlen($username) ? 'usuario_user LIKE "%' . $username . '%"' : null,
+    // strlen($senha_login) ? 'senha_user LIKE "%' . $senha_login . '%"' : null,
+    // strlen($buscaAtivo) ? 'ativo = "' . $buscaAtivo . '"' : null
 ];
 $condicoes = array_filter($condicoes);
 
@@ -35,11 +38,27 @@ $condicoes = array_filter($condicoes);
 $where = implode(' AND ', $condicoes);
 
 // QUANTIDADE UsuarioS
-$qtdUserItens1 = $QtdTotalUser->QtdUsuario($where);
+$order = null;
+$obLimite = null;
+$query = $usuario->selectAllUsuario($where, $order, $obLimite);
 
-$qtdUserItens = ($qtdUserItens1['0']);
-// PAGINACAO
-$obPagination = new pagination($qtdUserItens, $_GET['pag'] ?? 1, 10);
-$obLimite = $obPagination->getLimit();
+if (!empty($query)) {
+    $nivel = $query[0]['nivel_user'];
+    $senha_hash = $query[0]['senha_user'];
+
+    echo "<pre>";
+    print_r($query);
+    // print_r($senha_hash);
+
+    if (password_verify($senha_login, $senha_hash)) {
+        $_SESSION['nivel'] = $nivel;
+        $_SESSION['username'] = $username;
+        header('location: cad_evento.php');
+    } else {
+        $erro_login = "Usuário ou senha inválidos";
+        $_SESSION['mensagem'] = $erro_login;
+        header('location: index.php');
+    };
+}
 
 ?>

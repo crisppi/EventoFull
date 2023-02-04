@@ -48,6 +48,9 @@ if (empty($id_usuario)) {
                     <label for="email_user">email01</label>
                     <input type="email" class="form-control" id="email_user" name="email_user" placeholder="Digite o email">
                 </div>
+                <div class="form-group col-sm-2">
+                    <input type="hidden" class="form-control" id="ativo_user" name="ativo_user" value="s">
+                </div>
 
             </div>
             <div class="form-group row">
