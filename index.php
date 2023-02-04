@@ -85,7 +85,7 @@ $usuarioDao = new userDAO($conn, $BASE_URL);
             <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab"></label>
 
             <div class="login-form">
-                <form action="pagLogin.php" method="POST">
+                <form action="check_login.php" method="POST">
                     <div class="sign-in-htm">
                         <input id="loggedin" name="loggedin" value="loggedin">
 

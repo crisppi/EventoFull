@@ -44,4 +44,8 @@ interface UserDAOInterface
     public function destroy($id_usuario);
     public function changePassword(Usuario $user);
     public function findGeral();
+    public function findById_Login($username, $password);
+
+    public function selectAllUsuario($where = null, $order = null, $limit = null);
+    public function QtdUsuario();
 }

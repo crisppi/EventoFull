@@ -61,6 +61,7 @@ if (empty($username_err) && empty($password_err)) {
     if ($stmt = $conn->prepare($sql)) {
         // Vincule as variáveis à instrução preparada como parâmetros
         $stmt->bindParam(":usuario_user", $username, PDO::PARAM_STR);
+        $stmt->bindParam(":senha_user", $password, PDO::PARAM_STR);
 
         $stmt->execute();
         $evento = $stmt->fetchAll();

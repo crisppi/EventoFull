@@ -280,31 +280,61 @@ class UserDAO implements UserDAOInterface
         return $usuarios;
     }
 
-    public function findById_Login($email_user, $senha)
+    public function findById_Login($username, $password)
     {
 
-        if ($email_user != "") {
+        $stmt = $this->conn->prepare("SELECT * FROM tb_user WHERE usuario_user = $username AND senha_user = $password");
 
-            $stmt = $this->conn->prepare("SELECT * FROM tb_user WHERE email_user = :username AND senha_user= senha_login");
+        $stmt->bindParam(":usuario_user", $username);
+        $stmt->bindParam(":senha_user", $password);
 
-            $stmt->bindParam(":email_user", $email_user);
+        $stmt->execute();
 
-            $stmt->execute();
+        if ($stmt->rowCount() > 0) {
 
-            if ($stmt->rowCount() > 0) {
+            $data = $stmt->fetch();
+            $usuario = $this->buildUser($data);
 
-                $data = $stmt->fetch();
-                $usuario = $this->buildUser($data);
-
-                return $usuario;
-            } else {
-                return false;
-            }
+            return $usuario;
         } else {
+
             return false;
         }
+        return false;
+    }
+
+    # METODO DE SELECAO COM VARIAVEIS NO QUERY
+    public function selectAllUsuario($where = null, $order = null, $limit = null)
+    {
+        //DADOS DA QUERY
+        $where = strlen($where) ? 'WHERE ' . $where : '';
+        $order = strlen($order) ? 'ORDER BY ' . $order : '';
+        $limit = strlen($limit) ? 'LIMIT ' . $limit : '';
+
+        //MONTA A QUERY
+        $query = $this->conn->query('SELECT * FROM tb_user ' . $where . ' ' . $order . ' ' . $limit);
+
+        $query->execute();
+
+        $usuario = $query->fetchAll();
+
+        return $usuario;
+    }
+
+    public function QtdUsuario()
+    {
+        $usuario = [];
+
+        $stmt = $this->conn->query("SELECT COUNT(id_usuario) FROM tb_usuario");
+
+        $stmt->execute();
+
+        $QtdTotalUser = $stmt->fetch();
+
+        return $QtdTotalUser;
     }
 }
+
 
 
 
