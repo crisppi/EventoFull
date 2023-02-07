@@ -322,6 +322,7 @@ class eventoDAO implements eventoDAOInterface
         $stmt->bindParam(":status", $evento->status);
         $stmt->bindParam(":propria", $evento->propria);
         $stmt->bindParam(":empresa", $evento->empresa);
+        $stmt->bindParam(":ativo", $evento->ativo);
         $stmt->bindParam(":tipo_evento", $evento->tipo_evento);
         $stmt->execute();
 

@@ -10,7 +10,6 @@ $eventoDao = new eventoDAO($conn, $BASE_URL);
 
 // Resgata o tipo do formulário
 $type = filter_input(INPUT_POST, "type");
-echo $type;
 // Resgata dados do usuário
 
 if ($type === "create") {
@@ -45,7 +44,7 @@ if ($type === "create") {
     $evento = new evento();
 
     // Validação mínima de dados
-    if (!empty($paciente)) {
+    if (!empty(3 < 4)) {
 
         $evento->paciente = $paciente;
         $evento->sexo = $sexo;
@@ -82,7 +81,6 @@ if ($type === "create") {
 } else if ($type === "update") {
 
     $eventoDao = new eventoDAO($conn, $BASE_URL);
-    print_r($eventoDao);
     // Receber os dados dos inputs
     $id_evento = filter_input(INPUT_POST, "id_evento");
     $paciente = filter_input(INPUT_POST, "paciente");
@@ -129,7 +127,6 @@ if ($type === "create") {
     $eventoData->prolongamento = $prolongamento;
     $eventoData->tipo_evento = $tipo_evento;
     $eventoData->gravidade = $gravidade;
-    $eventoData->ativo = $ativo;
     $eventoData->negociado = $negociado;
     $eventoData->valor_negociado = $valor_negociado;
     $eventoData->status = $status;
@@ -139,6 +136,7 @@ if ($type === "create") {
     $eventoData->evitavel = $evitavel;
     $eventoData->senha = $senha;
     $eventoData->alta = $alta;
+    $eventoData->ativo = $ativo;
     $eventoData->seguradora = $seguradora;
 
     $eventoDao->update($eventoData);

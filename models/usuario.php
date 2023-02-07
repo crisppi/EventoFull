@@ -6,6 +6,7 @@ class Usuario
     public $usuario_user;
     public $email_user;
     public $ativo_user;
+    public $nivel_user;
     public $senha_user;
     public $hash_senha;
     public $token;

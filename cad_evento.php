@@ -211,11 +211,11 @@ $id_evento = filter_input(INPUT_GET, "id_evento");
     </div>
     <button style="margin:10px; font-weight:bold" type="submit" class="btn-sm btn-info styled">Cadastrar</button>
     <br>
-    <?php if (!empty($flassMessage["msg"])) : ?>
+    <!-- <?php if (!empty($flassMessage["msg"])) : ?>
         <div class="msg-container">
             <p class="msg <?= $flassMessage["type"] ?>"><?= $flassMessage["msg"] ?></p>
         </div>
-    <?php endif; ?>
+    <?php endif; ?> -->
     </form>
     <div>
         <hr>

@@ -98,6 +98,7 @@
                     <th scope="col">Senha</th>
                     <th scope="col">Email</th>
                     <th scope="col">Ativo</th>
+                    <th scope="col">Nível</th>
                     <th scope="col">Ações</th>
                 </tr>
             </thead>
@@ -113,6 +114,7 @@
                         <td scope="row" class="nome-coluna-table"><?= $senha_user ?></td>
                         <td scope="row" class="nome-coluna-table"><?= $email_user ?></td>
                         <td scope="row" class="nome-coluna-table"><?= $ativo_user ?></td>
+                        <td scope="row" class="nome-coluna-table"><?= $nivel_user ?></td>
 
                         <td class="action">
                             <!-- <a href="cad_usuario.php"><i name="type" value="create" style="color:green; margin-right:10px" class="bi bi-plus-square-fill edit-icon"></i></a> -->

@@ -19,6 +19,7 @@ if ($type === "create") {
     $usuario_user = filter_input(INPUT_POST, "usuario_user");
     $email_user = filter_input(INPUT_POST, "email_user");
     $ativo_user = filter_input(INPUT_POST, "ativo_user");
+    $nivel_user = filter_input(INPUT_POST, "nivel_user");
     $senha_user = password_hash($_POST["senha_user"], PASSWORD_DEFAULT);
 
     $usuario = new Usuario();
@@ -29,6 +30,7 @@ if ($type === "create") {
         $usuario->usuario_user = $usuario_user;
         $usuario->email_user = $email_user;
         $usuario->ativo_user = $ativo_user;
+        $usuario->nivel_user = $nivel_user;
         $usuario->senha_user = $senha_user;
 
         $userDao->create($usuario);

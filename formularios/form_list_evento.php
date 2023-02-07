@@ -128,7 +128,11 @@
                         <td scope="row" class="nome-coluna-table"><?= $paciente ?></td>
                         <td scope="row" class="nome-coluna-table"><?= $hospital ?></td>
                         <td scope="row" class="nome-coluna-table"><?= $senha ?></td>
-                        <td scope="row" class="nome-coluna-table"><?= $ativo ?></td>
+                        <td scope="row" class="nome-coluna-table"><?php if ($ativo == "s") {
+                                                                        echo "Sim";
+                                                                    } else {
+                                                                        echo "Não";
+                                                                    }  ?></td>
                         <td scope="row" class="nome-coluna-table"><?= $status ?></td>
                         <td scope="row" class="nome-coluna-table">R$ <?= number_format($valor_negociado, 2, ',', '.') ?></td>
                         <td scope="row" class="nome-coluna-table"><?= $rel_evento ?></td>

@@ -37,7 +37,7 @@ include_once("array_dados.php");
                         <?php
                         foreach ($dados_hospital as $hosp) {
                             if ($evento->hospital == $hosp) { ?>
-                                <option selected value="<?= $hosp; ?>"><?= $hosp; ?></option>
+                                <option selected value="<?= $evento->hospital; ?>"><?= $hosp; ?></option>
                             <?php } else { ?>
                                 <option value="<?= $hosp; ?>"><?= $hosp; ?></option>
                         <?php  }
@@ -66,7 +66,7 @@ include_once("array_dados.php");
                 <div class="form-group col-sm-2 ">
                     <label class="control-label" for="ativo">Ativo</label>
                     <select class="form-control" id="ativo" name="ativo">
-                        <option value="n">n</option>
+                        <option value="n">Não</option>
                         <option value="s" <?= $evento->ativo == 's' ? ' selected ' : '' ?>>Sim</option>
                         <option value="n" <?= $evento->ativo == 'n' ? ' selected ' : '' ?>>Não</option>
                     </select>

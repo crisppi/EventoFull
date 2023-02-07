@@ -33,15 +33,16 @@ class UserDAO implements UserDAOInterface
     {
 
         $stmt = $this->conn->prepare("INSERT INTO tb_user(
-          usuario_user, email_user, senha_user, ativo_user 
+          usuario_user, email_user, senha_user, ativo_user, nivel_user
         ) VALUES (
-          :usuario_user, :email_user, :senha_user, :ativo_user
+          :usuario_user, :email_user, :senha_user, :ativo_user, :nivel_user
         )");
 
         $stmt->bindParam(":usuario_user", $usuario->usuario_user);
         $stmt->bindParam(":email_user", $usuario->email_user);
         $stmt->bindParam(":ativo_user", $usuario->ativo_user);
         $stmt->bindParam(":senha_user", $usuario->senha_user);
+        $stmt->bindParam(":nivel_user", $usuario->nivel_user);
 
         $stmt->execute();
 
@@ -63,6 +64,7 @@ class UserDAO implements UserDAOInterface
         usuario_user = :usuario_user,
         email_user = :email_user,
         ativo_user = :ativo_user,
+        nivel_user = :nivel_user,
         senha_user = :senha_user
 
         WHERE id_usuario = :id_usuario
@@ -71,6 +73,7 @@ class UserDAO implements UserDAOInterface
         $stmt->bindParam(":usuario_user", $usuario->usuario_user);
         $stmt->bindParam(":email_user", $usuario->email_user);
         $stmt->bindParam(":ativo_user", $usuario->ativo_user);
+        $stmt->bindParam(":nivel_user", $usuario->nivel_user);
         $stmt->bindParam(":senha_user", $senha_user);
 
         $stmt->bindParam(":id_usuario", $usuario->id_usuario);

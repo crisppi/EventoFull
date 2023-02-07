@@ -49,6 +49,17 @@ if (empty($id_usuario)) {
                     <input type="email" class="form-control" id="email_user" name="email_user" placeholder="Digite o email">
                 </div>
                 <div class="form-group col-sm-2">
+                    <label for="nivel">Nível de acesso</label>
+                    <select class="form-control" id="nivel_user" name="nivel_user">
+                        <option value="">Selecione</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                <div class="form-group col-sm-2">
                     <input type="hidden" class="form-control" id="ativo_user" name="ativo_user" value="s">
                 </div>
 
@@ -58,6 +69,9 @@ if (empty($id_usuario)) {
                     <label for="senha_user">Senha Default</label>
                     <input type="password" class="form-control" id="senha_user" name="senha_user" placeholder="Digite a senha">
                 </div>
+            </div>
+            <div class="form-group row">
+
             </div>
             <br>
             <button style="margin:10px" type="submit" class="btn-sm btn-info">Cadastrar</button>

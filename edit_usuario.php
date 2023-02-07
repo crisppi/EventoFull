@@ -42,6 +42,16 @@ $usuario = $usuarioDao->findById_user($id_usuario);
                     <input type="email" class="form-control" id="email_user" value="<?= $usuario->email_user ?>" name="email_user" placeholder="Digite o email">
                 </div>
             </div>
+            <div class="form-group row">
+                <div class="form-group col-sm-2">
+                    <label for="ativo">Ativo</label>
+                    <select class="form-control" id="ativo" name="ativo">
+                        <option value="">Selecione</option>
+                        <option value="s" <?= $evento->ativo == 's' ? ' selected ' : '' ?>>Sim</option>
+                        <option value="n" <?= $evento->ativo == 'n' ? ' selected ' : '' ?>>Não</option>
+                    </select>
+                </div>
+            </div>
             <br>
     </div>
     <br>
