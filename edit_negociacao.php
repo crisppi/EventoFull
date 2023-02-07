@@ -73,7 +73,7 @@ include_once("array_dados.php");
                 </div>
                 <div class="form-group col-sm-2 ">
                     <label class="control-label" for="valor_negociado">Valor negociado</label>
-                    <input id="valor_negociado" type="text" name="valor_negociado" placeholder="Valor Negociado">
+                    <input id="valor_negociado" type="text" name="valor_negociado" placeholder="Valor Negociado" class="form-control">
                 </div>
                 <div class="form-group col-sm-2 ">
                     <label class="control-label" for="status">Status</label>
