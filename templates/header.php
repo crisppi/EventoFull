@@ -25,6 +25,7 @@ date_default_timezone_set('America/Sao_Paulo');
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
 </head>
 
@@ -71,20 +72,19 @@ date_default_timezone_set('America/Sao_Paulo');
                 Usuário
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                <li><a class="dropdown-item" href="cad_usuario.php">Criar usuário</a></li>
-              </ul>
-              <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                <li><a class="dropdown-item" href="list_usuario.php">Listar usuário</a></li>
+                <li><a class="dropdown-item" href="cad_usuario.php"><i class="bi bi-person-add" style="font-size: 1rem; margin-right:5px; color: rgb(15, 15, 276);"></i> Cadastrar usuário</a></li>
+                <hr class="dropdown-divider">
+                <li><a class="dropdown-item" href="list_usuario.php"><i class="bi bi-file-medical" style="font-size: 1rem; margin-right:5px; color: rgb(155, 95, 76);"></i> Listar usuário</a></li>
               </ul>
             </li>
-            <li class="nav-item dropdown">
+            <!-- <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Pesquisas
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                 <li><a class="dropdown-item" href="<?php $BASE_URL ?>list_usuario.php">Listar Usuário</a></li>
               </ul>
-            </li>
+            </li> -->
           <?php } ?>
         </div>
       </div>

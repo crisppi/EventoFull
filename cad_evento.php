@@ -112,7 +112,7 @@ $id_evento = filter_input(INPUT_GET, "id_evento");
                     </div>
                     <div class="form-group col-sm-10">
                         <label for="rel_prolongamento">Motivo do prolongamento </label>
-                        <textarea rows="10" form="add-evento-form" class="form-control" id="rel_prolongamento" name="rel_prolongamento"></textarea>
+                        <textarea style="resize:none" rows="10" form="add-evento-form" class="form-control" id="rel_prolongamento" name="rel_prolongamento"></textarea>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -128,7 +128,7 @@ $id_evento = filter_input(INPUT_GET, "id_evento");
                     </div>
                     <div class="form-group col-sm-10">
                         <label for="rel_impacto">Relatório sobre impacto nos custos </label>
-                        <textarea form="add-evento-form" rows="10" class="form-control" id="rel_impacto" name="rel_impacto"></textarea>
+                        <textarea style="resize:none" form="add-evento-form" rows="10" class="form-control" id="rel_impacto" name="rel_impacto"></textarea>
                     </div>
                 </div>
                 <div class="form-group col-sm-2 ">
@@ -203,13 +203,13 @@ $id_evento = filter_input(INPUT_GET, "id_evento");
                 <div class="form-group row">
                     <div class="form-group col-sm-12">
                         <label for="rel_evento">Relatório sobre o caso </label>
-                        <textarea rows="10" form="add-evento-form" class="form-control" id="rel_evento" name="rel_evento"></textarea>
+                        <textarea style="resize:none" rows="10" form="add-evento-form" class="form-control" id="rel_evento" name="rel_evento"></textarea>
                     </div>
                 </div>
             </div>
             <br>
     </div>
-    <button style="margin:10px; font-weight:bold" type="submit" class="btn-sm btn-info styled">Cadastrar</button>
+    <button style="margin:10px; font-weight:bold" type="submit" class="btn-sm btn-primary btn-int-niveis">Cadastrar</button>
     <br>
     <!-- <?php if (!empty($flassMessage["msg"])) : ?>
         <div class="msg-container">

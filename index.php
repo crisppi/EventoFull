@@ -10,34 +10,6 @@ require_once("models/evento.php");
 require_once("models/usuario.php");
 
 $usuarioDao = new userDAO($conn, $BASE_URL);
-// include_once("pagLogin.php");
-
-// NAO APAGAR LOGIN ATUAL FUNCIONANDO, VAMOS DIRECIONAR PARA PAGLOGIN.PHP
-// if (isset($_POST["login"])) {
-
-//     if (empty($_POST['username']) || empty($_POST['senha_login'])) {
-//         $message = '<label>Todos campos são obrigatórios</label>';
-//     } else {
-
-//         $query = "SELECT * FROM tb_user WHERE usuario_user = :username AND senha_user = :senha_login";
-
-//         $usuarioDao = $conn->prepare($query);
-//         $usuarioDao->execute(
-//             array(
-//                 'username'     =>     $_POST["username"],
-//                 'senha_login'     =>     $_POST["senha_login"]
-//             )
-//         );
-
-//         $count = $usuarioDao->rowCount();
-//         if ($count > 0) {
-//             $_SESSION["username"] = $_POST["username"];
-//             header("Location: cad_evento.php");
-//         } else {
-//             $message = '<label>Usuário ou senha incorretas</label>';
-//         }
-//     }
-// }
 
 ?>
 <!DOCTYPE html>
@@ -57,16 +29,6 @@ $usuarioDao = new userDAO($conn, $BASE_URL);
     <br />
     <div class="container" style="width:500px;">
 
-        <!-- <h3 align=""> Login </h3><br />
-        <form method="post">
-            <label>Username</label>
-            <input type="text" name="username" class="form-control" />
-            <br />
-            <label>senha_login</label>
-            <input type="senha_login" name="senha_login" class="form-control" />
-            <br />
-            <input type="submit" name="login" class="btn btn-info" value="Login" />
-        </form> -->
         <?php
         if (isset($message)) {
             echo '<label class="text-danger">' . $message . '</label>';
