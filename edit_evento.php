@@ -15,7 +15,7 @@ include_once("array_dados.php");
 ?>
 
 <!-- formulario update -->
-<div id="main-container" class="container-fluid">
+<div id="main-container" class="container">
     <div class="row">
         <h3 class="page-title">Negociações do Evento Adverso</h3>
 
@@ -229,12 +229,12 @@ include_once("array_dados.php");
             <p class="msg <?= $flassMessage["type"] ?>"><?= $flassMessage["msg"] ?></p>
         </div>
     <?php endif; ?>
+    <?php include_once("diversos/backbtn_evento.php"); ?>
 
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 
 
-<?php include_once("diversos/backbtn_evento.php"); ?>
 
 <?php
 require_once("templates/footer.php");

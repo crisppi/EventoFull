@@ -63,7 +63,9 @@ date_default_timezone_set('America/Sao_Paulo');
                 Pesquisas
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                <li><a class="dropdown-item" href="<?php $BASE_URL ?>list_evento.php">Evento Adverso</a></li>
+                <li><a class="dropdown-item" href="<?php $BASE_URL ?>list_evento.php"><i class="bi bi-book" style="font-size: 1rem;margin-right:5px; color: rgb(27, 156, 55);"></i> Evento Adverso</a></li>
+
+                <li><a class="dropdown-item" href="<?php $BASE_URL ?>list_evento_analise.php"><i class="bi bi-book" style="font-size: 1rem;margin-right:5px; color: rgb(255, 25, 55);"></i>Evento em análise</a></li>
               </ul>
             </li>
 
