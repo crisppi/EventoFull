@@ -45,11 +45,6 @@ class UserDAO implements UserDAOInterface
         $stmt->bindParam(":nivel_user", $usuario->nivel_user);
 
         $stmt->execute();
-
-        // Autenticar usuário, caso auth seja true
-        if (5 > 3) {
-            $this->setTokenToSession($usuario->token);
-        }
     }
 
     public function PassordHash($senha)
