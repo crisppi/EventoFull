@@ -57,6 +57,11 @@ class UserDAO implements UserDAOInterface
         return password_hash($senha, PASSWORD_DEFAULT);
     }
 
+    public function authenticateUser($senha)
+    {
+        return password_hash($senha, PASSWORD_DEFAULT);
+    }
+
     public function update(Usuario $usuario)
     {
 

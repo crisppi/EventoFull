@@ -15,9 +15,9 @@ include_once("array_dados.php");
 ?>
 
 <!-- formulario update -->
-<div id="main-container" class="container-fluid">
+<div id="main-container" class="container">
     <div class="row">
-        <h1 class="page-title">Negociações do EA</h1>
+        <h4 class="page-title">Negociações do EA</h4>
 
         <p class="page-description">Adicione informações sobre o evento</p>
         <form class="formulario" action="<?= $BASE_URL ?>process_evento.php" id="update-form" method="POST" enctype="multipart/form-data">
@@ -73,7 +73,7 @@ include_once("array_dados.php");
                 </div>
                 <div class="form-group col-sm-2 ">
                     <label class="control-label" for="valor_negociado">Valor negociado</label>
-                    <input id="valor_negociado" type="text" name="valor_negociado" placeholder="Valor Negociado" class="form-control">
+                    <input id="valor_negociado" type="text" name="valor_negociado" placeholder="Valor Negociado" class="form-control dinheiro">
                 </div>
                 <div class="form-group col-sm-2 ">
                     <label class="control-label" for="status">Status</label>
@@ -107,12 +107,14 @@ include_once("array_dados.php");
             <p class="msg <?= $flassMessage["type"] ?>"><?= $flassMessage["msg"] ?></p>
         </div>
     <?php endif; ?>
+    <hr>
+    <?php include_once("diversos/backbtn_evento.php"); ?>
 
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+<script src="js/scriptMoeda.js"></script>
 
-
-<?php include_once("diversos/backbtn_evento.php"); ?>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 
 <?php
 require_once("templates/footer.php");
