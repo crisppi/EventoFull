@@ -15,6 +15,12 @@ include_once("array_dados.php");
 ?>
 
 <!-- formulario update -->
+
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
 <div id="main-container" class="container">
     <div class="row">
         <h4 class="page-title">Negociações do EA</h4>
