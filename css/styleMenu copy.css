@@ -1,0 +1,72 @@
+:root {
+    --select-border: #777;
+    --select-focus: blue;
+    --select-arrow: var(--select-border);
+}
+
+
+/* lista lista_menu */
+
+.lista_menu {
+    width: 30%;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+.titulo_header {
+    text-shadow: 0.1em 0.1em #333;
+    color: gray;
+}
+
+.lista_menu h4 {
+    color: rgb(12, 12, 150);
+    text-shadow: #bbbaba 2px 3px 2px;
+    font-weight: 700;
+
+}
+
+li {
+    list-style-type: none;
+}
+
+.lista_menu a {
+    color: rgb(45, 44, 44);
+    font-weight: 700;
+    font-size: 1em;
+    padding-bottom: 30px;
+    text-decoration: none;
+    list-style-type: none;
+    margin-bottom: 20px;
+}
+
+.lista_menu li a {
+    color: rgb(69, 65, 65);
+    text-shadow: #bbbaba 2px 3px 2px;
+    font-weight: 700;
+    font-size: 1em;
+    padding-bottom: 80px;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+.lista_menu a:hover {
+    color: rgb(186, 4, 49);
+    font-size: 1.1em;
+    transition: 1;
+
+}
+
+.menu_pesquisa {
+    background-color: rgb(220, 217, 217);
+    margin-bottom: 10px;
+}
+
+.menu_pesquisa input[type="text"] {
+    background-color: rgb(241, 240, 240);
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+    font-size: .7em;
+    font-weight: normal;
+    padding: 5px;
+    margin-left: 5px;
+    margin-bottom: 10px;
+}

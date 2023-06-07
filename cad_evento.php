@@ -29,10 +29,9 @@ $id_evento = filter_input(INPUT_GET, "id_evento");
         <p class="page-description">Adicione informações sobre o Evento Adverso identificado</p>
 
         <form class="formulario" action="<?= $BASE_URL ?>process_evento.php" id="add-evento-form" method="POST" enctype="multipart/form-data">
-            <input type="hidden" name="type" value="create">
-            <hr>
+            <br> <input type="hidden" name="type" value="create">
             <div class="form-group row">
-                <div class="form-group col-sm-4">
+                <div class="form-group col-sm-3">
                     <label for="paciente">Nome do Paciente</label>
                     <input type="text" class="form-control" id="paciente" name="paciente" placeholder="Digite o nome do paciente">
                 </div>
@@ -40,7 +39,7 @@ $id_evento = filter_input(INPUT_GET, "id_evento");
                     <label for="idade">Idade</label>
                     <input type="text" class="form-control" id="idade" name="idade" placeholder="Digite a idade">
                 </div>
-                <div class="form-group col-sm-1">
+                <div class="form-group col-sm-2">
                     <label class="control-label" for="sexo">Sexo</label>
                     <select class="form-control" id="sexo" name="sexo">
                         <option value="">Selecione</option>

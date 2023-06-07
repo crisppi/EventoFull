@@ -16,7 +16,7 @@
     //Instanciando a classe
     $evento = new eventoDAO($conn, $BASE_URL);
     $QtdTotalEve = new eventoDAO($conn, $BASE_URL);
-
+    $order = null;
     // METODO DE BUSCA DE PAGINACAO
     $pesquisa_pac = filter_input(INPUT_GET, 'pesquisa_pac');
     $pesquisa_hosp = filter_input(INPUT_GET, 'pesquisa_hosp');
@@ -46,7 +46,7 @@
     <!--tabela evento-->
     <div class="container py-2">
 
-        <div class="row" style="background-color: #d3d3d3">
+        <div class="row">
             <form class="formulario" id="form_pesquisa" method="GET">
                 <div class="form-group row">
                     <h6 class="page-title" style="margin-top:10px">Selecione itens para efetuar Pesquisa</h6>
@@ -70,8 +70,10 @@
                         <input type="radio" style="margin-top:-5px" name="buscaAtivo" value="n" id="ativo" placeholder="Pesquisa por evento Ativo">
                         <label for="ativo">Inativo</label><br>
                     </div>
-                    <div class="form-group col-sm-1">
-                        <button style="margin:10px; font-weight:600" type="submit" class="btn-sm btn-light">Pesquisar</button>
+                    <div class="form-group col-sm-1" style="margin:20px 0px 10px 60px">
+                        <button type="submit" class="btn btn-primary mb-1"><span class="material-icons">
+                                person_search
+                            </span></button>
                     </div>
                 </div>
             </form>
@@ -174,6 +176,58 @@
             <button class="btn btn-danger styled" onclick=deletar() value="default" type="button" id="deletar-btn" name="deletar">Deletar</button>
         </div>
     </div>
+
+    <div class="container py-2">
+        <nav class="navbar navbar-light bg-light">
+            <div class="container py-2">
+                <button onclick="exibirPesquisa()" class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarToggleExternalContent2" aria-controls="navbarToggleExternalContent2" style="color:rgb(55,75,355)" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h4 class="page-title">Eventos</h4>
+            </div>
+        </nav>
+        <div class="container oculto py-2" id="navbarToggleExternalContent">
+
+            <form class="formulario" id="form_pesquisa" method="GET">
+                <div class="form-group row">
+                    <h6 style="margin:5px 0 10px 10px">Selecione itens para efetuar Pesquisa</h6>
+                    <div class="form-group col-sm-2">
+                        <label>Pesquisa por Hospital</label>
+
+                        <input type="text" value="<?= $busca ?>" name="pesquisa_nome" style="margin-top:10px; border:0rem" id="pesquisa_nome" placeholder="Pesquisa por hospital">
+                    </div>
+                    <div class="form-group col-sm-1" style="margin:20px 0px 10px 60px">
+                        <button type="submit" class="btn btn-primary mb-1"><span class="material-icons">
+                                person_search
+                            </span></button>
+                    </div>
+                </div>
+            </form>
+
+            <?php
+            $order = null;
+
+            // PREENCHIMENTO DO FORMULARIO COM QUERY
+            $query = $hospital->selectAllhospital($where, $order, $obLimite);
+
+            // GETS 
+            unset($_GET['pag']);
+            unset($_GET['pg']);
+            $gets = http_build_query($_GET);
+
+            // PAGINACAO
+            $paginacao = '';
+            $paginas = $obPagination->getPages();
+
+            foreach ($paginas as $pagina) {
+                $class = $pagina['atual'] ? 'btn-primary' : 'btn-light';
+                $paginacao .= '<a href="?pg=' . $pagina['pg'] . '&' . $gets . '"> 
+                <button type="button" class="btn ' . $class . '">' . $pagina['pg'] . '</button>
+                </a>';
+            }
+            ?>
+        </div>
+    </div>
     <!-- <?php
             //modo cadastro
             $formData = "0";
@@ -253,5 +307,33 @@
         console.log("chegou no cancelar");
 
     };
+
+
+    function exibirPesquisa() {
+        let formPesquisa = document.getElementById("navbarToggleExternalContent");
+
+        if (formPesquisa.style.display == "none") {
+            formPesquisa.style.display = "block";
+
+        } else {
+            formPesquisa.style.display = "none";
+
+        }
+    };
     src = "https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js";
 </script>
+<script>
+    function exibirPesquisa() {
+        let formPesquisa = document.getElementById("navbarToggleExternalContent");
+
+        if (formPesquisa.style.display == "none") {
+            formPesquisa.style.display = "block";
+
+        } else {
+            formPesquisa.style.display = "none";
+
+        }
+    };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>

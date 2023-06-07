@@ -22,7 +22,7 @@
     $pesquisa_hosp = filter_input(INPUT_GET, 'pesquisa_hosp');
     $buscaAtivo = filter_input(INPUT_GET, 'buscaAtivo');
     // $buscaAtivo = in_array($buscaAtivo, ['s', 'n']) ?: "";
-
+    $order = null;
     $condicoes = [
         strlen($pesquisa_pac) ? 'paciente LIKE "%' . $pesquisa_pac . '%"' : null,
         strlen($pesquisa_hosp) ? 'hospital LIKE "%' . $pesquisa_hosp . '%"' : null,

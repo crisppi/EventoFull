@@ -17,15 +17,22 @@ date_default_timezone_set('America/Sao_Paulo');
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gestão Qualidade-2022</title>
   <!-- Boostrap -->
+  
   <link href="<?php $BASE_URL ?>css/style.css" rel="stylesheet">
   <link href="<?php $BASE_URL ?>css/login.css" rel="stylesheet">
   <link href="<?php $BASE_URL ?>css/styleMenu.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.4/bootstrap-icons.svg">
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- boostrap icones -->
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <!--   -->
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
 
 </head>
 
@@ -41,7 +48,7 @@ date_default_timezone_set('America/Sao_Paulo');
         <div class="collapse navbar-collapse" id="navbarScroll">
           <ul class="nav-tabs navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="<?php $BASE_URL ?>index.php">Home</a>
+              <a class="nav-link active" aria-current="page" href="<?php $BASE_URL ?>menu.php">Home</a>
             </li>
 
             <li class="nav-item dropdown">
@@ -53,7 +60,6 @@ date_default_timezone_set('America/Sao_Paulo');
             </li>
           </ul>
 
-          </li>
           <?php
           if (isset($_SESSION) && $_SESSION['nivel'] >= 2) {
           ?>
@@ -65,7 +71,7 @@ date_default_timezone_set('America/Sao_Paulo');
               <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                 <li><a class="dropdown-item" href="<?php $BASE_URL ?>list_evento.php"><i class="bi bi-book" style="font-size: 1rem;margin-right:5px; color: rgb(27, 156, 55);"></i> Evento Adverso</a></li>
 
-                <li><a class="dropdown-item" href="<?php $BASE_URL ?>list_evento_analise.php"><i class="bi bi-book" style="font-size: 1rem;margin-right:5px; color: rgb(255, 25, 55);"></i> Evento em análise</a></li>
+                <li><a class="dropdown-item" href="<?php $BASE_URL ?>list_evento_analise.php"><i class="bi bi-hospital" style="font-size: 1rem;margin-right:5px; color: rgb(255, 25, 55);"></i> Evento em análise</a></li>
               </ul>
             </li>
 
