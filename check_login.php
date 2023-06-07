@@ -53,7 +53,7 @@ if (!empty($query)) {
     if (password_verify($senha_login, $senha_hash)) {
         $_SESSION['nivel'] = $nivel;
         $_SESSION['username'] = $username;
-        header('location: menu.php');
+        header('location: cad_evento.php');
     } else {
         $erro_login = "Usuário ou senha inválidos";
         $_SESSION['mensagem'] = $erro_login;
