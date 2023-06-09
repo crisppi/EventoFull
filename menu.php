@@ -1,8 +1,6 @@
 <?php
-
 // include_once("check_logado.php");
 require_once("templates/header.php");
-
 ?>
 
 <div class="container" style="margin-bottom:80px">
@@ -60,12 +58,10 @@ require_once("templates/header.php");
             <li>
                 <a href="cad_acomodacao.php" <?php if ($_SESSION['nivel'] < 2) { ?> style="pointer-events: none" ?<?php } ?>><span class="bi bi-clipboard-heart" style="font-size: 1rem; margin-right:5px; color: rgb(155, 155, 76);"></span>Cadastro Acomodação</a>
             </li>
-
             <hr>
             <li>
                 <a href="list_usuario.php" <?php if ($_SESSION['nivel'] < 4) { ?> style="pointer-events: none" ?<?php } ?>><span class="bi bi-person" style="font-size: 1rem;margin-right:5px; color: rgb(15, 155, 18);"></span>Relação Usuários</a>
             </li>
-
         </div>
 
         <!-- lista cadastro -->
@@ -90,13 +86,10 @@ require_once("templates/header.php");
                 <a href="cad_seguradora.php" <?php if ($_SESSION['nivel'] < 4) { ?> style="pointer-events: none" ?<?php } ?>><span class="bi bi-heart-pulse" style="font-size: 1rem;margin-right:5px; color: rgb(255, 215, 55);"></span>Seguradora</a>
             </li>
         </div>
-
         <!-- lista Listas -->
         <div class="col lista_menu">
-
             <h4>LISTAS</h4>
             <hr>
-
             <li>
                 <a href="list_evento.php" <?php if ($_SESSION['nivel'] < 2) { ?> style="pointer-events: none" ?<?php } ?>><span class="bi bi-person" style="font-size: 1rem;margin-right:5px; color: rgb(155, 155, 76);"></span> Eventos</a>
             </li>
