@@ -48,18 +48,29 @@ $id_evento = filter_input(INPUT_GET, "id_evento");
                     </select>
                 </div>
                 <div class="form-group col-sm-2">
-                    <label class="control-label" for="hospital">Hospital</label>
-                    <select class="form-control" id="hospital" name="hospital">
+                    <label class="control-label" for="seguradora">Seguradora</label>
+                    <select class="form-control" id="seguradora" name="seguradora">
                         <option value="">Selecione</option>
                         <?php
-                        sort($dados_hospital, SORT_ASC);
+                        sort($dados_seguradora, SORT_ASC);
 
-                        foreach ($dados_hospital as $hosp) { ?>
-                            <option value="<?= $hosp; ?>"><?= $hosp; ?></option>
+                        foreach ($dados_seguradora as $seguradora) { ?>
+                            <option value="<?= $seguradora; ?>"><?= $seguradora; ?></option>
                         <?php } ?>
 
                     </select>
                 </div>
+                <div class="form-group col-sm-2 ">
+                    <label class="control-label" for="status">Status da negociação</label>
+                    <select class="form-control" id="status" name="status">
+                        <option value="">Selecione</option>
+                        <?php
+                        sort($dadosStatus, SORT_ASC);
+                        foreach ($dadosStatus as $stat) { ?>
+                            <option value="<?= $stat; ?>"><?= $stat; ?></option>
+                        <?php } ?>
+                    </select>
+                </div>xs
                 <div class="form-group col-sm-2">
                     <label for="senha">Senha</label>
                     <input type="text" class="form-control" id="senha" name="senha" placeholder="Digite a senha">

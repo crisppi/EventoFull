@@ -54,14 +54,14 @@ if (!empty($query)) {
     if (password_verify($senha_login, $senha_hash)) {
         $_SESSION['nivel'] = $nivel;
         $_SESSION['username'] = $username;
-        header('location: cad_evento.php');
+        header('location: menu.php');
     } else {
         $erro_login = "Usuário ou senha inválidos";
         $_SESSION['mensagem'] = $erro_login;
         header('location: index.php');
     }
 } else {
-    print_r("chehffa");
+
     $email_user = $query[0]['email_user'];
 
     if ($username == $query[0]['email_user']);
