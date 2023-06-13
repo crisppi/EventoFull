@@ -28,7 +28,7 @@ $login = filter_input(INPUT_POST, 'login');
 
 // $buscaAtivo = in_array($buscaAtivo, ['s', 'n']) ?: "";
 $condicoes = [
-    strlen($username) ? 'usuario_user LIKE "%' . $username . '%"' : null,
+    strlen($username) ? 'email_user LIKE "%' . $username . '%"' : null,
     // strlen($senha_login) ? 'senha_user LIKE "%' . $senha_login . '%"' : null,
     // strlen($buscaAtivo) ? 'ativo = "' . $buscaAtivo . '"' : null
 ];
@@ -46,8 +46,8 @@ if (!empty($query)) {
     $nivel = $query[0]['nivel_user'];
     $senha_hash = $query[0]['senha_user'];
 
-    echo "<pre>";
-    print_r($query);
+    // echo "<pre>";
+    // print_r($query);
     // print_r($senha_hash);
 
     if (password_verify($senha_login, $senha_hash)) {

@@ -48,7 +48,6 @@ require_once("templates/header.php");
 
             <h4>ADMINISTRATIVO</h4>
             <hr>
-
             <li>
                 <a href="cad_usuario.php" <?php if ($_SESSION['nivel'] < 4) { ?> style="pointer-events: none" ?<?php } ?>><span class="bi bi-person" style="font-size: 1rem;margin-right:5px; color: rgb(155, 155, 76);"></span>Cadastro Usuários</a>
             </li>
