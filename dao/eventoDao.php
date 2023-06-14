@@ -184,6 +184,7 @@ class eventoDAO implements eventoDAOInterface
         sexo,
         idade,
         hospital,
+        seguradora,
         data_evento,
         data_visita,
         seguradora,
@@ -211,6 +212,7 @@ class eventoDAO implements eventoDAOInterface
         :sexo,
         :idade,
         :hospital,
+        :seguradora,
         :data_evento,
         :data_visita,
         :seguradora,
@@ -272,6 +274,7 @@ class eventoDAO implements eventoDAOInterface
         sexo = :sexo,
         idade = :idade,
         hospital = :hospital,
+        seguradora = :seguradora,
         data_evento = :data_evento,
         data_visita = :data_visita,
         seguradora = :seguradora,
@@ -302,9 +305,9 @@ class eventoDAO implements eventoDAOInterface
         $stmt->bindParam(":sexo", $evento->sexo);
         $stmt->bindParam(":idade", $evento->idade);
         $stmt->bindParam(":hospital", $evento->hospital);
+        $stmt->bindParam(":seguradora", $evento->seguradora);
         $stmt->bindParam(":data_evento", $evento->data_evento);
         $stmt->bindParam(":data_visita", $evento->data_visita);
-        $stmt->bindParam(":seguradora", $evento->seguradora);
         $stmt->bindParam(":rel_impacto", $evento->rel_impacto);
         $stmt->bindParam(":rel_evento", $evento->rel_evento);
         $stmt->bindParam(":rel_prolongamento", $evento->rel_prolongamento);

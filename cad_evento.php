@@ -48,19 +48,46 @@ $id_evento = filter_input(INPUT_GET, "id_evento");
                     </select>
                 </div>
                 <div class="form-group col-sm-2">
+                    <label for="data_evento">Data do EA</label>
+                    <input type="date" class="form-control" id="data_evento" name="data_evento">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label for="data_visita">Data visita</label>
+                    <input type="date" class="form-control" id="data_visita" name="data_visita">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="form-group col-sm-4">
+                    <label for="auditor">Nome do auditor</label>
+                    <input type="text" class="form-control" id="auditor" name="auditor" placeholder="Digite o nome do auditor">
+                </div>
+                <div class="form-group col-sm-2">
                     <label class="control-label" for="seguradora">Seguradora</label>
                     <select class="form-control" id="seguradora" name="seguradora">
                         <option value="">Selecione</option>
                         <?php
                         sort($dados_seguradora, SORT_ASC);
-
                         foreach ($dados_seguradora as $seguradora) { ?>
                             <option value="<?= $seguradora; ?>"><?= $seguradora; ?></option>
                         <?php } ?>
-
                     </select>
                 </div>
-                <div class="form-group col-sm-2 ">
+                <div class="form-group col-sm-2">
+                    <label class="control-label" for="hospital">Hospital</label>
+                    <select class="form-control" id="hospital" name="hospital">
+                        <option value="">Selecione</option>
+                        <?php
+                        sort($dados_hospital, SORT_ASC);
+                        foreach ($dados_hospital as $hospital) { ?>
+                            <option value="<?= $hospital; ?>"><?= $hospital; ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+                <div class="form-group col-sm-2">
+                    <label for="senha">Senha</label>
+                    <input type="text" class="form-control" id="senha" name="senha" placeholder="Digite a senha">
+                </div>
+                <div class="form-group col-sm-2">
                     <label class="control-label" for="status">Status da negociação</label>
                     <select class="form-control" id="status" name="status">
                         <option value="">Selecione</option>
@@ -70,16 +97,8 @@ $id_evento = filter_input(INPUT_GET, "id_evento");
                             <option value="<?= $stat; ?>"><?= $stat; ?></option>
                         <?php } ?>
                     </select>
-                </div>xs
-                <div class="form-group col-sm-2">
-                    <label for="senha">Senha</label>
-                    <input type="text" class="form-control" id="senha" name="senha" placeholder="Digite a senha">
                 </div>
 
-                <div class="form-group col-sm-2">
-                    <label for="data_visita">Data visita</label>
-                    <input type="date" class="form-control" id="data_visita" name="data_visita">
-                </div>
                 <div class="form-group row">
                     <div class="form-group col-sm-2">
                         <label class="control-label" for="propria">Auditoria própria</label>
@@ -100,14 +119,6 @@ $id_evento = filter_input(INPUT_GET, "id_evento");
                                 <option value="<?= $emp; ?>"><?= $emp; ?></option>
                             <?php } ?>
                         </select>
-                    </div>
-                    <div class="form-group col-sm-4">
-                        <label for="auditor">Nome do auditor</label>
-                        <input type="text" class="form-control" id="auditor" name="auditor" placeholder="Digite o nome do auditor">
-                    </div>
-                    <div class="form-group col-sm-2">
-                        <label for="data_evento">Data do EA</label>
-                        <input type="date" class="form-control" id="data_evento" name="data_evento">
                     </div>
                 </div>
                 <div class="form-group row">
