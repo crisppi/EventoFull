@@ -31,7 +31,7 @@ if ($type === "create") {
     $prolongamento = filter_input(INPUT_POST, "prolongamento");
     $tipo_evento = filter_input(INPUT_POST, "tipo_evento");
     $gravidade = filter_input(INPUT_POST, "gravidade");
-    $negociado = filter_input(INPUT_POST, "negociado");
+    $valor_negociado = filter_input(INPUT_POST, "valor_negociado") ?: "0";
     $status = filter_input(INPUT_POST, "status");
     $ativo = filter_input(INPUT_POST, "ativo");
     $classificacao = filter_input(INPUT_POST, "classificacao");
@@ -63,7 +63,7 @@ if ($type === "create") {
         $evento->gravidade = $gravidade;
         $evento->ativo = $ativo;
         $evento->status = $status;
-        $evento->negociado = $negociado;
+        // $evento->negociado = $negociado;
         $evento->valor_negociado = $valor_negociado;
         $evento->impacto = $impacto;
         $evento->classificacao = $classificacao;

@@ -46,7 +46,7 @@ class eventoDAO implements eventoDAOInterface
         $evento->empresa = $data["empresa"];
         $evento->ativo = $data["ativo"];
         $evento->negociado = $data["negociado"];
-        // $evento->valor_negociado = $data["valor_negociado"];
+        $evento->valor_negociado = $data["valor_negociado"];
         $evento->status = $data["status"];
         $evento->tipo_evento = $data["tipo_evento"];
 
@@ -187,7 +187,6 @@ class eventoDAO implements eventoDAOInterface
         seguradora,
         data_evento,
         data_visita,
-        seguradora,
         rel_impacto,
         rel_evento,
         rel_prolongamento,
@@ -215,7 +214,6 @@ class eventoDAO implements eventoDAOInterface
         :seguradora,
         :data_evento,
         :data_visita,
-        :seguradora,
         :rel_impacto,
         :rel_evento,
         :rel_prolongamento,
