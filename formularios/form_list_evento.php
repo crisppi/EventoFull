@@ -149,7 +149,6 @@
 
                             <a href="<?= $BASE_URL ?>show_evento.php?id_evento=<?= $id_evento ?>"><i style="color:red; margin-left:10px" name="type" value="edite" class="d-inline-block bi bi-x-square-fill delete-icon"></i></a>
 
-                            <div id="info"></div>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -176,14 +175,13 @@
             <button class="btn btn-danger styled" onclick=deletar() value="default" type="button" id="deletar-btn" name="deletar">Deletar</button>
         </div>
     </div>
-
     <div class="container py-2">
         <nav class="navbar navbar-light bg-light">
             <div class="container py-2">
                 <button onclick="exibirPesquisa()" class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarToggleExternalContent2" aria-controls="navbarToggleExternalContent2" style="color:rgb(55,75,355)" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
                 </button>
-                <h4 class="page-title">Eventos</h4>
+                <h4 class="page-title"> Eventos</h4>
             </div>
         </nav>
         <div class="container oculto py-2" id="navbarToggleExternalContent">
@@ -282,7 +280,6 @@
         <a class="btn btn-success styled" style="margin-left:120px" href="cad_evento.php">Novo Evento</a>
     </div>
 </body>
-
 <script>
     function apareceOpcoes() {
         $('#deletar-btn').val('nao');
@@ -305,9 +302,7 @@
         let idAcoes = (document.getElementById('id-confirmacao'));
         idAcoes.style.display = 'none';
         console.log("chegou no cancelar");
-
     };
-
 
     function exibirPesquisa() {
         let formPesquisa = document.getElementById("navbarToggleExternalContent");

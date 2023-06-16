@@ -275,7 +275,6 @@ class eventoDAO implements eventoDAOInterface
         seguradora = :seguradora,
         data_evento = :data_evento,
         data_visita = :data_visita,
-        seguradora = :seguradora,
         rel_impacto = :rel_impacto,
         rel_evento = :rel_evento,
         rel_prolongamento = :rel_prolongamento,

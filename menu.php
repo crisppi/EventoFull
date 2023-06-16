@@ -2,9 +2,9 @@
 // include_once("check_logado.php");
 require_once("templates/header.php");
 ?>
-
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <div class="container" style="margin-bottom:80px">
-    <!-- <?php print_r($_SESSION); ?> -->
 
     <div class="row" style="margin-top:10px; background-color:#F1F0EF;box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .8), inset -2px -2px 3px rgba(0, 0, 0, .6); border-radius: 10px;">
         <div style="height: 10px;">
@@ -19,26 +19,26 @@ require_once("templates/header.php");
             </li>
 
             <li>
-                <a href="list_visita.php" <?php if ($_SESSION['nivel'] < 2) { ?> style="pointer-events: none" ?<?php } ?>><i class="bi bi-pencil-square" style="font-size: 1rem;margin-right:5px; color: rgb(255, 25, 55);"></i>Nova Visita</a>
+                <a href="list_visita.php" <?php if ($_SESSION['nivel'] < 2) { ?> style="pointer-events: none" ?<?php } ?>><i class="bi bi-pencil-square" style="font-size: 1rem;margin-right:5px; color: rgb(255, 25, 55);"></i> Nova Visita</a>
             </li>
             <hr>
 
             <li>
-                <a href="list_internacao.php" <?php if ($_SESSION['nivel'] < 2) { ?> style="pointer-events: none" ?<?php } ?>><i class="bi bi-calendar2-date" style="font-size: 1rem;margin-right:5px; color: rgb(27,156, 55);"></i>Lista Internação</a>
+                <a href="list_internacao.php" <?php if ($_SESSION['nivel'] < 2) { ?> style="pointer-events: none" ?<?php } ?>><i class="bi bi-calendar2-date" style="font-size: 1rem;margin-right:5px; color: rgb(27,156, 55);"></i> Lista Internação</a>
             </li>
 
             <hr>
 
             <li>
-                <a href="list_internacao_alta.php" <?php if ($_SESSION['nivel'] < 2) { ?> style="pointer-events: none" ?<?php } ?>><span id="boot-icon3" class="bi bi-box-arrow-left" style="font-size: 1rem; margin-right:5px; color: rgb(16, 15, 155);"></span>Alta Hospitalar</a>
+                <a href="list_internacao_alta.php" <?php if ($_SESSION['nivel'] < 2) { ?> style="pointer-events: none" ?<?php } ?>><span id="boot-icon3" class="bi bi-box-arrow-left" style="font-size: 1rem; margin-right:5px; color: rgb(16, 15, 155);"></span> Alta Hospitalar</a>
             </li>
             <hr>
             <li>
-                <a href="list_gestao.php" <?php if ($_SESSION['nivel'] < 2) { ?> style="pointer-events: none" ?<?php } ?>><i class=" bi bi-clipboard-heart" style="font-size: 1rem;margin-right:5px; color: rgb(142, 15, 15);"></i>Gestão</a>
+                <a href="list_gestao.php" <?php if ($_SESSION['nivel'] < 2) { ?> style="pointer-events: none" ?<?php } ?>><i class=" bi bi-clipboard-heart" style="font-size: 1rem;margin-right:5px; color: rgb(142, 15, 15);"></i> Gestão</a>
             </li>
             <hr>
             <li>
-                <a href="list_internacao_patologia.php" <?php if ($_SESSION['nivel'] < 2) { ?> style="pointer-events: none" ?<?php } ?>><span id="boot-icon1" class="bi bi-capsule-pill" style="font-size: 1rem; margin-right:5px; color: rgb(77, 155, 67);"> </span>DRG</a>
+                <a href="list_internacao_patologia.php" <?php if ($_SESSION['nivel'] < 2) { ?> style="pointer-events: none" ?<?php } ?>><span id="boot-icon1" class="bi bi-capsule-pill" style="font-size: 1rem; margin-right:5px; color: rgb(77, 155, 67);"> </span> DRG</a>
             </li>
             <br>
         </div>
@@ -104,7 +104,7 @@ require_once("templates/header.php");
 
     </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
 <?php
