@@ -301,10 +301,10 @@
     function cancelar() {
         let idAcoes = (document.getElementById('id-confirmacao'));
         idAcoes.style.display = 'none';
-        console.log("chegou no cancelar");
     };
 
     function exibirPesquisa() {
+        console.log("chejghakdsj");
         let formPesquisa = document.getElementById("navbarToggleExternalContent");
 
         if (formPesquisa.style.display == "none") {
@@ -315,20 +315,9 @@
 
         }
     };
+
     src = "https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js";
 </script>
-<script>
-    function exibirPesquisa() {
-        let formPesquisa = document.getElementById("navbarToggleExternalContent");
 
-        if (formPesquisa.style.display == "none") {
-            formPesquisa.style.display = "block";
-
-        } else {
-            formPesquisa.style.display = "none";
-
-        }
-    };
-</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
